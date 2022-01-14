@@ -1,14 +1,7 @@
 class Tank extends Entity {
+  //   private shoot() {}
 
-    private shoot() {
-        
-    }
+  public update() {}
 
-    private update() {
-
-    }
-
-    private draw() {
-        
-    }
+  public draw() {}
 }

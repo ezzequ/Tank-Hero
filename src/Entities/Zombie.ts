@@ -1,9 +1,5 @@
-class Zombie extends Entity{
-    private update() {
+class Zombie extends Entity {
+  public update() {}
 
-    }
-
-    private draw() {
-        
-    }
+  public draw() {}
 }

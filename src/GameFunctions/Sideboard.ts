@@ -1,15 +1,18 @@
-class sideBoard {
-    // private rescuedSurvivor : ? = ?
+class SideBoard {
+  // private rescuedSurvivor : ? = ?
 
-    private deathEffect() {
-        // Return Void
-    }
+  constructor() {}
 
-    private update() {
-        // Return Void
-    }
+  private deathEffect() {
+    // Return Void
+  }
 
-    private draw() {
-        // Return Void
-    }
+  public update() {
+    // Return Void
+  }
+
+  public draw() {
+    fill(204, 102, 0)
+    rect(0, 0, windowWidth / 6, windowHeight)
+  }
 }
