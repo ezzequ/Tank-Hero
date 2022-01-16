@@ -1,25 +1,18 @@
 class StartMenu {
-    private gameControls: p5.Image;
-    
-    // private game : IGame;
+  // private gameControls: p5.Image;
+  // private game : IGame;
+  // private isActive : boolean = true;
+  // private logo: p5.Image;
+  // private gameDescription : string = "";
+  // private startButton
 
-    private isActive : boolean = true;
+  constructor() {}
 
-    private logo: p5.Image;
+  public update() {
+    // Return Void;
+  }
 
-    private gameDescription : string = "";
-
-    // private startButton
-
-    constructor(/*game : IGame*/) {
-
-    }
-    
-    private update() {
-        // Return Void;
-    }
-
-    private draw() {
-        // Return Void; 
-    }
+  public draw() {
+    // Return Void;
+  }
 }

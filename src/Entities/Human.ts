@@ -1,9 +1,5 @@
-class Human extends Entity{
-    private update() {
+class Human extends Entity {
+  public update() {}
 
-    }
-
-    private draw() {
-        
-    }
+  public draw() {}
 }

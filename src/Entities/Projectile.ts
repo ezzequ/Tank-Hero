@@ -1,9 +1,5 @@
-class Projectile extends Entity{
-    private update() {
+class Projectile extends Entity {
+  public update() {}
 
-    }
-
-    private draw() {
-        
-    }
+  public draw() {}
 }

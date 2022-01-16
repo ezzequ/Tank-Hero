@@ -1,9 +1,5 @@
-class Obstacle extends Entity{
-    private update() {
+class Obstacle extends Entity {
+  public update() {}
 
-    }
-
-    private draw() {
-        
-    }
+  public draw() {}
 }

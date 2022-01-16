@@ -1,32 +1,35 @@
 class Game {
-    // private gameBoard : GameBoard;
-    // private startMenu : StartMenu;
+  private gameBoard: GameBoard
+  //   private startMenu: StartMenu
 
-    private drawStartMenu() {
-        // Return Void;
-    }
+  constructor() {
+    this.gameBoard = new GameBoard()
+    // this.startMenu = new StartMenu()
+  }
 
-    private checkMenu() {
-        // Return Void;
-    }
+  private drawStartMenu() {
+    // Return Void;
+  }
 
-    private update() {
-        // Return Void; 
-    }
+  private checkMenu() {
+    // Return Void;
+  }
 
-    private draw() {
-        // Return Void
-    }
+  public update() {
+    this.gameBoard.update()
+  }
 
-    private playMusic() {
-        // Return Void;
-    }
+  public draw() {
+    background('blue')
+    this.gameBoard.draw()
+  }
 
-
+  private playMusic() {
+    // Return Void;
+  }
 }
 
-
 interface IGame {
-    //public startGame() {
-    //}
+  //public startGame() {
+  //}
 }

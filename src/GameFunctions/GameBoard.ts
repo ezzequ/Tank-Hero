@@ -1,40 +1,35 @@
 class GameBoard {
-    private background: object = {};
+  //   private background: object = {}
+  // private gameCounter : GameCounter
+  // private entities: Entity[];
+  // private tank : Tank;
+  private sideBoard: SideBoard
 
-    // private gameCounter : GameCounter
+  constructor() {
+    this.sideBoard = new SideBoard()
+  }
 
-    // private entities: Entity[ ];
+  //   private scroll() {}
 
-    // private tank : Tank;
-    
-    // private sideBoard : SideBoard; 
-    
-    private scroll() {
-        // Return Void
-    }
+  //   private spawnEntities() {}
 
-    private spawnEntities() {
-        // Return Void
-    }
+  //   private checkCollision() {
+  //     // Return Void
+  //   }
 
-    private checkCollision() {
-        // Return Void
-    }
-    
-    private entityEndOfLine() {
-        // Return Void
-    }
+  //   private entityEndOfLine() {
+  //     // Return Void
+  //   }
 
-    private killSurviour() {
-        // Return Void
-    }
+  //   private killSurviour() {
+  //     // Return Void
+  //   }
 
-    private update() {
-        // Return Void
-    }
+  public update() {
+    // Return Void
+  }
 
-    private draw() {
-        // Return Void
-    }
-
+  public draw() {
+    this.sideBoard.draw()
+  }
 }
