@@ -21,13 +21,13 @@ class Game {
   }
 
   public draw() {
-    background('blue')
+    // background('blue')
     this.gameBoard.draw()
   }
 
-  private playMusic() {
-    // Return Void;
-  }
+  // private playMusic() {
+  //   // Return Void;
+  // }
 }
 
 interface IGame {
