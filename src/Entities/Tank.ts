@@ -1,7 +1,13 @@
 class Tank extends Entity {
+
+  // constructor() {
+  //   super()
+  // }
   //   private shoot() {}
 
-  public update() {}
+  // move(){}
 
-  public draw() {}
+  // public update() {}
+
+  // public draw() {}
 }

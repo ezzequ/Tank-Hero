@@ -1,7 +1,7 @@
 abstract class Entity {
   //   private size: number = 0
   //   private health: number = 0
-  //   private positionX: number = 0
+  //   public position: p5.Vector;
   //   private name: string = ''
   //   private image: object = {}
   //   private sound: object = {}
@@ -9,11 +9,14 @@ abstract class Entity {
   //   private damage: number = 0
   //   private isHit: boolean = false
 
-  constructor() {}
+  constructor() {
+    
+    
 
-  //   private moveX() {}
+  }
 
-  //   private moveY() {}
+    private move() {}
+
 
   //   private removeHealth() {}
 
@@ -21,5 +24,9 @@ abstract class Entity {
 
   public update() {}
 
-  public draw() {}
+  public draw() {
+   
+    fill(102);
+    rect(81, 81, 63, 63);
+  }
 }
