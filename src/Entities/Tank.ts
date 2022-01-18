@@ -1,13 +1,24 @@
 class Tank extends Entity {
 
-  // constructor() {
-  //   super()
-  // }
+  constructor() {
+    const size = 100;
+    const health = 4;
+    const position = createVector(width * .25, height * .5);
+    const img = images.tank;
+    // const sound: p5.SoundFile = 2
+    const points = 0
+    const damage = 0
+    const ishit = false
+    const velocity: p5.Vector = createVector(0, 0);
+    
+    super(size, health, position, img, points, damage, ishit, velocity)
+  }
   //   private shoot() {}
 
   // move(){}
 
-  // public update() {}
+  // public update() {
+    
+  // }
 
-  // public draw() {}
 }

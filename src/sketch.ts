@@ -1,7 +1,7 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game
 // let sound: p5.SoundFile
-let bgImg: p5.Image
+let images: Images
 
 /**
  * Built in preload function in P5
@@ -10,7 +10,10 @@ let bgImg: p5.Image
  */
 function preload() {
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
-  bgImg = loadImage('/assets/images/burning-test1.png')
+  images = {
+    bgImg: loadImage('/assets/images/burning-test1.png'),
+    tank: loadImage('/assets/images/tank.png'),
+  }
 }
 
 /**

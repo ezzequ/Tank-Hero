@@ -1,7 +1,5 @@
 class GameBoard {
   private background: p5.Image;
-  private background2: p5.Image;
-  private tankImage: p5.Image;
   private xPos: number;
   private xPos2: number;
 
@@ -9,15 +7,14 @@ class GameBoard {
   // private gameCounter : GameCounter
   // private entities: Entity[];
   private tank : Tank;
+
   private sideBoard: SideBoard
 
   constructor() {
     this.sideBoard = new SideBoard();
     this.tank = new Tank();
 
-    this.background = loadImage('/assets/images/burning-test1.png');
-    this.background2 = loadImage('/assets/images/burning-test2.png');
-    this.tankImage = loadImage('/assets/images/tank.png');
+    this.background = images.bgImg;
     this.xPos = 0;
     this.xPos2 = width; 
     this.scrollSpeed = 5;
@@ -56,12 +53,14 @@ class GameBoard {
 
   public update() {
     // Return Void
+    this.tank.update()
   }
   
-  public draw() {
+  public draw() {    
     this.scroll();
     // this.sideBoard.draw()
-    image(this.tankImage, 0, 300, 200, 200)
-    this.tank.draw()
+    // image(this.tankImage, 0, 300, 200, 200)
+    this.tank.draw();
+
   }
 }
