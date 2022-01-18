@@ -13,19 +13,26 @@ class Tank extends Entity {
     
     super(size, health, position, img, points, damage, ishit, velocity)
   }
-  //   private shoot() {}
+  // private shoot() {
+  // }
 
-  move(){
+  private move() {
     if (keyIsDown(38)) {
       this.position.y -= 5
     } 
     if (keyIsDown(40)) {
       this.position.y += 5
     }
+    if (keyIsDown(39)) {
+      this.position.x += 5
+    }
+    if (keyIsDown(37)) {
+      this.position.x -= 10
+    }
   }
-
-  // public update() {
+  
+  public update() {
+    this.move();
+  }
     
-  // }
-
-}
+  }

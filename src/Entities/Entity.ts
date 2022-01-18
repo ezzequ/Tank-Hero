@@ -21,6 +21,12 @@ abstract class Entity {
     this.velocity = velocity || createVector(-5, 0)
   }
 
+  // public zombieScroll(){
+  //   if (Zombie instanceof Entity){
+  //     this.position.x -= 100;
+  //   }
+  // }
+
   //   private removeHealth() {}
 
   //   private removeEntity() {}
@@ -29,6 +35,7 @@ abstract class Entity {
     // this.position.x += this.velocity.x; //* deltaTime / 1000
     // this.position.y += this.velocity.y; //* deltaTime / 1000
     this.position.add(this.velocity);
+
   }
   public draw() {
     image(this.image, this.position.x, this.position.y, this.size, this.size)

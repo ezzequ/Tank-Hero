@@ -4,4 +4,5 @@ interface Images {
   zombie: p5.Image;
   obstacle: p5.Image;
   human: p5.Image;
+  projectile: p5.Image;
 }
