@@ -23,6 +23,7 @@ class GameCounter {
   }
 
   public draw() {
-    // Return Void
+    fill(108, 102, 0)
+    rect(0, 0, windowWidth, windowHeight / 6)
   }
 }

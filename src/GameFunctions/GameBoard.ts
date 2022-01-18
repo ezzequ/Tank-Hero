@@ -4,7 +4,7 @@ class GameBoard {
   private xPos2: number;
 
   private scrollSpeed : number;
-  // private gameCounter : GameCounter
+  private gameCounter : GameCounter
   // private entities: Entity[];
   private tank : Tank;
   private zombie : Zombie;
@@ -14,6 +14,7 @@ class GameBoard {
   private sideBoard: SideBoard
 
   constructor() {
+    this.gameCounter = new GameCounter()
     this.sideBoard = new SideBoard();
     this.tank = new Tank();
     this.zombie = new Zombie();
@@ -59,16 +60,16 @@ class GameBoard {
 
   public update() {
     // Return Void
-    this.tank.move()
+    this.tank.move() // RÖR TANKEN
   }
   
   public draw() {    
     this.scroll();
-    // this.sideBoard.draw()
-    // image(this.tankImage, 0, 300, 200, 200)
     this.tank.draw();
     this.zombie.draw();
     this.obstacle.draw();
     this.human.draw();
+    this.sideBoard.draw()
+    this.gameCounter.draw()
   }
 }
