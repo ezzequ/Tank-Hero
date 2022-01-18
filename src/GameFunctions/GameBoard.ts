@@ -1,23 +1,30 @@
 class GameBoard {
   private background: p5.Image;
-  private background2: p5.Image;
-  private tankImage: p5.Image;
   private xPos: number;
   private xPos2: number;
 
   private scrollSpeed : number;
-  // private gameCounter : GameCounter
+  private gameCounter : GameCounter
   // private entities: Entity[];
   private tank : Tank;
+  private zombie : Zombie;
+  private obstacle : Obstacle;
+  private human : Human;
+  private projectile : Projectile;
+  
+
   private sideBoard: SideBoard
 
   constructor() {
+    this.gameCounter = new GameCounter()
     this.sideBoard = new SideBoard();
     this.tank = new Tank();
+    this.zombie = new Zombie();
+    this.obstacle = new Obstacle();
+    this.human = new Human();
+    this.projectile = new Projectile();
 
-    this.background = loadImage('/assets/images/burning-test1.png');
-    this.background2 = loadImage('/assets/images/burning-test2.png');
-    this.tankImage = loadImage('/assets/images/tank.png');
+    this.background = images.bgImg;
     this.xPos = 0;
     this.xPos2 = width; 
     this.scrollSpeed = 5;
@@ -40,6 +47,17 @@ class GameBoard {
     
   }
 
+  public KeyPressed() {
+    if (keyCode === SHIFT){
+      let bullet = new Projectile();
+      //bullet.draw(x, y);
+      //bullet.update()
+      return bullet
+    }
+
+    
+  }
+
   //   private spawnEntities() {}
 
   //   private checkCollision() {
@@ -56,12 +74,24 @@ class GameBoard {
 
   public update() {
     // Return Void
+    this.tank.move(); // RÖR TANKEN
+    this.zombie.update();
+    this.obstacle.update();
+    this.human.update();
+
   }
   
   public draw() {
+    let bullet = this.KeyPressed()
     this.scroll();
-    // this.sideBoard.draw()
-    image(this.tankImage, 0, 300, 200, 200)
-    this.tank.draw()
+    this.tank.draw();
+    this.zombie.draw();
+    this.obstacle.draw();
+    this.human.draw();
+    this.sideBoard.draw();
+    this.gameCounter.draw();
+    bullet?.draw(this.tank.position.x, this.tank.position.y)
   }
 }
+
+let classArray: Entity[] = [];

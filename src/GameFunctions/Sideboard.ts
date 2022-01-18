@@ -12,7 +12,7 @@ class SideBoard {
   }
 
   public draw() {
-    // fill(204, 102, 0)
-    // rect(0, 0, windowWidth / 6, windowHeight)
+    fill(204, 102, 0)
+    rect(0, 0, windowWidth / 6, windowHeight)
   }
 }
