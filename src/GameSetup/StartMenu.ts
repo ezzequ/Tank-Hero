@@ -4,7 +4,7 @@ class StartMenu {
   // private isActive : boolean = true;
   // private logo: p5.Image;
   // private gameDescription : string = "";
-  // private startButton
+  // private startButton;
 
   constructor() {}
 

@@ -12,7 +12,10 @@ function preload() {
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
   images = {
     bgImg: loadImage('/assets/images/burning-test1.png'),
-    tank: loadImage('/assets/images/tank.png'),
+    tank: loadImage('/assets/images/Entities/tank/tank.png'),
+    zombie: loadImage('/assets/images/Entities/zombies/zombie.png'),
+    obstacle: loadImage('/assets/images/Entities/obstacles/tp-tower.png'),
+    human: loadImage('/assets/images/Entities/humans/female-1.png'),
   }
 }
 

@@ -7,12 +7,18 @@ class GameBoard {
   // private gameCounter : GameCounter
   // private entities: Entity[];
   private tank : Tank;
+  private zombie : Zombie;
+  private obstacle : Obstacle;
+  private human : Human;
 
   private sideBoard: SideBoard
 
   constructor() {
     this.sideBoard = new SideBoard();
     this.tank = new Tank();
+    this.zombie = new Zombie();
+    this.obstacle = new Obstacle();
+    this.human = new Human();
 
     this.background = images.bgImg;
     this.xPos = 0;
@@ -53,7 +59,7 @@ class GameBoard {
 
   public update() {
     // Return Void
-    this.tank.update()
+    this.tank.move()
   }
   
   public draw() {    
@@ -61,6 +67,8 @@ class GameBoard {
     // this.sideBoard.draw()
     // image(this.tankImage, 0, 300, 200, 200)
     this.tank.draw();
-
+    this.zombie.draw();
+    this.obstacle.draw();
+    this.human.draw();
   }
 }

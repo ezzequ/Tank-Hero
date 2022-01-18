@@ -3,7 +3,7 @@ class Tank extends Entity {
   constructor() {
     const size = 100;
     const health = 4;
-    const position = createVector(width * .25, height * .5);
+    const position = createVector(width * .20, height * .5);
     const img = images.tank;
     // const sound: p5.SoundFile = 2
     const points = 0
@@ -15,7 +15,14 @@ class Tank extends Entity {
   }
   //   private shoot() {}
 
-  // move(){}
+  move(){
+    if (keyIsDown(38)) {
+      this.position.y -= 5
+    } 
+    if (keyIsDown(40)) {
+      this.position.y += 5
+    }
+  }
 
   // public update() {
     
