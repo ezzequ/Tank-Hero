@@ -10,6 +10,8 @@ class GameBoard {
   private zombie : Zombie;
   private obstacle : Obstacle;
   private human : Human;
+  private projectile : Projectile;
+  
 
   private sideBoard: SideBoard
 
@@ -20,6 +22,7 @@ class GameBoard {
     this.zombie = new Zombie();
     this.obstacle = new Obstacle();
     this.human = new Human();
+    this.projectile = new Projectile();
 
     this.background = images.bgImg;
     this.xPos = 0;
@@ -44,6 +47,17 @@ class GameBoard {
     
   }
 
+  public KeyPressed() {
+    if (keyCode === SHIFT){
+      let bullet = new Projectile();
+      //bullet.draw(x, y);
+      //bullet.update()
+      return bullet
+    }
+
+    
+  }
+
   //   private spawnEntities() {}
 
   //   private checkCollision() {
@@ -60,16 +74,24 @@ class GameBoard {
 
   public update() {
     // Return Void
-    this.tank.move() // RÖR TANKEN
+    this.tank.move(); // RÖR TANKEN
+    this.zombie.update();
+    this.obstacle.update();
+    this.human.update();
+
   }
   
-  public draw() {    
+  public draw() {
+    let bullet = this.KeyPressed()
     this.scroll();
     this.tank.draw();
     this.zombie.draw();
     this.obstacle.draw();
     this.human.draw();
-    this.sideBoard.draw()
-    this.gameCounter.draw()
+    this.sideBoard.draw();
+    this.gameCounter.draw();
+    bullet?.draw(this.tank.position.x, this.tank.position.y)
   }
 }
+
+let classArray: Entity[] = [];
