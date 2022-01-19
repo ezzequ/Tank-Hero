@@ -2,7 +2,7 @@ class Human extends Entity {
   constructor() {
     const size = 110;
     const health = 1;
-    const position = createVector(width - 200, height * .8); 
+    const position = createVector(width - 200, height / random(6)); 
     const img = images.human;
     // const sound: p5.SoundFile = 2
     const points = 0

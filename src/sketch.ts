@@ -1,5 +1,8 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game
+
+let tank : Tank
+
 // let sound: p5.SoundFile
 let images: Images
 
@@ -30,8 +33,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight)
   frameRate(60)
   // noCursor();
-
   game = new Game()
+  noLoop()
 }
 
 /**

@@ -53,34 +53,49 @@ class Tank extends Entity {
     }
   }
 
-  public keyPressed() {
-    if (keyCode == 32) {
-      /*for(let i = 0; i<(this.bullets.length + 1); i++) {
-        this.bullets.push(new Projectile(this.position.x, this.position.y));
-      }*/
-      this.bullets.push(new Projectile(this.position.x, this.position.y));
-    }
-  }
 
-
-  public renderBullet() {
-    if (this.bullets.length > 0) {
-      for (var i = 0; i < this.bullets.length; i++) {
-        this.bullets[i].draw();
-      }
-
-    }
-  }
-
-  public updateBullet() {
-    if (this.bullets.length > 0) {
-      for (var i = 0; i < this.bullets.length; i++) {
-        this.bullets[i].update();
-        if (this.bullets[i].position.x < 0 || this.bullets[i].position.x > width) {
-          this.bullets.splice(i, 1)
+  public keyTyped() {
+    if (keyIsPressed === true) {
+      if (keyCode == 32) {
+        let bullet = new Projectile(this.position.x, this.position.y)
+        if (this.bullets.length !== 1) {
+          this.bullets.push(bullet);
         }
       }
-
     }
+
+  }
+
+
+
+
+public renderBullet() {
+  if (this.bullets.length > 0) { // Kollar längden
+    for (let i = 0; i < this.bullets.length; i++) {
+      this.bullets[i].render();
+    }
+
   }
 }
+
+public updateBullet() {
+  if (this.bullets.length > 0) {
+    for (let i = 0; i < this.bullets.length; i++) {
+      this.bullets[i].update();
+      if (this.bullets[i].position.x < 0 || this.bullets[i].position.x > width) {
+        this.bullets.splice(i, 1);
+
+      }
+    }
+
+  }
+}
+// public shoot() {}
+// }
+
+
+/*public KeyReleased(){
+  if ( this.bullets.)
+  
+  
+}*/

@@ -8,11 +8,10 @@ class Projectile extends Entity{
       const points = 0
       const damage = 0
       const ishit = false
-      const velocity: p5.Vector = createVector(5, 0);
+      const velocity: p5.Vector = createVector(10, 0);
       super(size, health, position, img, points, damage, ishit, velocity)
-      
     }
-  }
+}
   // public update() {}
 
 

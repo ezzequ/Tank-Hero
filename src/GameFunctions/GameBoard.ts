@@ -3,6 +3,7 @@ class GameBoard {
   private xPos: number;
   private xPos2: number;
 
+
   private scrollSpeed: number;
   private gameCounter: GameCounter
   private entities: Entity[];
@@ -26,7 +27,7 @@ class GameBoard {
     this.xPos2 = width;
     this.scrollSpeed = 5;
 
-
+  
   }
 
   private scroll() {
@@ -42,12 +43,17 @@ class GameBoard {
     if (this.xPos2 < -width) {
       this.xPos2 = width;
     }
-
+    loop()
   }
 
 
-    private spawnEntities() {}
-
+    private spawnEntities() {
+      this.entities.push(new Zombie());
+      this.entities.push(new Obstacle());
+      this.entities.push(new Human());     
+      // this.entities[0].draw()
+      
+    }
   //   private checkCollision() {
   //     // Return Void
   //   }
@@ -59,18 +65,18 @@ class GameBoard {
   //   private killSurviour() {
   //     // Return Void
   //   }
-
   public update() {
     // Return Void
     this.tank.move(); // RÖR TANKEN
     this.zombie.update();
     this.obstacle.update();
     this.human.update();
-    this.tank.keyPressed();
     this.tank.updateBullet();
+    this.tank.keyTyped();
+  }  
 
-  }
-
+  
+  
   public draw() {
     this.scroll();
     this.tank.draw();
@@ -80,7 +86,19 @@ class GameBoard {
     this.sideBoard.draw();
     this.gameCounter.draw();
     this.tank.renderBullet();
-  }
-}
+    
+    
+    
+      
+    
+    
+    //console.log(this.renderZombie())
+    }
 
-let classArray: Entity[] = [];
+  
+
+
+  }
+
+
+

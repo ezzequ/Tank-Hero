@@ -34,6 +34,9 @@ abstract class Entity {
   }
   public draw() {
     image(this.image, this.position.x, this.position.y, this.size, this.size)
-  
+  }
+
+  public render() {
+    image(images.projectile, this.position.x, this.position.y, 40, 40)
   }
 }
