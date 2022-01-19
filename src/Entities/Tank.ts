@@ -1,5 +1,5 @@
 class Tank extends Entity {
-  private projectile: Projectile;
+  private bullets: Entity[];
   constructor() {
     const size = 100;
     const health = 4;
@@ -12,12 +12,12 @@ class Tank extends Entity {
     const velocity: p5.Vector = createVector(0, 0);
 
     super(size, health, position, img, points, damage, ishit, velocity);
-    this.projectile = new Projectile();
+    this.bullets = [];
   }
 
   public update() {}
 
-  private move() {
+  public move() {
     //Röra tanken i X-led framåt
     if (this.position.x > width * 0.2) {
       if (keyIsDown(37)) {
@@ -50,6 +50,37 @@ class Tank extends Entity {
       }
     } else {
       this.position.y = height / 6;
+    }
+  }
+
+  public keyPressed() {
+    if (keyCode == 32) {
+      /*for(let i = 0; i<(this.bullets.length + 1); i++) {
+        this.bullets.push(new Projectile(this.position.x, this.position.y));
+      }*/
+      this.bullets.push(new Projectile(this.position.x, this.position.y));
+    }
+  }
+
+
+  public renderBullet() {
+    if (this.bullets.length > 0) {
+      for (var i = 0; i < this.bullets.length; i++) {
+        this.bullets[i].draw();
+      }
+
+    }
+  }
+
+  public updateBullet() {
+    if (this.bullets.length > 0) {
+      for (var i = 0; i < this.bullets.length; i++) {
+        this.bullets[i].update();
+        if (this.bullets[i].position.x < 0 || this.bullets[i].position.x > width) {
+          this.bullets.splice(i, 1)
+        }
+      }
+
     }
   }
 }
