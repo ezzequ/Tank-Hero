@@ -1,4 +1,4 @@
-class GameCounter extends Entity {
+class GameCounter {
   //   private killedMonsters: number = 0
   // let entity : Entity === KilledMonster
 
