@@ -1,6 +1,6 @@
 class SideBoard {
   private human: p5.Image
-  private rescuedLives: p5.Image[]
+  public rescuedLives: p5.Image[]
   private humanSize: number
   private sideBoardHeight: number
   private startingLives: number
@@ -34,13 +34,14 @@ class SideBoard {
   }
 
   public addLives() {
-    console.log('test')
-    console.log(this.rescuedLives.push(this.human))
+    this.rescuedLives.push(this.human)
+    // console.log('test')
+    // console.log(this.rescuedLives.push(this.human))
   }
 
-  private deathEffect() {
-    // Return Void
-  }
+  // private deathEffect() {
+  //   // Return Void
+  // }
 
   public update() {
     // Return Void
