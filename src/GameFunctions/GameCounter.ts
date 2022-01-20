@@ -1,10 +1,9 @@
 class GameCounter extends Entity {
-
   //   private killedMonsters: number = 0
   // let entity : Entity === KilledMonster
 
   // private tankHealth() {
-    
+
   //   // Return Number
   // }
 
@@ -27,5 +26,8 @@ class GameCounter extends Entity {
   public draw() {
     fill(108, 102, 0)
     rect(0, 0, windowWidth, windowHeight / 6)
+    fill(45)
+    textSize(32)
+    text('Hello tankie', 10, 30)
   }
 }

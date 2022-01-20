@@ -1,8 +1,6 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game
 
-let tank : Tank
-
 // let sound: p5.SoundFile
 let images: Images
 
@@ -19,7 +17,7 @@ function preload() {
     zombie: loadImage('/assets/images/Entities/zombies/zombie.png'),
     obstacle: loadImage('/assets/images/Entities/obstacles/tp-tower.png'),
     human: loadImage('/assets/images/Entities/humans/female-1.png'),
-    projectile: loadImage('/assets/images/Entities/tank/projectile.png')
+    projectile: loadImage('/assets/images/Entities/tank/projectile.png'),
   }
 }
 
