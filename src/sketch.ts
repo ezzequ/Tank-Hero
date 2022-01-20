@@ -1,5 +1,8 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game
+
+let tank : Tank
+
 // let sound: p5.SoundFile
 let images: Images
 
@@ -11,7 +14,7 @@ let images: Images
 function preload() {
   // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
   images = {
-    bgImg: loadImage('/assets/images/burning-test1.png'),
+    bgImg: loadImage('/assets/images/burning.png'),
     tank: loadImage('/assets/images/Entities/tank/tank.png'),
     zombie: loadImage('/assets/images/Entities/zombies/zombie.png'),
     obstacle: loadImage('/assets/images/Entities/obstacles/tp-tower.png'),
@@ -30,8 +33,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight)
   frameRate(60)
   // noCursor();
-
   game = new Game()
+  noLoop()
 }
 
 /**
