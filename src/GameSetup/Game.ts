@@ -17,7 +17,6 @@ class Game {
 
   public update() {
     this.gameBoard.update()
-
   }
 
   public draw() {

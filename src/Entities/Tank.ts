@@ -1,5 +1,6 @@
 class Tank extends Entity {
-  private bullets: Entity[]
+  private reloadTime: number
+
   constructor() {
     const size = 100
     const health = 4
@@ -12,10 +13,14 @@ class Tank extends Entity {
     const velocity: p5.Vector = createVector(0, 0)
 
     super(size, health, position, img, points, damage, ishit, velocity)
-    this.bullets = []
+    this.reloadTime = 500
   }
 
-  public update() {}
+  public update() {
+    this.move()
+    super.update()
+    return this.fireShot()
+  }
 
   public move() {
     //Röra tanken i X-led framåt
@@ -53,39 +58,27 @@ class Tank extends Entity {
     }
   }
 
-  public keyTyped() {
-    if (keyIsPressed === true) {
-      if (keyCode == 32) {
-        let bullet = new Projectile(this.position.x, this.position.y)
-        if (this.bullets.length !== 1) {
-          this.bullets.push(bullet)
-        }
-      }
+  private fireShot() {
+    this.reloadTime -= deltaTime
+    if (keyIsDown(32) && this.reloadTime < 0) {
+      this.reloadTime = 500
+      return new Projectile(this.position.x, this.position.y)
     }
   }
 
-  public renderBullet() {
-    if (this.bullets.length > 0) {
-      // Kollar längden
-      for (let i = 0; i < this.bullets.length; i++) {
-        this.bullets[i].render()
-      }
-    }
-  }
-
-  public updateBullet() {
-    if (this.bullets.length > 0) {
-      for (let i = 0; i < this.bullets.length; i++) {
-        this.bullets[i].update()
-        if (
-          this.bullets[i].position.x < 0 ||
-          this.bullets[i].position.x > width
-        ) {
-          this.bullets.splice(i, 1)
-        }
-      }
-    }
-  }
+  // public updateBullet() {
+  //   if (this.bullets.length > 0) {
+  //     for (let i = 0; i < this.bullets.length; i++) {
+  //       this.bullets[i].update()
+  //       if (
+  //         this.bullets[i].position.x < 0 ||
+  //         this.bullets[i].position.x > width
+  //       ) {
+  //         this.bullets.splice(i, 1)
+  //       }
+  //     }
+  //   }
+  // }
 }
 // public shoot() {}
 //

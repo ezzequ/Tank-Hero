@@ -7,24 +7,20 @@ class GameBoard {
   private gameCounter: GameCounter
   private entities: Entity[]
   private tank: Tank
-  private zombie: Zombie
-  private obstacle: Obstacle
-  private human: Human
   private sideBoard: SideBoard
+  private spawnTime: number
 
   constructor() {
     this.gameCounter = new GameCounter()
     this.sideBoard = new SideBoard()
     this.tank = new Tank()
-    this.zombie = new Zombie()
-    this.obstacle = new Obstacle()
-    this.human = new Human()
     this.entities = [new Zombie(), new Obstacle(), new Human()]
 
     this.background = images.bgImg
     this.xPos = 0
     this.xPos2 = width
-    this.scrollSpeed = 5
+    this.scrollSpeed = 2
+    this.spawnTime = 2000
   }
 
   private scroll() {
@@ -40,13 +36,16 @@ class GameBoard {
     if (this.xPos2 < -width) {
       this.xPos2 = width
     }
-    loop()
   }
 
-  private spawnEntities() {
-    let rndNumber = random(this.entities.length)
-    rndNumber = Math.floor(rndNumber)
-    return this.entities[rndNumber]
+  private spawnEntity() {
+    this.spawnTime -= deltaTime
+    if (this.spawnTime < 0) {
+      // const cityHeight = 260
+      // const y = ((height - cityHeight) / 6) * ceil(random(6)) + cityHeight;
+      this.entities.push(new Zombie(this.scrollSpeed))
+      this.spawnTime = 2000
+    }
   }
 
   //   private checkCollision() {
@@ -62,24 +61,26 @@ class GameBoard {
   //   }
   public update() {
     // Return Void
-    this.tank.move() // RÖR TANKEN
-    this.zombie.update()
-    this.obstacle.update()
-    this.human.update()
-    this.tank.updateBullet()
-    this.tank.keyTyped()
+    this.spawnEntity()
+    const newProjectile = this.tank.update()
+    if (newProjectile) {
+      this.entities.push(newProjectile)
+    }
     //this.spawnEntities().update()
+    for (const entity of this.entities) {
+      entity.update()
+    }
   }
 
   public draw() {
     this.scroll()
     this.tank.draw()
-    this.zombie.draw()
-    this.obstacle.draw()
-    this.human.draw()
     this.sideBoard.draw()
     this.gameCounter.draw()
-    this.tank.renderBullet()
+
+    for (const entity of this.entities) {
+      entity.draw()
+    }
     //this.spawnEntities().draw()
 
     //console.log(this.renderZombie())
