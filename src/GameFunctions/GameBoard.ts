@@ -67,13 +67,22 @@ class GameBoard {
   //   }
 
   private hitEntity(entity: Entity) {
+    if (entity instanceof Obstacle) {
+      let distance = dist(
+        this.tank.position.x,
+        this.tank.position.y,
+        entity.position.x,
+        entity.position.y
+      )
+      if (distance < 80) {
+        this.entities.splice(this.entities.indexOf(entity), 1)
+        this.gameCounter.decreaseTankHealth()
+      }
+    }
+
     if (entity instanceof Projectile) {
       for (const entityPlus of this.entities) {
-        if (
-          entityPlus instanceof Zombie ||
-          entityPlus instanceof Human ||
-          entityPlus instanceof Obstacle
-        ) {
+        if (entityPlus instanceof Zombie || entityPlus instanceof Human) {
           let distance = dist(
             entity.position.x,
             entity.position.y,
@@ -81,7 +90,15 @@ class GameBoard {
             entityPlus.position.y
           )
           if (distance < 60) {
-            this.entities.splice(this.entities.indexOf(entityPlus), 1)
+            if (entityPlus instanceof Zombie) {
+              this.gameCounter.countKilledZombies(entityPlus)
+              this.gameCounter.pointPerEntity(entityPlus.points)
+            }
+            if (entityPlus instanceof Human) {
+              this.gameCounter.removePoint(entityPlus.points)
+            }
+            //this.entities.splice(this.entities.indexOf(entityPlus), 1)
+            entity.removeHealth(entityPlus, this.entities)
             this.entities.splice(this.entities.indexOf(entity), 1)
           }
         }
@@ -109,6 +126,9 @@ class GameBoard {
 
   private entityEndOfLine(entity: Entity) {
     if (entity.position.x < width / 6) {
+      if (entity instanceof Zombie) {
+        this.gameCounter.removePoint(entity.points * 10)
+      }
       this.entities.splice(this.entities.indexOf(entity), 1)
     }
     if (entity instanceof Projectile && entity.position.x > width) {
@@ -129,6 +149,7 @@ class GameBoard {
       this.saveSurvivor(entity)
       this.hitEntity(entity)
     }
+    this.gameCounter.update()
   }
 
   public draw() {

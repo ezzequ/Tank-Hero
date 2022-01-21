@@ -7,7 +7,7 @@ class Zombie extends Entity {
     const position = createVector(width, y)
     const img = images.zombie
     // const sound: p5.SoundFile = 2
-    const points = 0
+    const points = 10
     const damage = 0
     const ishit = false
     const velocity: p5.Vector = createVector(-velo - 2, 0)
