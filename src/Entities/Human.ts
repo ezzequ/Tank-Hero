@@ -2,7 +2,10 @@ class Human extends Entity {
   constructor() {
     const size = 110
     const health = 1
-    const position = createVector(width - 200, height / random(6))
+    const cityHeight = 260
+    const y = ((height - cityHeight) / 6) * ceil(random(6)) + cityHeight
+    const position = createVector(width, y)
+    //const position = createVector(width - 200, height / random(6))
     const img = images.human
     // const sound: p5.SoundFile = 2
     const points = 0
