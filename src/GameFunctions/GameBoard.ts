@@ -11,6 +11,7 @@ class GameBoard {
   private zombieSpawnTime: number
   private humanSpawnTime: number
   private obstacleSpawnTime: number
+  private bossSpawnTime: number
   //private gameTime: number
 
   constructor() {
@@ -23,9 +24,10 @@ class GameBoard {
     this.xPos = 0
     this.xPos2 = width
     this.scrollSpeed = 2
-    this.zombieSpawnTime = 2000
+    this.zombieSpawnTime = random(1500, 2500)
     this.obstacleSpawnTime = 4500
     this.humanSpawnTime = 13000
+    this.bossSpawnTime = 6000
     //this.gameTime = 15000
   }
 
@@ -48,9 +50,16 @@ class GameBoard {
     this.zombieSpawnTime -= deltaTime
     this.obstacleSpawnTime -= deltaTime
     this.humanSpawnTime -= deltaTime
+    this.bossSpawnTime -= deltaTime
+
+    if (this.bossSpawnTime < 0) {
+      this.entities.push(new Boss(this.scrollSpeed * 0.2))
+      this.bossSpawnTime = 6000
+    }
+
     if (this.zombieSpawnTime < 0) {
       this.entities.push(new Zombie(this.scrollSpeed * 0.2))
-      this.zombieSpawnTime = 2000
+      this.zombieSpawnTime = random(1500, 2500)
     }
     if (this.obstacleSpawnTime < 0) {
       this.entities.push(new Obstacle())
@@ -99,6 +108,7 @@ class GameBoard {
             }
             //this.entities.splice(this.entities.indexOf(entityPlus), 1)
             entity.removeHealth(entityPlus, this.entities)
+            console.log(`${entity} träffade ${entityPlus}`)
             this.entities.splice(this.entities.indexOf(entity), 1)
           }
         }
