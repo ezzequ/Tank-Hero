@@ -25,7 +25,7 @@ class GameCounter {
 
   public draw() {
     fill(108, 102, 0)
-    rect(0, 0, windowWidth, windowHeight / 6)
+    rect(0, 0, windowWidth / 6, windowHeight / 6)
     fill(45)
     textSize(32)
     text('Hello tankie', 10, 30)

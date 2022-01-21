@@ -16,12 +16,6 @@ class Tank extends Entity {
     this.reloadTime = 500
   }
 
-  public update() {
-    this.move()
-    super.update()
-    return this.fireShot()
-  }
-
   public move() {
     //Röra tanken i X-led framåt
     if (this.position.x > width * 0.2) {
@@ -66,25 +60,9 @@ class Tank extends Entity {
     }
   }
 
-  // public updateBullet() {
-  //   if (this.bullets.length > 0) {
-  //     for (let i = 0; i < this.bullets.length; i++) {
-  //       this.bullets[i].update()
-  //       if (
-  //         this.bullets[i].position.x < 0 ||
-  //         this.bullets[i].position.x > width
-  //       ) {
-  //         this.bullets.splice(i, 1)
-  //       }
-  //     }
-  //   }
-  // }
+  public update() {
+    this.move()
+    super.update()
+    return this.fireShot()
+  }
 }
-// public shoot() {}
-//
-
-/*public KeyReleased(){
-  if ( this.bullets.)
-  
-  
-}*/
