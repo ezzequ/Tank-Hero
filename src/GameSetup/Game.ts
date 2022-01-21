@@ -7,13 +7,13 @@ class Game {
     // this.startMenu = new StartMenu()
   }
 
-  private drawStartMenu() {
-    // Return Void;
-  }
+  //private drawStartMenu() {
+  // Return Void;
+  //}
 
-  private checkMenu() {
-    // Return Void;
-  }
+  //private checkMenu() {
+  // Return Void;
+  //}
 
   public update() {
     this.gameBoard.update()

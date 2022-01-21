@@ -1,11 +1,44 @@
 class GameCounter {
   //   private killedMonsters: number = 0
   // let entity : Entity === KilledMonster
+  private tankHealth: number
+  private killedZombies: Entity[]
+  private gameTimeScore: number
+  private gameTime: number
+  private killedHumans: Entity[]
 
-  // private tankHealth() {
+  constructor() {
+    this.tankHealth = 4
+    this.killedZombies = []
+    this.gameTimeScore = 0
+    this.gameTime = 0
+    this.killedHumans = []
+  }
 
-  //   // Return Number
-  // }
+  public decreaseTankHealth() {
+    this.tankHealth = this.tankHealth - 1
+    console.log(`TANK LIV ${this.tankHealth}`)
+  }
+
+  public countKilledZombies(zombie: Entity) {
+    this.killedZombies.push(zombie)
+  }
+
+  public pointsPerSeconds() {
+    this.gameTime += deltaTime
+    if (this.gameTime > 1000) {
+      this.gameTimeScore += 1
+      this.gameTime = 0
+    }
+  }
+
+  public pointPerEntity(score: number) {
+    this.gameTimeScore += score
+  }
+
+  public removePoint(score: number) {
+    this.gameTimeScore -= score
+  }
 
   // private rescued() {
   //   // Return Number
@@ -19,15 +52,17 @@ class GameCounter {
   //   // Return Number
   // }
 
-  // public update() {
-  //   // Return Void
-  // }
+  public update() {
+    this.pointsPerSeconds()
+  }
 
   public draw() {
     fill(108, 102, 0)
-    rect(0, 0, windowWidth, windowHeight / 6)
+    rect(0, 0, windowWidth / 6, windowHeight / 6)
     fill(45)
-    textSize(32)
-    text('Hello tankie', 10, 30)
+    textSize(22)
+    text(`Tank health ${this.tankHealth}`, 10, 30)
+    text(`Zombies Killed ${this.killedZombies.length}`, 10, 70)
+    text(`Score ${this.gameTimeScore}`, 10, 110)
   }
 }

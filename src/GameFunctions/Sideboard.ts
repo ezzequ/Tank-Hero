@@ -3,14 +3,14 @@ class SideBoard {
   public rescuedLives: p5.Image[]
   private humanSize: number
   private sideBoardHeight: number
-  private startingLives: number
+  //private startingLives: number
 
   constructor() {
     this.human = images.human
     this.rescuedLives = [this.human, this.human, this.human, this.human]
     this.humanSize = 100
     this.sideBoardHeight = height / 6
-    this.startingLives = 4
+    //this.startingLives = 4
   }
 
   /*private rescuedLives() {
@@ -48,7 +48,7 @@ class SideBoard {
   }
 
   public draw() {
-    fill(204, 102, 0)
+    fill(1, 1, 1, 50)
     rect(0, 0, windowWidth / 6, windowHeight)
     this.renderLives()
   }

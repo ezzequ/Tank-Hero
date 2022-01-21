@@ -4,7 +4,7 @@ abstract class Entity {
   public position: p5.Vector
   private image: p5.Image
   // private sound: p5.SoundFile;
-  private points: number
+  public points: number
   private damage: number
   private isHit: boolean
   private velocity: p5.Vector
@@ -30,7 +30,13 @@ abstract class Entity {
     this.velocity = velocity || createVector(-5, 0)
   }
 
-  //   private removeHealth() {}
+  public removeHealth(entity: Entity, list: Entity[]) {
+    if (entity.health == 1) {
+      list.splice(list.indexOf(entity), 1)
+    } else {
+      entity.health -= 1
+    }
+  }
 
   //   private removeEntity() {}
 

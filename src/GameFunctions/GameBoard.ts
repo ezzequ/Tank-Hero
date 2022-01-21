@@ -11,7 +11,8 @@ class GameBoard {
   private zombieSpawnTime: number
   private humanSpawnTime: number
   private obstacleSpawnTime: number
-  private gameTime: number
+  private bossSpawnTime: number
+  //private gameTime: number
 
   constructor() {
     this.gameCounter = new GameCounter()
@@ -23,10 +24,11 @@ class GameBoard {
     this.xPos = 0
     this.xPos2 = width
     this.scrollSpeed = 2
-    this.zombieSpawnTime = 2000
+    this.zombieSpawnTime = random(1500, 2500)
     this.obstacleSpawnTime = 4500
-    this.humanSpawnTime = 3000
-    this.gameTime = 15000
+    this.humanSpawnTime = 13000
+    this.bossSpawnTime = 6000
+    //this.gameTime = 15000
   }
 
   private scroll() {
@@ -48,9 +50,16 @@ class GameBoard {
     this.zombieSpawnTime -= deltaTime
     this.obstacleSpawnTime -= deltaTime
     this.humanSpawnTime -= deltaTime
+    this.bossSpawnTime -= deltaTime
+
+    if (this.bossSpawnTime < 0) {
+      this.entities.push(new Boss(this.scrollSpeed * 0.2))
+      this.bossSpawnTime = 6000
+    }
+
     if (this.zombieSpawnTime < 0) {
-      this.entities.push(new Zombie(this.scrollSpeed * 2))
-      this.zombieSpawnTime = 2000
+      this.entities.push(new Zombie(this.scrollSpeed * 0.2))
+      this.zombieSpawnTime = random(1500, 2500)
     }
     if (this.obstacleSpawnTime < 0) {
       this.entities.push(new Obstacle())
@@ -66,55 +75,101 @@ class GameBoard {
   //     // Return Void
   //   }
 
-  //   private entityEndOfLine() {
-  //     // Return Void
-  //   }
+  private hitEntity(entity: Entity) {
+    if (entity instanceof Obstacle) {
+      let distance = dist(
+        this.tank.position.x,
+        this.tank.position.y,
+        entity.position.x,
+        entity.position.y
+      )
+      if (distance < 80) {
+        this.entities.splice(this.entities.indexOf(entity), 1)
+        this.gameCounter.decreaseTankHealth()
+      }
+    }
 
-  //   private killSurviour() {
-  //     // Return Void
-  //   }
+    if (entity instanceof Projectile) {
+      for (const entityPlus of this.entities) {
+        if (entityPlus instanceof Zombie || entityPlus instanceof Human) {
+          let distance = dist(
+            entity.position.x,
+            entity.position.y,
+            entityPlus.position.x,
+            entityPlus.position.y
+          )
+          if (distance < 60) {
+            if (entityPlus instanceof Zombie) {
+              this.gameCounter.countKilledZombies(entityPlus)
+              this.gameCounter.pointPerEntity(entityPlus.points)
+            }
+            if (entityPlus instanceof Human) {
+              this.gameCounter.removePoint(entityPlus.points)
+            }
+            //this.entities.splice(this.entities.indexOf(entityPlus), 1)
+            entity.removeHealth(entityPlus, this.entities)
+            console.log(`${entity} träffade ${entityPlus}`)
+            this.entities.splice(this.entities.indexOf(entity), 1)
+          }
+        }
+      }
+    }
+  }
+
+  private killSurviour(entity: Entity) {
+    if (entity instanceof Zombie && entity.position.x < width / 6) {
+      this.sideBoard.rescuedLives.pop()
+    }
+  }
+  private saveSurvivor(entity: Entity) {
+    let distance = dist(
+      entity.position.x,
+      entity.position.y,
+      this.tank.position.x,
+      this.tank.position.y
+    )
+    if (entity instanceof Human && distance < 80) {
+      this.entities.splice(this.entities.indexOf(entity), 1)
+      this.sideBoard.addLives()
+    }
+  }
+
+  private entityEndOfLine(entity: Entity) {
+    if (entity.position.x < width / 6) {
+      if (entity instanceof Zombie) {
+        this.gameCounter.removePoint(entity.points * 10)
+      }
+      this.entities.splice(this.entities.indexOf(entity), 1)
+    }
+    if (entity instanceof Projectile && entity.position.x > width) {
+      this.entities.splice(this.entities.indexOf(entity), 1)
+    }
+  }
+
   public update() {
-    // Return Void
     this.spawnEntity()
     const newProjectile = this.tank.update()
     if (newProjectile) {
       this.entities.push(newProjectile)
     }
-    //this.spawnEntities().update()
     for (const entity of this.entities) {
       entity.update()
-
-      if (entity.position.x < 100) {
-        this.entities.splice(this.entities.indexOf(entity), 1)
-      }
-      if (entity instanceof Projectile && entity.position.x > width) {
-        this.entities.splice(this.entities.indexOf(entity), 1)
-      }
-      if (entity instanceof Zombie && entity.position.x < 100) {
-        this.sideBoard.rescuedLives.pop()
-      }
-      if (
-        entity instanceof Human &&
-        entity.position.x === this.tank.position.x
-      ) {
-        console.log('kör på kvinna ')
-        this.entities.splice(this.entities.indexOf(entity), 1)
-        this.sideBoard.addLives()
-      }
+      this.entityEndOfLine(entity)
+      this.killSurviour(entity)
+      this.saveSurvivor(entity)
+      this.hitEntity(entity)
     }
+    this.gameCounter.update()
   }
 
   public draw() {
     this.scroll()
-    this.tank.draw()
     this.sideBoard.draw()
     this.gameCounter.draw()
 
     for (const entity of this.entities) {
       entity.draw()
     }
-    //this.spawnEntities().draw()
-
-    //console.log(this.renderZombie())
+    this.tank.draw()
   }
 }
