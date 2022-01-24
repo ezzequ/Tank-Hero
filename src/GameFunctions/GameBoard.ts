@@ -52,10 +52,10 @@
     this.humanSpawnTime -= deltaTime
     this.bossSpawnTime -= deltaTime
 
-    if (this.bossSpawnTime < 0) {
-      this.entities.push(new Boss(this.scrollSpeed * 0.2))
-      this.bossSpawnTime = 6000
-    }
+    // if (this.bossSpawnTime < 0) {
+    //   this.entities.push(new Boss(this.scrollSpeed * 0.2))
+    //   this.bossSpawnTime = 6000
+    // }
 
     if (this.zombieSpawnTime < 0) {
       this.entities.push(new Zombie(this.scrollSpeed * 0.2))
@@ -76,14 +76,21 @@
   //   }
 
   private hitEntity(entity: Entity) {
+    const hitBox = entity.getHitBox()
+    const tankHitBox = this.tank.getHitBox()
     if (entity instanceof Obstacle || entity instanceof Zombie) {
-      let distance = dist(
-        this.tank.position.x,
-        this.tank.position.y,
-        entity.position.x,
-        entity.position.y
-      )
-      if(distance < 80) {
+      // let distance = dist(
+      //   this.tank.position.x,
+      //   this.tank.position.y,
+      //   entity.position.x,
+      //   entity.position.y
+      // )
+      const sizeSum = entity.getSize() / 2 + this.tank.getSize() / 2;
+      if(hitBox.x < tankHitBox.x + sizeSum &&
+        hitBox.x + sizeSum > tankHitBox.x &&
+        hitBox.y < tankHitBox.y + sizeSum &&
+        sizeSum + hitBox.y > tankHitBox.y) {
+          console.log(`Entitet ${hitBox}, Tank ${tankHitBox}`)
         // Toalett papper
         if (entity instanceof Obstacle ) {
           if(entity.isHit === false) {
@@ -102,14 +109,17 @@
     if (entity instanceof Projectile) { // skott
       for (const entityPlus of this.entities) {
         if (entityPlus instanceof Zombie || entityPlus instanceof Human || entityPlus instanceof Boss) {
-          let distance = dist(
-            entity.position.x,
-            entity.position.y,
-            entityPlus.position.x,
-            entityPlus.position.y
-          )
           const sizeSum = entity.getSize() / 2 + entityPlus.getSize() / 2;
-          if (distance < sizeSum) {
+          // let distance = dist(
+          //   entity.position.x + sizeSum,
+          //   entity.position.y,
+          //   entityPlus.position.x,
+          //   entityPlus.position.y
+          if ( 
+            entity.position.x < entityPlus.position.x + sizeSum &&
+            entity.position.x + sizeSum > entityPlus.position.x &&
+            entity.position.y < entityPlus.position.y + sizeSum &&
+            sizeSum + entity.position.y > entityPlus.position.y) {
             console.log(entityPlus)
             if (entityPlus instanceof Zombie) {
               this.gameCounter.countKilledZombies(entityPlus)
