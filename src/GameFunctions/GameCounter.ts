@@ -17,7 +17,6 @@ class GameCounter {
 
   public decreaseTankHealth() {
     this.tankHealth = this.tankHealth - 1
-    console.log(`TANK LIV ${this.tankHealth}`)
   }
 
   public countKilledZombies(zombie: Entity) {

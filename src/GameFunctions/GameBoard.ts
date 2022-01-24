@@ -78,7 +78,7 @@
   private hitEntity(entity: Entity) {
     const hitBox = entity.getHitBox()
     const tankHitBox = this.tank.getHitBox()
-    if (entity instanceof Obstacle || entity instanceof Zombie) {
+    if (entity instanceof Obstacle || entity instanceof Zombie || entity instanceof Human) {
       // let distance = dist(
       //   this.tank.position.x,
       //   this.tank.position.y,
@@ -90,25 +90,28 @@
         hitBox.x + sizeSum > tankHitBox.x &&
         hitBox.y < tankHitBox.y + sizeSum &&
         sizeSum + hitBox.y > tankHitBox.y) {
-          console.log(`Entitet ${hitBox}, Tank ${tankHitBox}`)
         // Toalett papper
         if (entity instanceof Obstacle ) {
           if(entity.isHit === false) {
-            this.entities.splice(this.entities.indexOf(entity), 1)
             this.gameCounter.decreaseTankHealth()
           }
         }
         if(entity instanceof Zombie) {
-          this.entities.splice(this.entities.indexOf(entity), 1)
           this.gameCounter.countKilledZombies(entity)
           this.gameCounter.pointPerEntity(entity.points)
-        }  
+        }
+        if(entity instanceof Human) {
+          this.sideBoard.addLives()
+        }
+        this.entities.splice(this.entities.indexOf(entity), 1)
       }
     }
 
-    if (entity instanceof Projectile) { // skott
+    if (entity instanceof Projectile) {
       for (const entityPlus of this.entities) {
         if (entityPlus instanceof Zombie || entityPlus instanceof Human || entityPlus instanceof Boss) {
+          const hitBox = entity.getHitBox()
+          const entityHitBox = entityPlus.getHitBox()
           const sizeSum = entity.getSize() / 2 + entityPlus.getSize() / 2;
           // let distance = dist(
           //   entity.position.x + sizeSum,
@@ -116,11 +119,11 @@
           //   entityPlus.position.x,
           //   entityPlus.position.y
           if ( 
-            entity.position.x < entityPlus.position.x + sizeSum &&
-            entity.position.x + sizeSum > entityPlus.position.x &&
-            entity.position.y < entityPlus.position.y + sizeSum &&
-            sizeSum + entity.position.y > entityPlus.position.y) {
-            console.log(entityPlus)
+            hitBox.x < entityHitBox.x + sizeSum &&
+            hitBox.x + sizeSum > entityHitBox.x &&
+            hitBox.y < entityHitBox.y + sizeSum &&
+            sizeSum + hitBox.y > entityHitBox.y) {
+              console.log(`SizeSum : ${sizeSum}, \nHitBox Skott: ${hitBox}, \nMonster HitBox: ${entityHitBox}`)
             if (entityPlus instanceof Zombie) {
               this.gameCounter.countKilledZombies(entityPlus)
               this.gameCounter.pointPerEntity(entityPlus.points)
@@ -130,7 +133,6 @@
             }
             //this.entities.splice(this.entities.indexOf(entityPlus), 1)
             entity.removeHealth(entityPlus, this.entities)
-            console.log(`${entity} träffade ${entityPlus}`)
             this.entities.splice(this.entities.indexOf(entity), 1)
           }
         }
@@ -143,18 +145,18 @@
       this.sideBoard.rescuedLives.pop()
     }
   }
-  private saveSurvivor(entity: Entity) {
-    let distance = dist(
-      entity.position.x,
-      entity.position.y,
-      this.tank.position.x,
-      this.tank.position.y
-    )
-    if (entity instanceof Human && distance < 80) {
-      this.entities.splice(this.entities.indexOf(entity), 1)
-      this.sideBoard.addLives()
-    }
-  }
+  // private saveSurvivor(entity: Entity) {
+  //   let distance = dist(
+  //     entity.position.x,
+  //     entity.position.y,
+  //     this.tank.position.x,
+  //     this.tank.position.y
+  //   )
+  //   if (entity instanceof Human && distance < 80) {
+  //     this.entities.splice(this.entities.indexOf(entity), 1)
+  //     this.sideBoard.addLives()
+  //   }
+  // }
 
   private entityEndOfLine(entity: Entity) {
     if (entity.position.x < width / 6) {
@@ -178,7 +180,7 @@
       entity.update()
       this.entityEndOfLine(entity)
       this.killSurviour(entity)
-      this.saveSurvivor(entity)
+      //this.saveSurvivor(entity)
       this.hitEntity(entity)
     }
     this.gameCounter.update()
