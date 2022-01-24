@@ -1,4 +1,4 @@
-class GameBoard {
+  class GameBoard {
   private background: p5.Image
   private xPos: number
   private xPos2: number
@@ -52,10 +52,10 @@ class GameBoard {
     this.humanSpawnTime -= deltaTime
     this.bossSpawnTime -= deltaTime
 
-    if (this.bossSpawnTime < 0) {
-      this.entities.push(new Boss(this.scrollSpeed * 0.2))
-      this.bossSpawnTime = 6000
-    }
+    // if (this.bossSpawnTime < 0) {
+    //   this.entities.push(new Boss(this.scrollSpeed * 0.2))
+    //   this.bossSpawnTime = 6000
+    // }
 
     if (this.zombieSpawnTime < 0) {
       this.entities.push(new Zombie(this.scrollSpeed * 0.2))
@@ -76,22 +76,32 @@ class GameBoard {
   //   }
 
   private hitEntity(entity: Entity) {
-    if (entity instanceof Obstacle) {
+    if (entity instanceof Obstacle || entity instanceof Zombie) {
       let distance = dist(
         this.tank.position.x,
         this.tank.position.y,
         entity.position.x,
         entity.position.y
       )
-      if (distance < 80) {
-        this.entities.splice(this.entities.indexOf(entity), 1)
-        this.gameCounter.decreaseTankHealth()
+      if(distance < 80) {
+        // Toalett papper
+        if (entity instanceof Obstacle ) {
+          if(entity.isHit === false) {
+            this.entities.splice(this.entities.indexOf(entity), 1)
+            this.gameCounter.decreaseTankHealth()
+          }
+        }
+        if(entity instanceof Zombie) {
+          this.entities.splice(this.entities.indexOf(entity), 1)
+          this.gameCounter.countKilledZombies(entity)
+          this.gameCounter.pointPerEntity(entity.points)
+        }  
       }
     }
 
     if (entity instanceof Projectile) {
       for (const entityPlus of this.entities) {
-        if (entityPlus instanceof Zombie || entityPlus instanceof Human) {
+        if (entityPlus instanceof Zombie || entityPlus instanceof Human || entityPlus instanceof Boss) {
           let distance = dist(
             entity.position.x,
             entity.position.y,
@@ -99,6 +109,7 @@ class GameBoard {
             entityPlus.position.y
           )
           if (distance < 60) {
+            console.log(entityPlus)
             if (entityPlus instanceof Zombie) {
               this.gameCounter.countKilledZombies(entityPlus)
               this.gameCounter.pointPerEntity(entityPlus.points)

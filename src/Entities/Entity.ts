@@ -6,7 +6,7 @@ abstract class Entity {
   // private sound: p5.SoundFile;
   public points: number
   private damage: number
-  private isHit: boolean
+  public isHit: boolean
   private velocity: p5.Vector
 
   constructor(

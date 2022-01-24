@@ -26,7 +26,7 @@ class GameCounter {
 
   public pointsPerSeconds() {
     this.gameTime += deltaTime
-    if (this.gameTime > 1000) {
+    if (this.gameTime > 100) {
       this.gameTimeScore += 1
       this.gameTime = 0
     }
@@ -37,7 +37,11 @@ class GameCounter {
   }
 
   public removePoint(score: number) {
-    this.gameTimeScore -= score
+    if(this.gameTimeScore > 0) {
+      this.gameTimeScore -= score
+
+    } 
+    this.gameTimeScore = 0
   }
 
   // private rescued() {
