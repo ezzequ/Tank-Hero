@@ -15,7 +15,7 @@ function preload() {
     bgImg: loadImage('/assets/images/burning.png'),
     tank: loadImage('/assets/images/Entities/tank/tank.png'),
     zombie: loadImage('/assets/images/Entities/zombies/zombie.png'),
-    obstacle: loadImage('/assets/images/Entities/obstacles/tp-tower.png'),
+    obstacle: loadImage('/assets/images/Entities/obstacles/truck.png'),
     human: loadImage('/assets/images/Entities/humans/female-1.png'),
     projectile: loadImage('/assets/images/Entities/tank/projectile.png'),
     boss: loadImage('/assets/images/Entities/zombies/boss.png'),
