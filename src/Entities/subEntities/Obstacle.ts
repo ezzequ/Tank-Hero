@@ -3,7 +3,7 @@ class Obstacle extends Entity {
     const size = 110
     const health = 1
     const cityHeight = 260
-    const y = ((height - cityHeight) / 6) * ceil(random(6)) + cityHeight
+    const y = ((height - cityHeight) / 6) * floor(random(6)) + cityHeight
     const position = createVector(width, y)
     //const position = createVector(width, height / random(6))
     const img = images.obstacle

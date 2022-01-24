@@ -3,7 +3,7 @@ class Zombie extends Entity {
     const size = 120
     const health = 3
     const cityHeight = 260
-    const y = ((height - cityHeight) / 6) * ceil(random(6)) + cityHeight
+    const y = ((height - cityHeight) / 6) * floor(random(6)) + cityHeight
     const position = createVector(width, y)
     const img = images.zombie
     // const sound: p5.SoundFile = 2

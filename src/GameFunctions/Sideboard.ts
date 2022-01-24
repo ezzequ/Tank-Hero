@@ -20,12 +20,18 @@ class SideBoard {
   }*/
 
   public renderLives() {
-    let addNumber: number = 0
+    let addNumber : number = 0
+    let yNumber : number = 50
     for (let live of this.rescuedLives) {
-      addNumber += 100
+      addNumber += 100;
+      yNumber
+      if(this.sideBoardHeight + addNumber > this.sideBoardHeight * 6 - 100 ) {
+        addNumber = 0;
+        yNumber += 50;
+      }
       image(
         live,
-        50,
+        yNumber,
         this.sideBoardHeight + addNumber,
         this.humanSize,
         this.humanSize
@@ -43,9 +49,7 @@ class SideBoard {
   //   // Return Void
   // }
 
-  public update() {
-    // Return Void
-  }
+  // public update() {}
 
   public draw() {
     fill(1, 1, 1, 50)
