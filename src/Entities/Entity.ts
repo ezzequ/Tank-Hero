@@ -1,13 +1,13 @@
 abstract class Entity {
-  private size: number
-  private health: number
+  protected size: number
+  protected health: number
   public position: p5.Vector
-  private image: p5.Image
+  protected image: p5.Image
   // private sound: p5.SoundFile;
   public points: number
-  private damage: number
+  protected damage: number
   public isHit: boolean
-  private velocity: p5.Vector
+  protected velocity: p5.Vector
 
   constructor(
     size: number,
@@ -30,6 +30,10 @@ abstract class Entity {
     this.velocity = velocity || createVector(-5, 0)
   }
 
+  public getSize() {
+    return this.size;
+  }
+
   public removeHealth(entity: Entity, list: Entity[]) {
     if (entity.health == 1) {
       list.splice(list.indexOf(entity), 1)
@@ -46,6 +50,10 @@ abstract class Entity {
     this.position.add(this.velocity)
   }
   public draw() {
+    push();
+    rectMode(CORNER);
+    imageMode(CORNER)
     image(this.image, this.position.x, this.position.y, this.size, this.size)
+    pop();
   }
 }

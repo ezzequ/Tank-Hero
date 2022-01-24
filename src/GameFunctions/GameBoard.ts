@@ -52,10 +52,10 @@
     this.humanSpawnTime -= deltaTime
     this.bossSpawnTime -= deltaTime
 
-    // if (this.bossSpawnTime < 0) {
-    //   this.entities.push(new Boss(this.scrollSpeed * 0.2))
-    //   this.bossSpawnTime = 6000
-    // }
+    if (this.bossSpawnTime < 0) {
+      this.entities.push(new Boss(this.scrollSpeed * 0.2))
+      this.bossSpawnTime = 6000
+    }
 
     if (this.zombieSpawnTime < 0) {
       this.entities.push(new Zombie(this.scrollSpeed * 0.2))
@@ -99,7 +99,7 @@
       }
     }
 
-    if (entity instanceof Projectile) {
+    if (entity instanceof Projectile) { // skott
       for (const entityPlus of this.entities) {
         if (entityPlus instanceof Zombie || entityPlus instanceof Human || entityPlus instanceof Boss) {
           let distance = dist(
@@ -108,7 +108,8 @@
             entityPlus.position.x,
             entityPlus.position.y
           )
-          if (distance < 60) {
+          const sizeSum = entity.getSize() / 2 + entityPlus.getSize() / 2;
+          if (distance < sizeSum) {
             console.log(entityPlus)
             if (entityPlus instanceof Zombie) {
               this.gameCounter.countKilledZombies(entityPlus)
