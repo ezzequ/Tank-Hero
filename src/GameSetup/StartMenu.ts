@@ -4,15 +4,21 @@ class StartMenu {
   // private isActive : boolean = true;
   // private logo: p5.Image;
   // private gameDescription : string = "";
-  // private startButton;
+  private startButton: Button
+  // private button: p5.Element
 
-  constructor() {}
+  constructor() {
+    this.startButton = new Button(createButton('START GAME'), 1, 2, '#6A6D54')
+
+    // this.button = this.startButton
+    // this.div.child(this.button)
+  }
 
   public update() {
     // Return Void;
   }
 
   public draw() {
-    // Return Void;
+    this.startButton.draw()
   }
 }
