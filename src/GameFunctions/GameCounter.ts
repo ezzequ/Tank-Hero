@@ -1,22 +1,28 @@
 class GameCounter {
   //   private killedMonsters: number = 0
   // let entity : Entity === KilledMonster
-  private tankHealth: number
+  private heart: p5.Image
   private killedZombies: Entity[]
   private gameTimeScore: number
   private gameTime: number
   private killedHumans: Entity[]
+  private hearts: p5.Image[]
 
   constructor() {
-    this.tankHealth = 4
+    this.heart = images.heart
     this.killedZombies = []
     this.gameTimeScore = 0
     this.gameTime = 0
     this.killedHumans = []
+    this.hearts = [this.heart, this.heart, this.heart, this.heart]
   }
 
   public decreaseTankHealth() {
-    this.tankHealth = this.tankHealth - 1
+    this.hearts.pop()
+  }
+
+  public getLives() {
+    return this.hearts.length
   }
 
   public countKilledZombies(zombie: Entity) {
@@ -26,7 +32,7 @@ class GameCounter {
   public pointsPerSeconds() {
     this.gameTime += deltaTime
     if (this.gameTime > 100) {
-      this.gameTimeScore += 1
+      this.gameTimeScore += 10
       this.gameTime = 0
     }
   }
@@ -36,11 +42,24 @@ class GameCounter {
   }
 
   public removePoint(score: number) {
-    if(this.gameTimeScore > 0) {
+    if (this.gameTimeScore > 0) {
       this.gameTimeScore -= score
-
-    } 
+    }
     this.gameTimeScore = 0
+  }
+
+  public drawHearts(tank: Tank) {
+    let yNumber: number = -50
+    for (let heart of this.hearts) {
+      yNumber += 35
+      image(
+        heart,
+        tank.position.x - tank.getSize() + 20,
+        tank.position.y + yNumber,
+        35,
+        35
+      )
+    }
   }
 
   // private rescued() {
@@ -64,7 +83,7 @@ class GameCounter {
     rect(0, 0, windowWidth / 6, windowHeight / 6)
     fill(45)
     textSize(22)
-    text(`Tank health ${this.tankHealth}`, 10, 30)
+    text(`Tank health ${this.hearts.length}`, 10, 30)
     text(`Zombies Killed ${this.killedZombies.length}`, 10, 70)
     text(`Score ${this.gameTimeScore}`, 10, 110)
   }

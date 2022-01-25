@@ -8,8 +8,8 @@ abstract class Entity {
   protected damage: number
   public isHit: boolean
   protected velocity: p5.Vector
-  protected hitBoxPosition: p5.Vector;
-  protected hitBoxSize: p5.Vector;
+  protected hitBoxPosition: p5.Vector
+  protected hitBoxSize: p5.Vector
 
   constructor(
     size: number,
@@ -30,12 +30,12 @@ abstract class Entity {
     this.damage = damage
     this.isHit = ishit
     this.velocity = velocity || createVector(-5, 0)
-    this.hitBoxPosition = createVector(size * .1, size * .2);
-    this.hitBoxSize = createVector(size * .8, size * .7);
+    this.hitBoxPosition = createVector(size * 0.1, size * 0.2)
+    this.hitBoxSize = createVector(size * 0.8, size * 0.7)
   }
 
   public getSize() {
-    return (this.hitBoxSize.x + this.hitBoxSize.y) / 2;
+    return (this.hitBoxSize.x + this.hitBoxSize.y) / 2
   }
 
   public removeHealth(entity: Entity, list: Entity[]) {
@@ -54,30 +54,33 @@ abstract class Entity {
     this.position.add(this.velocity)
   }
   public draw() {
-    push();
-    rectMode(CORNER);
+    push()
+    rectMode(CORNER)
     imageMode(CORNER)
     image(this.image, this.position.x, this.position.y, this.size, this.size)
-    pop();
-    this.drawHitBox();
+    pop()
+    //this.drawHitBox()
   }
 
   public getHitBox() {
-    const vector = createVector(this.position.x + this.hitBoxPosition.x, this.position.y + this.hitBoxPosition.y);
-    return vector
+    return {
+      x: this.position.x + this.hitBoxPosition.x,
+      y: this.position.y + this.hitBoxPosition.y,
+      width: this.hitBoxSize.x,
+      height: this.hitBoxSize.y,
+    }
   }
 
-
-  private drawHitBox() {
-    push();
-    rectMode(CORNER);
-    stroke('red');
-    noFill();
-    const x = this.position.x + this.hitBoxPosition.x;
-    const y = this.position.y + this.hitBoxPosition.y;
-    const width = this.hitBoxSize.x;
-    const height = this.hitBoxSize.y;
-    rect(x, y, width, height)
-    pop();
-  }
+  // private drawHitBox() {
+  //   push()
+  //   rectMode(CORNER)
+  //   stroke('red')
+  //   noFill()
+  //   const x = this.position.x + this.hitBoxPosition.x
+  //   const y = this.position.y + this.hitBoxPosition.y
+  //   const width = this.hitBoxSize.x
+  //   const height = this.hitBoxSize.y
+  //   rect(x, y, width, height)
+  //   pop()
+  // }
 }

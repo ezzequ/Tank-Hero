@@ -13,7 +13,7 @@ class Tank extends Entity {
     const velocity: p5.Vector = createVector(0, 0)
 
     super(size, health, position, img, points, damage, ishit, velocity)
-    this.reloadTime = 500
+    this.reloadTime = 250
   }
 
   public move() {
@@ -55,7 +55,7 @@ class Tank extends Entity {
   private fireShot() {
     this.reloadTime -= deltaTime
     if (keyIsDown(32) && this.reloadTime < 0) {
-      this.reloadTime = 500
+      this.reloadTime = 250
       return new Projectile(this.position.x, this.position.y)
     }
   }

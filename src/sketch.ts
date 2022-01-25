@@ -19,6 +19,8 @@ function preload() {
     human: loadImage('/assets/images/Entities/humans/female-1.png'),
     projectile: loadImage('/assets/images/Entities/tank/projectile.png'),
     boss: loadImage('/assets/images/Entities/zombies/boss.png'),
+    heart: loadImage('/assets/images/Entities/tank/heart.png'),
+    menuImg: loadImage('/assets/images/bg-menuImg.png'),
   }
 }
 
@@ -32,6 +34,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight)
   frameRate(60)
   // noCursor();
+  // menu()
   game = new Game()
 }
 
