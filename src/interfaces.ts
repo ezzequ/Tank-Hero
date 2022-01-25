@@ -7,4 +7,5 @@ interface Images {
   projectile: p5.Image
   boss: p5.Image
   heart: p5.Image
+  menuImg: p5.Image
 }

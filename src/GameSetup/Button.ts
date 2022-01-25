@@ -16,18 +16,19 @@ class Button {
     this.color = color
     this.button.style('font-size: ' + size + 'rem;')
     this.button.style('color: ' + color + ';')
+    this.button.style('border: none;')
+    this.button.style('background-color: transparent;')
+    this.button.style('cursor: pointer;')
   }
 
   public closeMenu(div: p5.Element) {
     this.button.mouseClicked((click) => {
-      console.log('test')
       div.style('display: none;')
+      game.startGame()
     })
   }
 
-  update() {}
-
-  draw() {
+  public update() {
     this.button.position(width / 2, height / 4)
   }
 }

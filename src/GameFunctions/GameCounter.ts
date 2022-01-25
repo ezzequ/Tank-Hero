@@ -19,11 +19,12 @@ class GameCounter {
 
   public decreaseTankHealth() {
     this.hearts.pop()
-    if (this.hearts.length == 0) {
-      console.log('game over')
-      // alert('Game over')
-    }
   }
+
+  public getLives() {
+    return this.hearts.length
+  }
+
   public countKilledZombies(zombie: Entity) {
     this.killedZombies.push(zombie)
   }

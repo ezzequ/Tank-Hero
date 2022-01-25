@@ -1,4 +1,5 @@
 class GameBoard {
+  private game: IGame
   private background: p5.Image
   private xPos: number
   private xPos2: number
@@ -12,11 +13,10 @@ class GameBoard {
   private humanSpawnTime: number
   private obstacleSpawnTime: number
   private bossSpawnTime: number
-  private menu: Menu
   //private gameTime: number
 
-  constructor() {
-    this.menu = new Menu()
+  constructor(game: IGame) {
+    this.game = game
     this.gameCounter = new GameCounter()
     this.sideBoard = new SideBoard()
     this.tank = new Tank()
@@ -73,10 +73,6 @@ class GameBoard {
     }
   }
 
-  //   private checkCollision() {
-  //     // Return Void
-  //   }
-
   private hitEntity(entity: Entity) {
     const hitBox = entity.getHitBox()
     const tankHitBox = this.tank.getHitBox()
@@ -85,23 +81,18 @@ class GameBoard {
       entity instanceof Zombie ||
       entity instanceof Human
     ) {
-      // let distance = dist(
-      //   this.tank.position.x,
-      //   this.tank.position.y,
-      //   entity.position.x,
-      //   entity.position.y
-      // )
-      const sizeSum = entity.getSize() / 2 + this.tank.getSize() / 2
       if (
-        hitBox.x < tankHitBox.x + sizeSum &&
-        hitBox.x + sizeSum > tankHitBox.x &&
-        hitBox.y < tankHitBox.y + sizeSum &&
-        sizeSum + hitBox.y > tankHitBox.y
+        hitBox.x < tankHitBox.x + tankHitBox.width &&
+        hitBox.x + hitBox.width > tankHitBox.x &&
+        hitBox.y < tankHitBox.y + tankHitBox.height &&
+        hitBox.y + hitBox.height > tankHitBox.y
       ) {
-        // Toalett papper
         if (entity instanceof Obstacle) {
           if (entity.isHit === false) {
             this.gameCounter.decreaseTankHealth()
+            if (!this.gameCounter.getLives()) {
+              this.game.gameOver()
+            }
           }
         }
         if (entity instanceof Zombie) {
@@ -124,21 +115,12 @@ class GameBoard {
         ) {
           const hitBox = entity.getHitBox()
           const entityHitBox = entityPlus.getHitBox()
-          const sizeSum = entity.getSize() / 2 + entityPlus.getSize() / 2
-          // let distance = dist(
-          //   entity.position.x + sizeSum,
-          //   entity.position.y,
-          //   entityPlus.position.x,
-          //   entityPlus.position.y
           if (
-            hitBox.x < entityHitBox.x + sizeSum &&
-            hitBox.x + sizeSum > entityHitBox.x &&
-            hitBox.y < entityHitBox.y + sizeSum &&
-            sizeSum + hitBox.y > entityHitBox.y
+            hitBox.x < entityHitBox.x + entityHitBox.width &&
+            hitBox.x + hitBox.width > entityHitBox.x &&
+            hitBox.y < entityHitBox.y + entityHitBox.height &&
+            hitBox.y + hitBox.height > entityHitBox.y
           ) {
-            console.log(
-              `SizeSum : ${sizeSum}, \nHitBox Skott: ${hitBox}, \nMonster HitBox: ${entityHitBox}`
-            )
             if (entityPlus instanceof Zombie) {
               this.gameCounter.countKilledZombies(entityPlus)
               this.gameCounter.pointPerEntity(entityPlus.points)
@@ -211,6 +193,5 @@ class GameBoard {
     }
     this.tank.draw()
     this.gameCounter.drawHearts(this.tank)
-    this.menu.draw()
   }
 }

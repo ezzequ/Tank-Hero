@@ -1,10 +1,22 @@
-class Game {
+class Game implements IGame {
   private gameBoard: GameBoard
-  //   private startMenu: StartMenu
+  private menu: Menu
+  private isRunning: boolean
 
   constructor() {
-    this.gameBoard = new GameBoard()
-    // this.startMenu = new StartMenu()
+    this.gameBoard = new GameBoard(this)
+    this.menu = new Menu()
+    this.isRunning = false
+  }
+
+  public startGame(): void {
+    // this.menu.showMenu()
+    this.isRunning = true
+  }
+
+  public gameOver(): void {
+    this.menu.showMenu()
+    this.isRunning = false
   }
 
   //private drawStartMenu() {
@@ -16,7 +28,9 @@ class Game {
   //}
 
   public update() {
-    this.gameBoard.update()
+    if (this.isRunning) {
+      this.gameBoard.update()
+    }
   }
 
   public draw() {
@@ -30,6 +44,6 @@ class Game {
 }
 
 interface IGame {
-  //public startGame() {
-  //}
+  startGame(): void
+  gameOver(): void
 }
