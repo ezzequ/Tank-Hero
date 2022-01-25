@@ -6,4 +6,5 @@ interface Images {
   human: p5.Image
   projectile: p5.Image
   boss: p5.Image
+  heart: p5.Image
 }
