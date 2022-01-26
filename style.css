@@ -26,3 +26,30 @@ canvas {
   width: 40%;
   margin: 0 auto;
 }
+
+
+.pause-menu {
+  display: none;
+  flex-direction: column;
+  flex-basis: auto;
+  padding-bottom: 1rem;
+  gap: 1rem;
+  background-image: linear-gradient(#6A6D54 20%, black 40% 100%);
+  width: 100%;
+  height: 100%;
+}
+
+.pause-menu img {
+  /*STYLE LOGO*/
+  display: block;
+  width: 40%;
+  margin: 0 auto;
+}
+
+
+.btn{
+  font-size: 1rem;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

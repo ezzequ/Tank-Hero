@@ -1,15 +1,20 @@
 class Game implements IGame {
   private gameBoard: GameBoard
   private menu: Menu
+  private pauseMenu : PauseMenu
   public isRunning: boolean
   private pauseTime: number
+  private gameOverMenu : gameOverMenu
 
   constructor() {
     this.gameBoard = new GameBoard(this)
     this.menu = new Menu()
+    this.pauseMenu = new PauseMenu()
+    this.gameOverMenu = new gameOverMenu()
     this.isRunning = false
     this.pauseTime = 250
   }
+
 
   public startGame(): void {
     this.menu.closeMenu()
@@ -17,25 +22,20 @@ class Game implements IGame {
   }
 
   public gameOver(): void {
-    this.menu.showMenu()
+    this.gameOverMenu.showMenu()
     this.isRunning = false
   }
 
-  //private drawStartMenu() {
-  // Return Void;
-  //}
-
-  //private checkMenu() {
-  // Return Void;
-  //}
-  private pauseMenu() {
+  private pauseGame() {
     this.pauseTime -= deltaTime
     if(keyIsDown(27)) {
       if(this.pauseTime < 0) {
         if(this.isRunning) {
-          this.gameOver()
+          this.pauseMenu.showMenu()
+          this.isRunning = false
         }else {
-          this.startGame()
+          this.isRunning = true;
+          this.pauseMenu.closeMenu()
         }
         this.pauseTime = 250
       }
@@ -46,7 +46,7 @@ class Game implements IGame {
     if (this.isRunning) {
       this.gameBoard.update()
     }
-    this.pauseMenu()
+    this.pauseGame()
   }
 
   public draw() {
