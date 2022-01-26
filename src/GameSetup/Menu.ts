@@ -1,11 +1,7 @@
 class Menu {
-  // private gameControls: p5.Image;
-  // private game: IGame
-  // private isActive : boolean = true;
-  // private logo: p5.Image;
-  // private gameDescription : string = "";
+
   private startButton: Button
-  private soundButton: Button
+  //private soundButton: Button
   private logo: p5.Element
   // private button: p5.Element
   private div: p5.Element
@@ -23,17 +19,8 @@ class Menu {
       2,
       'white'
     )
-    // this.soundButton = new Button(
-    //   createButton('TOGGLE SOUND').parent(this.div),
-    //   1,
-    //   2,
-    //   'white'
-    // )
+
     this.startButton.closeMenu(this.div)
-
-    // this.button = this.startButton
-    // this.div.child(this.button)
-
     this.div.position(0, 0)
   }
 
