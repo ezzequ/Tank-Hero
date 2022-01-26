@@ -32,7 +32,7 @@ class GameCounter {
   public pointsPerSeconds() {
     this.gameTime += deltaTime
     if (this.gameTime > 100) {
-      this.gameTimeScore += 10
+      this.gameTimeScore += 2
       this.gameTime = 0
     }
   }
@@ -79,12 +79,19 @@ class GameCounter {
   }
 
   public draw() {
-    fill(108, 102, 0)
-    rect(0, 0, windowWidth / 6, windowHeight / 6)
-    fill(45)
-    textSize(22)
-    text(`Tank health ${this.hearts.length}`, 10, 30)
-    text(`Zombies Killed ${this.killedZombies.length}`, 10, 70)
-    text(`Score ${this.gameTimeScore}`, 10, 110)
+    push()
+    colorMode(HSL)
+    fill(359, 53, 50)
+    // rect(0, 0, windowWidth / 6, windowHeight / 6)
+    quad(/*X1*/(width * .5) - 200,/*Y1*/0, /*X2*/(width * .5) + 250,/*Y2*/0, /*X3*/(width * .5) + 210, /*Y3*/50,/*X4*/ (width * .5) - 160, /*Y4*/50) 
+    pop()
+    push()
+    fill(255)
+    textSize(25)
+    translate(width * .5, 25)
+    // text(`Tank health ${this.hearts.length}`, 10, 30)
+    text(`Zombies Killed ${this.killedZombies.length}`, 5, 5)
+    text(`Score ${this.gameTimeScore}`, -150, 5)
+    pop()
   }
 }

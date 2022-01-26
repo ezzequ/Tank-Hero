@@ -1,7 +1,7 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game
 
-// let sound: p5.SoundFile
+let sound: Sounds
 let images: Images
 
 /**
@@ -10,12 +10,21 @@ let images: Images
  * sound files, images etc...
  */
 function preload() {
-  // sound: p5.SoundFile = loadSound('../assets/mySound.wav');
+
+  sound = {
+    menuMusic: loadSound('/assets/music/menumusic1.mp3')
+  }
   images = {
     bgImg: loadImage('/assets/images/burning.png'),
     tank: loadImage('/assets/images/Entities/tank/tank.png'),
-    zombie: loadImage('/assets/images/Entities/zombies/zombie.png'),
-    obstacle: loadImage('/assets/images/Entities/obstacles/truck.png'),
+    zombies: {
+      zom1: loadImage('/assets/images/Entities/zombies/zombie.png'),
+      zom2: loadImage('/assets/images/Entities/zombies/splatter.png'),
+    },
+    obstacles: {
+      obs1: loadImage('/assets/images/Entities/obstacles/truck.png'),
+      obs2: loadImage('/assets/images/Entities/obstacles/greentruck.png')
+    },
     human: loadImage('/assets/images/Entities/humans/female-1.png'),
     projectile: loadImage('/assets/images/Entities/tank/projectile.png'),
     boss: loadImage('/assets/images/Entities/zombies/boss.png'),

@@ -1,4 +1,4 @@
-class StartMenu {
+class PauseMenu {
   // private gameControls: p5.Image;
   // private game : IGame;
   // private isActive : boolean = true;
@@ -19,6 +19,6 @@ class StartMenu {
   }
 
   public draw() {
-    this.startButton.draw()
+    //this.startButton.draw()
   }
 }
