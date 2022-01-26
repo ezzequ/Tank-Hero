@@ -14,21 +14,9 @@ class Menu {
   constructor() {
     this.music = sound.menuMusic
     this.logo = createImg('/assets/images/logoTransp.png', 'test')
-    this.logo.size(600, 600)
-    this.logo.style('display: block;')
-    this.logo.style('margin: 0 auto;')
     this.div = createDiv()
+    this.div.addClass('start-menu')
     this.logo.parent(this.div)
-    this.div.style(
-      'background-image: linear-gradient( #6A6D54 20%, black 40% 100%);'
-    )
-    this.div.style('display: flex;')
-    this.div.style('flex-direction: column;')
-    this.div.style('flex-basis: auto;')
-    this.div.style(`width: ${width}px`)
-    this.div.style('padding-bottom: 1rem;')
-    this.div.style('gap: 1rem;')
-    this.div.style(`height: ${height}px`)
     this.startButton = new Button(
       createButton('START GAME').parent(this.div),
       1,
@@ -53,5 +41,8 @@ class Menu {
     this.div.style('display: flex;')
 
     // this.music.play();
+  }
+  public closeMenu() {
+    this.div.hide()
   }
 }

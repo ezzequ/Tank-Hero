@@ -111,7 +111,6 @@ class GameBoard {
           //this.entities.splice(this.entities.indexOf(entity), 1)
         }
         if (entity instanceof Human) {
-          console.log(entity.isHit)
           this.sideBoard.addLives()
           this.entities.splice(this.entities.indexOf(entity), 1)
         }
@@ -174,6 +173,7 @@ class GameBoard {
       this.hitEntity(entity)
     }
     this.gameCounter.update()
+    //this.pauseMenu()
   }
 
   public draw() {
