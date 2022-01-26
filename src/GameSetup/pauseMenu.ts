@@ -15,23 +15,11 @@ class PauseMenu {
     this.div.addClass('pause-menu')
     this.logo.parent(this.div)
     this.continueButton = new Button(
-      createButton('CONTINUE').parent(this.div),
-      1,
-      2,
-      'white'
-    )
+      createButton('CONTINUE').parent(this.div))
     this.soundButton = new Button(
-      createButton('TOGGLE SOUND').parent(this.div),
-      1,
-      2,
-      'white'
-    )
+      createButton('TOGGLE SOUND').parent(this.div))
     this.restartButton = new Button(
-      createButton('RESTART').parent(this.div),
-      1,
-      2,
-      'white'
-    )
+      createButton('RESTART').parent(this.div))
 
     this.continueButton.closeMenu(this.div)
     this.div.position(0, 0)

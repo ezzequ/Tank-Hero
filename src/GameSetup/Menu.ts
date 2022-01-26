@@ -14,11 +14,7 @@ class Menu {
     this.div.addClass('start-menu')
     this.logo.parent(this.div)
     this.startButton = new Button(
-      createButton('START GAME').parent(this.div),
-      1,
-      2,
-      'white'
-    )
+      createButton('START GAME').parent(this.div))
 
     this.startButton.closeMenu(this.div)
     this.div.position(0, 0)

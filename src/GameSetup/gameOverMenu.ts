@@ -14,11 +14,7 @@ class gameOverMenu {
       this.div.addClass('pause-menu')
       this.logo.parent(this.div)
       this.playAgainButton = new Button(
-        createButton('PLAY AGAIN').parent(this.div),
-        1,
-        2,
-        'white'
-      )
+        createButton('PLAY AGAIN').parent(this.div))
   
       this.playAgainButton.closeMenu(this.div)
       this.div.position(0, 0)
