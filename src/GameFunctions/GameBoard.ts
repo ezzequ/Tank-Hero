@@ -76,6 +76,16 @@ class GameBoard {
   private hitEntity(entity: Entity) {
     const hitBox = entity.getHitBox()
     const tankHitBox = this.tank.getHitBox()
+    if(entity instanceof Boss && hitBox.x < tankHitBox.x + tankHitBox.width &&
+      hitBox.x + hitBox.width > tankHitBox.x &&
+      hitBox.y < tankHitBox.y + tankHitBox.height &&
+      hitBox.y + hitBox.height > tankHitBox.y) {
+      // this.gameCounter.decreaseTankHealth()
+      // if (!this.gameCounter.getLives()) {
+      //   this.game.gameOver()
+      // }
+      // GÖ NÅGOT HÄR INNE NÄR MAN KÖR PÅ BOSS
+    }
     if (
       entity instanceof Obstacle ||
       entity instanceof Zombie ||
@@ -85,24 +95,26 @@ class GameBoard {
         hitBox.x < tankHitBox.x + tankHitBox.width &&
         hitBox.x + hitBox.width > tankHitBox.x &&
         hitBox.y < tankHitBox.y + tankHitBox.height &&
-        hitBox.y + hitBox.height > tankHitBox.y
+        hitBox.y + hitBox.height > tankHitBox.y && !entity.isHit
       ) {
         if (entity instanceof Obstacle) {
-          if (entity.isHit === false) {
-            this.gameCounter.decreaseTankHealth()
-            if (!this.gameCounter.getLives()) {
-              this.game.gameOver()
-            }
+          this.gameCounter.decreaseTankHealth()
+          entity.hitDamage(entity)
+          if (!this.gameCounter.getLives()) {
+            this.game.gameOver()
           }
         }
         if (entity instanceof Zombie) {
           this.gameCounter.countKilledZombies(entity)
           this.gameCounter.pointPerEntity(entity.points)
+          entity.hitDamage(entity)
+          //this.entities.splice(this.entities.indexOf(entity), 1)
         }
         if (entity instanceof Human) {
+          console.log(entity.isHit)
           this.sideBoard.addLives()
+          this.entities.splice(this.entities.indexOf(entity), 1)
         }
-        this.entities.splice(this.entities.indexOf(entity), 1)
       }
     }
 
@@ -119,16 +131,16 @@ class GameBoard {
             hitBox.x < entityHitBox.x + entityHitBox.width &&
             hitBox.x + hitBox.width > entityHitBox.x &&
             hitBox.y < entityHitBox.y + entityHitBox.height &&
-            hitBox.y + hitBox.height > entityHitBox.y
+            hitBox.y + hitBox.height > entityHitBox.y && !entityPlus.isHit
           ) {
-            if (entityPlus instanceof Zombie) {
-              this.gameCounter.countKilledZombies(entityPlus)
-              this.gameCounter.pointPerEntity(entityPlus.points)
+            if (entityPlus instanceof Zombie && entityPlus.getHealth() == 1) {
+                entityPlus.hitDamage(entityPlus)
+                this.gameCounter.pointPerEntity(entityPlus.points)
+                this.gameCounter.countKilledZombies(entityPlus)
             }
             if (entityPlus instanceof Human) {
               this.gameCounter.removePoint(entityPlus.points)
             }
-            //this.entities.splice(this.entities.indexOf(entityPlus), 1)
             entity.removeHealth(entityPlus, this.entities)
             this.entities.splice(this.entities.indexOf(entity), 1)
           }
@@ -137,28 +149,11 @@ class GameBoard {
     }
   }
 
-  private killSurviour(entity: Entity) {
-    if (entity instanceof Zombie && entity.position.x < width / 6) {
-      this.sideBoard.rescuedLives.pop()
-    }
-  }
-  // private saveSurvivor(entity: Entity) {
-  //   let distance = dist(
-  //     entity.position.x,
-  //     entity.position.y,
-  //     this.tank.position.x,
-  //     this.tank.position.y
-  //   )
-  //   if (entity instanceof Human && distance < 80) {
-  //     this.entities.splice(this.entities.indexOf(entity), 1)
-  //     this.sideBoard.addLives()
-  //   }
-  // }
-
   private entityEndOfLine(entity: Entity) {
     if (entity.position.x < width / 6) {
-      if (entity instanceof Zombie) {
+      if (entity instanceof Zombie && !entity.isHit) {
         this.gameCounter.removePoint(entity.points * 10)
+        this.sideBoard.rescuedLives.pop()
       }
       this.entities.splice(this.entities.indexOf(entity), 1)
     }
@@ -176,8 +171,6 @@ class GameBoard {
     for (const entity of this.entities) {
       entity.update()
       this.entityEndOfLine(entity)
-      this.killSurviour(entity)
-      //this.saveSurvivor(entity)
       this.hitEntity(entity)
     }
     this.gameCounter.update()

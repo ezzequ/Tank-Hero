@@ -1,8 +1,8 @@
 class Projectile extends Entity {
   constructor(x: number, y: number) {
-    const size = 40
+    const size = 70
     const health = 1
-    const position = createVector(x + 100, y + 35)
+    const position = createVector(x + 100, y + 19)
     const img = images.projectile
     // const sound: p5.SoundFile = 2
     const points = 0
@@ -12,4 +12,4 @@ class Projectile extends Entity {
     super(size, health, position, img, points, damage, ishit, velocity)
   }
 }
-// public update() {}
+

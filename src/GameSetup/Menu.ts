@@ -9,8 +9,10 @@ class Menu {
   private logo: p5.Element
   // private button: p5.Element
   private div: p5.Element
+  private music: p5.SoundFile
 
   constructor() {
+    this.music = sound.menuMusic
     this.logo = createImg('/assets/images/logoTransp.png', 'test')
     this.logo.size(600, 600)
     this.logo.style('display: block;')
@@ -48,6 +50,8 @@ class Menu {
   }
 
   public showMenu() {
-    this.div.show()
+    this.div.style('display: flex;')
+
+    // this.music.play();
   }
 }
