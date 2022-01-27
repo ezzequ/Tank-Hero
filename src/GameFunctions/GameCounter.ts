@@ -8,8 +8,10 @@ class GameCounter {
   private fuelLimit: number
   private killedHumans: Entity[]
   private hearts: p5.Image[]
+  private gameFont = new p5.Font()
 
   constructor() {
+     this.gameFont = font.gameFont
     this.heart = images.heart
     this.killedZombies = []
     this.gameTimeScore = 0
@@ -89,6 +91,7 @@ class GameCounter {
   }
 
   public draw() {
+    textFont(this.gameFont)
     push()
     colorMode(HSL)
     fill(359, 53, 50)
@@ -98,7 +101,7 @@ class GameCounter {
     pop()
     push()
     fill(255)
-    textSize(25)
+    textSize(18)
     translate(width * .5, 25)
     text(`Zombies Killed ${this.killedZombies.length}`, 5, 5)
     text(`Score ${this.gameTimeScore}`, -150, 5)
