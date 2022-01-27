@@ -17,18 +17,18 @@ class Tank extends Entity {
   }
 
   public move() {
-    //Röra tanken i X-led framåt
+    //Röra tanken i X-led bakåt
     if (this.position.x > width * 0.2) {
       if (keyIsDown(37)) {
-        this.position.x -= 10
+        this.position.x -= (width * .0065)
       }
     } else {
       this.position.x = width * 0.2
     }
-    //Röra tanken i X-led bakåt
+    //Röra tanken i X-led framåt
     if (this.position.x < width - 100) {
       if (keyIsDown(39)) {
-        this.position.x += 5
+        this.position.x += (width * .003)
       }
     } else {
       this.position.x = width - 100
@@ -37,18 +37,18 @@ class Tank extends Entity {
     //Röra tanken i Y-led nedåt
     if (this.position.y < height - 100) {
       if (keyIsDown(40)) {
-        this.position.y += 5
+        this.position.y += (height * .005)
       }
     } else {
       this.position.y = height - 100
     }
     //Röra tanken i Y-led uppåt
-    if (this.position.y > height / 6) {
+    if (this.position.y > height / 6 + 130) {
       if (keyIsDown(38)) {
-        this.position.y -= 5
+        this.position.y -= (height * .005)
       }
     } else {
-      this.position.y = height / 6
+      this.position.y = height / 6 + 130
     }
   }
 

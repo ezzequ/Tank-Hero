@@ -13,6 +13,7 @@ class GameBoard {
   private humanSpawnTime: number
   private obstacleSpawnTime: number
   private bossSpawnTime: number
+  private lastSpawnY?: number
   //private gameTime: number
 
   constructor(game: IGame) {
@@ -29,7 +30,7 @@ class GameBoard {
     this.zombieSpawnTime = random(1500, 2500)
     this.obstacleSpawnTime = 4500
     this.humanSpawnTime = 13000
-    this.bossSpawnTime = 6000
+    this.bossSpawnTime = 20000
     //this.gameTime = 15000
   }
 
@@ -54,23 +55,36 @@ class GameBoard {
     this.humanSpawnTime -= deltaTime
     this.bossSpawnTime -= deltaTime
 
-    // if (this.bossSpawnTime < 0) {
-    //   this.entities.push(new Boss(this.scrollSpeed * 0.2))
-    //   this.bossSpawnTime = 6000
-    // }
-
+    
+    if (this.bossSpawnTime < 0) {
+      this.lastSpawnY = this.getRandomY()
+      this.entities.push(new Boss(this.scrollSpeed * 0.2, this.lastSpawnY))
+      this.bossSpawnTime = 20000
+    }
     if (this.zombieSpawnTime < 0) {
-      this.entities.push(new Zombie(this.scrollSpeed * 0.2))
-      this.zombieSpawnTime = random(1500, 2500)
+      this.lastSpawnY = this.getRandomY()
+      this.entities.push(new Zombie(this.scrollSpeed * 0.2, this.lastSpawnY))
+      this.zombieSpawnTime = random(2000, 3000)
     }
     if (this.obstacleSpawnTime < 0) {
-      this.entities.push(new Obstacle())
+      this.lastSpawnY = this.getRandomY()
+      this.entities.push(new Obstacle(this.lastSpawnY))
       this.obstacleSpawnTime = 4500
     }
     if (this.humanSpawnTime < 0) {
-      this.entities.push(new Human())
-      this.humanSpawnTime = 3000
+      this.lastSpawnY = this.getRandomY()
+      this.entities.push(new Human(this.lastSpawnY))
+      this.humanSpawnTime = 8000
     }
+  }
+
+  private getRandomY(): number {
+    const cityHeight = height * 0.3
+    const y = ((height - cityHeight) / 6) * floor(random(6)) + cityHeight
+    if (y === this.lastSpawnY) {
+      return this.getRandomY();
+    }
+    return y;
   }
 
   private hitEntity(entity: Entity) {
@@ -105,9 +119,13 @@ class GameBoard {
           }
         }
         if (entity instanceof Zombie) {
+          this.gameCounter.decreaseTankHealth()
           this.gameCounter.countKilledZombies(entity)
           this.gameCounter.pointPerEntity(entity.points)
           entity.hitDamage(entity)
+          if (!this.gameCounter.getLives()) {
+            this.game.gameOver()
+          }
           //this.entities.splice(this.entities.indexOf(entity), 1)
         }
         if (entity instanceof Human) {
@@ -139,6 +157,9 @@ class GameBoard {
             }
             if (entityPlus instanceof Human) {
               this.gameCounter.removePoint(entityPlus.points)
+            }
+            if(entityPlus instanceof Boss && entityPlus.getHealth() == 1) {
+              entityPlus.hitDamage(entityPlus)
             }
             entity.removeHealth(entityPlus, this.entities)
             this.entities.splice(this.entities.indexOf(entity), 1)

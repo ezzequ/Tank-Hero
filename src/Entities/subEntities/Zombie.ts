@@ -1,9 +1,7 @@
 class Zombie extends Entity {
-  constructor(velo: number) {
-    const size = 120
+  constructor(velo: number, y: number) {
+    const size = height * 0.1
     const health = 3
-    const cityHeight = 260
-    const y = ((height - cityHeight) / 6) * floor(random(6)) + cityHeight
     const position = createVector(width, y)
     const img = images.zombies.zom1
     // const sound: p5.SoundFile = 2

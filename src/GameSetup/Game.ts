@@ -33,8 +33,7 @@ class Game implements IGame {
   }
 
   public restartGame() {
-    let newGame = game
-    this.gameBoard = new GameBoard(newGame)
+    this.gameBoard = new GameBoard(this)
     this.gameCounter = new GameCounter()
     this.isRunning = true
   }
@@ -62,7 +61,7 @@ class Game implements IGame {
 
   public update() {
     if (this.isRunning) {
-      this.gameCounter.countDownTimer()
+      //this.gameCounter.countDownTimer()
       this.gameBoard.update()
     }
     this.pauseGame()
