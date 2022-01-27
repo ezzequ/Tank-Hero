@@ -114,6 +114,7 @@ class GameBoard {
         if (entity instanceof Obstacle) {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
+          sound.crash.play()
           if (!this.gameCounter.getLives()) {
             this.game.gameOver()
           }
@@ -123,6 +124,7 @@ class GameBoard {
           this.gameCounter.countKilledZombies(entity)
           this.gameCounter.pointPerEntity(entity.points)
           entity.hitDamage(entity)
+          sound.crash.play()
           if (!this.gameCounter.getLives()) {
             this.game.gameOver()
           }
@@ -154,6 +156,8 @@ class GameBoard {
                 entityPlus.hitDamage(entityPlus)
                 this.gameCounter.pointPerEntity(entityPlus.points)
                 this.gameCounter.countKilledZombies(entityPlus)
+                sound.hit.play();
+                
             }
             if (entityPlus instanceof Human) {
               this.gameCounter.removePoint(entityPlus.points)

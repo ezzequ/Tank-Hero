@@ -15,7 +15,11 @@ function preload() {
    }
 
   sound = {
-    menuMusic: loadSound('/assets/music/menumusic1.mp3')
+    menuMusic: loadSound('/assets/music/menumusic1.mp3'),
+    readyGo: loadSound('/assets/sounds/SFX/Ready-GO.wav'),
+    hit: loadSound('/assets/sounds/SFX/hit.mp3'),
+    crash: loadSound('/assets/sounds/SFX/crash.mp3'),
+    gameOverSound: loadSound('/assets/sounds/SFX/game-over.mp3'),
   }
   images = {
     bgImg: loadImage('/assets/images/burning.png'),

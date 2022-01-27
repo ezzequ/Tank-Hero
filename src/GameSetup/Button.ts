@@ -10,6 +10,8 @@ class Button {
     this.button.mouseClicked((click) => {
       div.style('display: none;')
       game.isRunning = true
+      sound.menuMusic.stop();
+      sound.readyGo.play();
     })
   }
 

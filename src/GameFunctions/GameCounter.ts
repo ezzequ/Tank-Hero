@@ -16,7 +16,7 @@ class GameCounter {
     this.killedZombies = []
     this.gameTimeScore = 0
     this.gameTime = 0
-    this.fuelLimit = 19
+    this.fuelLimit = 60
     this.killedHumans = []
     this.hearts = [this.heart, this.heart, this.heart, this.heart]
   }
