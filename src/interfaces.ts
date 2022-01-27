@@ -19,3 +19,7 @@ interface Images {
 interface Sounds {
   menuMusic : p5.SoundFile,
 }
+interface Font{
+gameFont : p5.Font
+
+}

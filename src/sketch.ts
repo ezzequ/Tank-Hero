@@ -1,15 +1,18 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game
-
+let font: Font
 let sound: Sounds
 let images: Images
-
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
  * sound files, images etc...
  */
 function preload() {
+
+   font = {
+     gameFont: loadFont('/assets/fonts/Bicubik.ttf')
+   }
 
   sound = {
     menuMusic: loadSound('/assets/music/menumusic1.mp3')
