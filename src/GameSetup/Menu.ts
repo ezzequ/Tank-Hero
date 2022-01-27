@@ -6,11 +6,10 @@ class Menu {
   // private button: p5.Element
   private div1: p5.Element
   private div2: p5.Element
-  private music: p5.SoundFile
   private controlsImg: p5.Element
 
   constructor() {
-    this.music = sound.menuMusic
+    // this.music = sound.menuMusic
     this.logo = createImg('/assets/images/logoTransp.png', 'test')
     this.logo.addClass('logo')
     this.div1 = createDiv()
@@ -31,10 +30,9 @@ class Menu {
 
   public showMenu() {
     this.div1.style('display: flex;')
-
-    // this.music.play();
   }
   public closeMenu() {
     this.div1.hide()
   }
 }
+

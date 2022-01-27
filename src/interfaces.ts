@@ -18,6 +18,10 @@ interface Images {
 
 interface Sounds {
   menuMusic : p5.SoundFile,
+  readyGo : p5.SoundFile,
+  hit : p5.SoundFile,
+  crash : p5.SoundFile,
+  gameOverSound : p5.SoundFile,
 }
 interface Font{
 gameFont : p5.Font
