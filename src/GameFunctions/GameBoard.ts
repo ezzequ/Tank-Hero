@@ -178,6 +178,7 @@ class GameBoard {
       if (entity instanceof Zombie && !entity.isHit) {
         this.gameCounter.removePoint(entity.points * 10)
         this.sideBoard.rescuedLives.pop()
+        sound.zombieEat.play()
       }
       this.entities.splice(this.entities.indexOf(entity), 1)
     }

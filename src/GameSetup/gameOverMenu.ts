@@ -25,6 +25,7 @@ class gameOverMenu {
     public showMenu() {
       this.div.style('display: flex;')
       sound.gameOverSound.play()
+      sound.gameOverMusic.play()
   
       // this.music.play();
     }
