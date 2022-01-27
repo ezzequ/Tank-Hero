@@ -12,6 +12,7 @@ class Button {
       game.isRunning = true
       sound.menuMusic.stop();
       sound.readyGo.play();
+      
     })
   }
 
@@ -19,6 +20,8 @@ class Button {
     this.button.mouseClicked((click) => {
       div.style('display: none;')
       game.restartGame()
+      sound.gameOverMusic.stop();
+      sound.readyGo.play();
 
     })
   }

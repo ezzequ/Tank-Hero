@@ -20,6 +20,11 @@ function preload() {
     hit: loadSound('/assets/sounds/SFX/hit.mp3'),
     crash: loadSound('/assets/sounds/SFX/crash.mp3'),
     gameOverSound: loadSound('/assets/sounds/SFX/game-over.mp3'),
+    gameOverMusic: loadSound('/assets/sounds/SFX/game-over-music.mp3'),
+    saved: loadSound('/assets/sounds/SFX/saved.mp3'),
+    zombieEat: loadSound('/assets/sounds/SFX/zombie-eat.mp3'),
+
+
   }
   images = {
     bgImg: loadImage('/assets/images/burning.png'),
