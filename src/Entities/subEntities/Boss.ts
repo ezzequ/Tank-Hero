@@ -1,10 +1,8 @@
 class Boss extends Entity {
 
-  constructor(velo: number) {
+  constructor(velo: number, y: number) {
     const size = 300
     const health = 5
-    const cityHeight = 260
-    const y = ((height-400 - cityHeight) / 6) * floor(random(6)) + cityHeight
     const position = createVector(width, y)
     const img = images.boss
     // const sound: p5.SoundFile = 2

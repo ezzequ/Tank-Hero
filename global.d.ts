@@ -17,6 +17,8 @@ declare global {
         errorCallback?: (err: unknown) => void,
         loadingCallback?: (percectangeLoaded: number) => void,
     ): p5.SoundFile;
+
+    function userStartAudio(): void;
 }
 
 

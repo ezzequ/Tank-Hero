@@ -43,6 +43,8 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight)
   frameRate(60)
+  sound.menuMusic.setVolume(0.3)
+  sound.menuMusic.play();
   // noCursor();
   // menu()
   game = new Game()
@@ -63,4 +65,8 @@ function draw() {
  */
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight)
+}
+
+function mousePressed() {
+  userStartAudio();
 }

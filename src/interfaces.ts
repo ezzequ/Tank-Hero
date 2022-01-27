@@ -1,7 +1,7 @@
 interface Images {
-  tank: p5.Image
-  bgImg: p5.Image
-  zombies: {
+    tank: p5.Image
+    bgImg: p5.Image
+    zombies: {
     zom1: p5.Image
     zom2: p5.Image
   }

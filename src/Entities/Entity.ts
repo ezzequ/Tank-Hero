@@ -60,6 +60,13 @@ abstract class Entity {
       entity.image = images.zombies.zom2
       entity.velocity = createVector(-2, 0)
     }
+    if(entity instanceof Boss) {
+      entity.image = images.zombies.zom2
+      entity.size = 120
+      entity.position.x += 120
+      entity.position.y += 120
+      entity.velocity = createVector(-2, 0)
+    }
     entity.isHit = true
   }
 
