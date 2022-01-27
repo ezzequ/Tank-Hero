@@ -1,6 +1,6 @@
 class Human extends Entity {
   constructor() {
-    const size = 110
+    const size = 120
     const health = 1
     const cityHeight = 260
     const y = ((height - cityHeight) / 6) * floor(random(6)) + cityHeight

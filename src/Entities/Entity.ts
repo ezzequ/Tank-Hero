@@ -40,10 +40,27 @@ abstract class Entity {
 
   public removeHealth(entity: Entity, list: Entity[]) {
     if (entity.health == 1) {
-      list.splice(list.indexOf(entity), 1)
+      entity.isHit = true
+      entity.image = images.zombies.zom2
+      //list.splice(list.indexOf(entity), 1)
     } else {
       entity.health -= 1
     }
+  }
+
+  public getHealth() {
+    return this.health
+  }
+
+  public hitDamage(entity : Entity) {
+    if(entity instanceof Obstacle) {
+      entity.image = images.obstacles.obs2
+    }
+    if(entity instanceof Zombie) {
+      entity.image = images.zombies.zom2
+      entity.velocity = createVector(-2, 0)
+    }
+    entity.isHit = true
   }
 
   //   private removeEntity() {}
@@ -59,7 +76,7 @@ abstract class Entity {
     imageMode(CORNER)
     image(this.image, this.position.x, this.position.y, this.size, this.size)
     pop()
-    //this.drawHitBox()
+    // this.drawHitBox()
   }
 
   public getHitBox() {
