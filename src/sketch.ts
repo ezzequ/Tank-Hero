@@ -30,6 +30,7 @@ function preload() {
     boss: loadImage('/assets/images/Entities/zombies/boss.png'),
     heart: loadImage('/assets/images/Entities/tank/heart.png'),
     menuImg: loadImage('/assets/images/bg-menuImg.png'),
+    // controlsImg: loadImage('/assets/images/controls.png'),
   }
 }
 

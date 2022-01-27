@@ -10,14 +10,16 @@ class gameOverMenu {
     constructor() {
       this.music = sound.menuMusic
       this.logo = createImg('/assets/images/logoTransp.png', 'test')
+      this.logo.addClass('logo')
       this.div = createDiv()
-      this.div.addClass('pause-menu')
+      this.div.addClass('game-over-menu')
       this.logo.parent(this.div)
       this.playAgainButton = new Button(
         createButton('PLAY AGAIN').parent(this.div))
   
       this.playAgainButton.closeMenu(this.div)
       this.div.position(0, 0)
+      this.playAgainButton.btnRestart(this.div)
     }
   
     public showMenu() {

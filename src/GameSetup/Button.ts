@@ -12,4 +12,12 @@ class Button {
       game.isRunning = true
     })
   }
+
+  public btnRestart(div : p5.Element) {
+    this.button.mouseClicked((click) => {
+      div.style('display: none;')
+      game.restartGame()
+
+    })
+  }
 }
