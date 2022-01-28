@@ -3,7 +3,7 @@ abstract class Entity {
   protected health: number
   public position: p5.Vector
   protected image: p5.Image
-  // private sound: p5.SoundFile;
+  public sound: p5.SoundFile
   public points: number
   protected damage: number
   public isHit: boolean
@@ -19,13 +19,14 @@ abstract class Entity {
     points: number,
     damage: number,
     ishit: boolean,
-    velocity?: p5.Vector
+    sound: p5.SoundFile,
+    velocity?: p5.Vector,
   ) {
+    this.sound = sound
     this.size = size
     this.health = health
     this.position = position
     this.image = img
-    // this.sound = sound;
     this.points = points
     this.damage = damage
     this.isHit = ishit

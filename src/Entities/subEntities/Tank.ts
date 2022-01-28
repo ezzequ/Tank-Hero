@@ -6,13 +6,13 @@ class Tank extends Entity {
     const health = 4
     const position = createVector(width * 0.2, height * 0.5)
     const img = images.tank
-    // const sound: p5.SoundFile = 2
     const points = 0
     const damage = 0
     const ishit = false
+    const sound = sounds.crash
     const velocity: p5.Vector = createVector(0, 0)
 
-    super(size, health, position, img, points, damage, ishit, velocity)
+    super(size, health, position, img, points, damage, ishit, sound, velocity)
     this.reloadTime = 250
   }
 

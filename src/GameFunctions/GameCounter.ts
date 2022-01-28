@@ -7,17 +7,19 @@ class GameCounter {
   private gameTime: number
   private fuelLimit: number
   private killedHumans: Entity[]
+  private rescuedHumans: Entity[]
   private hearts: p5.Image[]
   private gameFont = new p5.Font()
 
   constructor() {
-     this.gameFont = font.gameFont
+    this.gameFont = font.gameFont
     this.heart = images.heart
     this.killedZombies = []
     this.gameTimeScore = 0
     this.gameTime = 0
     this.fuelLimit = 60
     this.killedHumans = []
+    this.rescuedHumans = []
     this.hearts = [this.heart, this.heart, this.heart, this.heart]
   }
 
@@ -38,6 +40,18 @@ class GameCounter {
 
   public countKilledZombies(zombie: Entity) {
     this.killedZombies.push(zombie)
+  }
+  
+  public countKilledHumans(human: Entity) {
+    this.killedHumans.push(human)
+  }
+
+  public countRescuedHumans(human: Entity) {
+    this.rescuedHumans.push(human)
+  }
+
+  public getRescuedHumanCount() {
+    return this.rescuedHumans
   }
 
   public pointsPerSeconds() {
@@ -72,10 +86,6 @@ class GameCounter {
       )
     }
   }
-
-  // private rescued() {
-  //   // Return Number
-  // }
 
   // private activeScore() {
   //   // Return Number

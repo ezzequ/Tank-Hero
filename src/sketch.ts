@@ -1,7 +1,7 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game
 let font: Font
-let sound: Sounds
+let sounds: Sounds
 let images: Images
 /**
  * Built in preload function in P5
@@ -14,15 +14,16 @@ function preload() {
      gameFont: loadFont('/assets/fonts/Bicubik.ttf')
    }
 
-  sound = {
+  sounds = {
     menuMusic: loadSound('/assets/music/menumusic1.mp3'),
     readyGo: loadSound('/assets/sounds/SFX/Ready-GO.wav'),
-    hit: loadSound('/assets/sounds/SFX/hit.mp3'),
     crash: loadSound('/assets/sounds/SFX/crash.mp3'),
     gameOverSound: loadSound('/assets/sounds/SFX/game-over.mp3'),
     gameOverMusic: loadSound('/assets/sounds/SFX/game-over-music.mp3'),
     saved: loadSound('/assets/sounds/SFX/saved.mp3'),
     zombieEat: loadSound('/assets/sounds/SFX/zombie-eat.mp3'),
+    entityKilled: loadSound('/assets/sounds/SFX/hit.mp3'),
+    
 
 
   }
@@ -55,8 +56,8 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight)
   frameRate(60)
-  sound.menuMusic.setVolume(0.3)
-  sound.menuMusic.play();
+  sounds.menuMusic.setVolume(0.3)
+  sounds.menuMusic.play();
   // noCursor();
   // menu()
   game = new Game()

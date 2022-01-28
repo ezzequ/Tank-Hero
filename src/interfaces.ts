@@ -17,16 +17,16 @@ interface Images {
 }
 
 interface Sounds {
-  menuMusic : p5.SoundFile,
-  readyGo : p5.SoundFile,
-  hit : p5.SoundFile,
-  crash : p5.SoundFile,
-  gameOverSound : p5.SoundFile,
-  gameOverMusic : p5.SoundFile,
-  saved : p5.SoundFile,
-  zombieEat : p5.SoundFile, 
+  menuMusic: p5.SoundFile
+  readyGo: p5.SoundFile
+  crash: p5.SoundFile
+  gameOverSound: p5.SoundFile
+  gameOverMusic: p5.SoundFile
+  saved: p5.SoundFile
+  zombieEat: p5.SoundFile,
+  entityKilled: p5.SoundFile,
 }
 interface Font{
-gameFont : p5.Font
+gameFont: p5.Font
 
 }

@@ -41,7 +41,7 @@ class SideBoard {
 
   public addLives() {
     this.rescuedLives.push(this.human)
-    sound.saved.play()
+    sounds.saved.play()
     // console.log('test')
     // console.log(this.rescuedLives.push(this.human))
   }

@@ -89,16 +89,6 @@ class GameBoard {
   private hitEntity(entity: Entity) {
     const hitBox = entity.getHitBox()
     const tankHitBox = this.tank.getHitBox()
-    // if(entity instanceof Boss && hitBox.x < tankHitBox.x + tankHitBox.width &&
-    //   hitBox.x + hitBox.width > tankHitBox.x &&
-    //   hitBox.y < tankHitBox.y + tankHitBox.height &&
-    //   hitBox.y + hitBox.height > tankHitBox.y) {
-    //   // this.gameCounter.decreaseTankHealth()
-    //   // if (!this.gameCounter.getLives()) {
-    //   //   this.game.gameOver()
-    //   // }
-    //   // GÖ NÅGOT HÄR INNE NÄR MAN KÖR PÅ BOSS
-    // }
     if (
       entity instanceof Obstacle ||
       entity instanceof Zombie ||
@@ -115,7 +105,7 @@ class GameBoard {
         if (entity instanceof Boss) {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
-          sound.crash.play()
+          this.tank.sound.play()
           if (!this.gameCounter.getLives()) {
             this.game.gameOver()
           }
@@ -123,7 +113,7 @@ class GameBoard {
         if (entity instanceof Obstacle) {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
-          sound.crash.play()
+          this.tank.sound.play()
           if (!this.gameCounter.getLives()) {
             this.game.gameOver()
           }
@@ -133,7 +123,7 @@ class GameBoard {
           this.gameCounter.countKilledZombies(entity)
           this.gameCounter.pointPerEntity(entity.points)
           entity.hitDamage(entity)
-          sound.crash.play()
+          this.tank.sound.play()
           if (!this.gameCounter.getLives()) {
             this.game.gameOver()
           }
@@ -141,6 +131,7 @@ class GameBoard {
         }
         if (entity instanceof Human) {
           this.sideBoard.addLives()
+          this.gameCounter.countRescuedHumans(entity)
           this.entities.splice(this.entities.indexOf(entity), 1)
         }
       }
@@ -166,10 +157,11 @@ class GameBoard {
               entityPlus.hitDamage(entityPlus)
               this.gameCounter.pointPerEntity(entityPlus.points)
               this.gameCounter.countKilledZombies(entityPlus)
-              sound.hit.play()
+              sounds.entityKilled.play()
             }
             if (entityPlus instanceof Human) {
               this.gameCounter.removePoint(entityPlus.points)
+              this.gameCounter.countKilledHumans(entityPlus)
             }
             if (entityPlus instanceof Boss && entityPlus.getHealth() == 1) {
               entityPlus.hitDamage(entityPlus)
@@ -186,8 +178,9 @@ class GameBoard {
     if (entity.position.x < width / 6) {
       if (entity instanceof Zombie && !entity.isHit) {
         this.gameCounter.removePoint(entity.points * 10)
+        this.gameCounter.getRescuedHumanCount().pop()
         this.sideBoard.rescuedLives.pop()
-        sound.zombieEat.play()
+        entity.sound.play()
       }
       this.entities.splice(this.entities.indexOf(entity), 1)
     }

@@ -8,7 +8,7 @@ class gameOverMenu {
     private music: p5.SoundFile
   
     constructor() {
-      this.music = sound.menuMusic
+      this.music = sounds.menuMusic
       this.logo = createImg('/assets/images/logoTransp.png', 'test')
       this.logo.addClass('logo')
       this.div = createDiv()
@@ -24,8 +24,8 @@ class gameOverMenu {
   
     public showMenu() {
       this.div.style('display: flex;')
-      sound.gameOverSound.play()
-      sound.gameOverMusic.play()
+      sounds.gameOverSound.play()
+      sounds.gameOverMusic.play()
   
       // this.music.play();
     }

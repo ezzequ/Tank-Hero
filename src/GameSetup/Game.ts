@@ -56,7 +56,6 @@ class Game implements IGame {
           this.pauseMenu.closeMenu()
         }
         this.pauseTime = 250
-        sound.menuMusic.play();
       }
     }
   }
