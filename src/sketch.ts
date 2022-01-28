@@ -1,9 +1,8 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game
-
-let sound: Sounds
+let font: Font
+let sounds: Sounds
 let images: Images
-
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -11,8 +10,22 @@ let images: Images
  */
 function preload() {
 
-  sound = {
-    menuMusic: loadSound('/assets/music/menumusic1.mp3')
+   font = {
+     gameFont: loadFont('/assets/fonts/Bicubik.ttf')
+   }
+
+  sounds = {
+    menuMusic: loadSound('/assets/music/menumusic1.mp3'),
+    readyGo: loadSound('/assets/sounds/SFX/Ready-GO.wav'),
+    crash: loadSound('/assets/sounds/SFX/crash.mp3'),
+    gameOverSound: loadSound('/assets/sounds/SFX/game-over.mp3'),
+    gameOverMusic: loadSound('/assets/sounds/SFX/game-over-music.mp3'),
+    saved: loadSound('/assets/sounds/SFX/saved.mp3'),
+    zombieEat: loadSound('/assets/sounds/SFX/zombie-eat.mp3'),
+    entityKilled: loadSound('/assets/sounds/SFX/hit.mp3'),
+    
+
+
   }
   images = {
     bgImg: loadImage('/assets/images/burning.png'),
@@ -30,6 +43,7 @@ function preload() {
     boss: loadImage('/assets/images/Entities/zombies/boss.png'),
     heart: loadImage('/assets/images/Entities/tank/heart.png'),
     menuImg: loadImage('/assets/images/bg-menuImg.png'),
+    // controlsImg: loadImage('/assets/images/controls.png'),
   }
 }
 
@@ -42,6 +56,8 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight)
   frameRate(60)
+  sounds.menuMusic.setVolume(0.3)
+  sounds.menuMusic.play();
   // noCursor();
   // menu()
   game = new Game()
@@ -62,4 +78,8 @@ function draw() {
  */
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight)
+}
+
+function mousePressed() {
+  userStartAudio();
 }

@@ -1,3 +1,7 @@
+* {
+  font-family: 'bicubik';
+}
+
 html,
 body,
 canvas {
@@ -9,47 +13,121 @@ canvas {
   overflow-y: hidden;
 }
 
+.loadingScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
 .start-menu {
   display: flex;
   flex-direction: column;
   flex-basis: auto;
+  align-items: center;
   padding-bottom: 1rem;
   gap: 1rem;
-  background-image: linear-gradient(#6A6D54 20%, black 40% 100%);
+  background-image: linear-gradient(
+    180deg,
+    hsl(65deg 13% 38%) 0%,
+    hsl(65deg 13% 34%) 4%,
+    hsl(66deg 13% 29%) 8%,
+    hsl(67deg 13% 25%) 12%,
+    hsl(69deg 13% 21%) 17%,
+    hsl(60deg 13% 17%) 24%,
+    hsl(60deg 13% 13%) 32%,
+    hsl(60deg 12% 8%) 44%,
+    hsl(60deg 14% 4%) 66%,
+    hsl(0deg 0% 0%) 100%
+  );
   width: 100%;
   height: 100%;
 }
 
-.start-menu img {
+.logo {
   /*STYLE LOGO*/
   display: block;
-  width: 40%;
+  width: 25vw;
   margin: 0 auto;
 }
 
+.control-img {
+  display: block;
+  width: 40vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 .pause-menu {
   display: none;
   flex-direction: column;
   flex-basis: auto;
+  align-items: center;
   padding-bottom: 1rem;
   gap: 1rem;
-  background-image: linear-gradient(#6A6D54 20%, black 40% 100%);
+  background-image: linear-gradient(
+    180deg,
+    hsl(65deg 13% 38%) 0%,
+    hsl(65deg 13% 34%) 4%,
+    hsl(66deg 13% 29%) 8%,
+    hsl(67deg 13% 25%) 12%,
+    hsl(69deg 13% 21%) 17%,
+    hsl(60deg 13% 17%) 24%,
+    hsl(60deg 13% 13%) 32%,
+    hsl(60deg 12% 8%) 44%,
+    hsl(60deg 14% 4%) 66%,
+    hsl(0deg 0% 0%) 100%
+  );
   width: 100%;
   height: 100%;
 }
 
-.pause-menu img {
-  /*STYLE LOGO*/
-  display: block;
-  width: 40%;
-  margin: 0 auto;
+.game-over-menu {
+  display: none;
+  flex-direction: column;
+  flex-basis: auto;
+  align-items: center;
+  padding-bottom: 1rem;
+  gap: 1rem;
+  background-image: linear-gradient(
+    180deg,
+    hsl(65deg 13% 38%) 0%,
+    hsl(65deg 13% 34%) 4%,
+    hsl(66deg 13% 29%) 8%,
+    hsl(67deg 13% 25%) 12%,
+    hsl(69deg 13% 21%) 17%,
+    hsl(60deg 13% 17%) 24%,
+    hsl(60deg 13% 13%) 32%,
+    hsl(60deg 12% 8%) 44%,
+    hsl(60deg 14% 4%) 66%,
+    hsl(0deg 0% 0%) 100%
+  );
+  width: 100%;
+  height: 100%;
 }
 
-
-.btn{
-  font-size: 1rem;
-  color: white;
+.btn {
+  font-size: 1.25rem;
+  color: hsl(67, 13%, 45%);
+  background-color: #37382b;
   border: none;
+  border-radius: 0.25rem;
   cursor: pointer;
+  padding: 1rem 2rem;
+  margin: 0;
+  justify-self: center;
+  transition: 1s;
+}
+
+.btn:hover {
+  background-color: #37382b;
+  box-shadow: 0 0 20px #37382b, 0 0 40px #37382b, 0 0 60px #37382b;
+}
+
+@font-face {
+  font-family: 'bicubik';
+  font-style: normal;
+  font-weight: normal;
+  src: local('bicubik'), url(/assets/fonts/Bicubik.woff) format('woff');
 }
