@@ -14,6 +14,9 @@ interface Images {
   boss: p5.Image
   heart: p5.Image
   menuImg: p5.Image
+  pauseImg: p5.Image
+  gameOverImg: p5.Image
+  victoryImg: p5.Image
 }
 
 interface Sounds {

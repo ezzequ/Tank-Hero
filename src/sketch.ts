@@ -43,6 +43,9 @@ function preload() {
     boss: loadImage('/assets/images/Entities/zombies/boss.png'),
     heart: loadImage('/assets/images/Entities/tank/heart.png'),
     menuImg: loadImage('/assets/images/bg-menuImg.png'),
+    pauseImg: loadImage('/assets/images/pausing.png'),
+    gameOverImg: loadImage('/assets/images/GAME_OVER-.png'),
+    victoryImg: loadImage('/assets/images/victory.png')
     // controlsImg: loadImage('/assets/images/controls.png'),
   }
 }
