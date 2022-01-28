@@ -1,7 +1,7 @@
 interface Images {
-    tank: p5.Image
-    bgImg: p5.Image
-    zombies: {
+  tank: p5.Image
+  bgImg: p5.Image
+  zombies: {
     zom1: p5.Image
     zom2: p5.Image
   }
@@ -17,19 +17,24 @@ interface Images {
   pauseImg: p5.Image
   gameOverImg: p5.Image
   victoryImg: p5.Image
+  powerups: {
+    fuelTank: p5.Image
+    heart: p5.Image
+  }
 }
-
 interface Sounds {
   menuMusic: p5.SoundFile
+  gameMusic: p5.SoundFile
   readyGo: p5.SoundFile
   crash: p5.SoundFile
-  gameOverSound: p5.SoundFile
+  // gameOverSound: p5.SoundFile
   gameOverMusic: p5.SoundFile
   saved: p5.SoundFile
   zombieEat: p5.SoundFile,
-  entityKilled: p5.SoundFile,
+  entityKilled: p5.SoundFile
+  fuelPickup: p5.SoundFile
+  shot: p5.SoundFile
 }
-interface Font{
-gameFont: p5.Font
-
+interface Font {
+  gameFont: p5.Font
 }

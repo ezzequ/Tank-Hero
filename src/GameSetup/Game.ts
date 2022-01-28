@@ -51,6 +51,7 @@ class Game implements IGame {
         if(this.isRunning) {
           this.pauseMenu.showMenu()
           this.isRunning = false
+          sounds.gameMusic.stop()
         }else {
           this.isRunning = true;
           this.pauseMenu.closeMenu()

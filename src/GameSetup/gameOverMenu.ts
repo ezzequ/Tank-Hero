@@ -24,12 +24,12 @@ class gameOverMenu {
   
     public showMenu() {
       this.div.style('display: flex;')
-      sounds.gameOverSound.play()
-      sounds.gameOverMusic.play()
+      sounds.menuMusic.play()
   
       // this.music.play();
     }
     public closeMenu() {
+      
       this.div.style('display: none;')
     }
   }
