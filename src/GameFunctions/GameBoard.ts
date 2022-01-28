@@ -33,8 +33,8 @@ class GameBoard {
     this.obstacleSpawnTime = 4500
     this.humanSpawnTime = 13000
     this.bossSpawnTime = 20000
-    this.powSpawnTime = 10000
-    this.heartSpawnTime = 10000
+    this.powSpawnTime = random(10000, 15000)
+    this.heartSpawnTime = random(10000, 15000)
     //this.gameTime = 15000
   }
 
@@ -84,12 +84,12 @@ class GameBoard {
     if (this.powSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
       this.entities.push(new FuelTank(this.lastSpawnY))
-      this.powSpawnTime = 10000
+      this.powSpawnTime = random(10000, 15000)
     }
     if (this.heartSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
       this.entities.push(new Heart(this.lastSpawnY))
-      this.heartSpawnTime = 10000
+      this.heartSpawnTime = random(10000, 15000)
     }
   }
 
@@ -162,7 +162,7 @@ class GameBoard {
           this.entities.splice(this.entities.indexOf(entity), 1)
         }
       }
-      if (entity instanceof Zombie && entity instanceof Boss) {
+      if (entity instanceof Zombie || entity instanceof Boss) {
         for (const entityPlus of this.entities) {
           if (entityPlus instanceof Human) {
             const zombiehitBox = entity.getHitBox()

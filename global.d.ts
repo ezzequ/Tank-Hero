@@ -19,6 +19,7 @@ declare global {
     ): p5.SoundFile;
 
     function userStartAudio(): void;
+    function outputVolume(): void 
 }
 
 

@@ -13,7 +13,6 @@ class Button {
       sounds.menuMusic.stop();
       sounds.readyGo.play();
       sounds.gameMusic.play(2,1,0.5);
-      
     })
   }
 
@@ -24,6 +23,23 @@ class Button {
       sounds.menuMusic.stop();
       sounds.readyGo.play();
 
+    })
+  }
+
+  public toggleSound() {
+    this.button.mouseClicked((click) => {
+      const soundz = Object.values(sounds)
+      if(game.isMusic) {
+        for(let sound of soundz) {
+          sound.setVolume(0)
+        }
+        game.isMusic = false
+      }else if(!game.isMusic) {
+        for(let sound of soundz) {
+          sound.setVolume(.5)
+        }
+        game.isMusic = true
+      }
     })
   }
 }
