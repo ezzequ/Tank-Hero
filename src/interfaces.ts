@@ -18,13 +18,16 @@ interface Images {
 
 interface Sounds {
   menuMusic: p5.SoundFile
+  gameMusic: p5.SoundFile
   readyGo: p5.SoundFile
   crash: p5.SoundFile
-  gameOverSound: p5.SoundFile
+  // gameOverSound: p5.SoundFile
   gameOverMusic: p5.SoundFile
   saved: p5.SoundFile
   zombieEat: p5.SoundFile,
-  entityKilled: p5.SoundFile,
+  entityKilled: p5.SoundFile
+  fuelPickup: p5.SoundFile
+  shot: p5.SoundFile
 }
 interface Font{
 gameFont: p5.Font
