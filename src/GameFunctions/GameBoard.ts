@@ -33,8 +33,8 @@ class GameBoard {
     this.obstacleSpawnTime = 4500
     this.humanSpawnTime = 13000
     this.bossSpawnTime = 20000
-    this.powSpawnTime = 55000
-    this.heartSpawnTime = 55000
+    this.powSpawnTime = 10000
+    this.heartSpawnTime = 10000
     //this.gameTime = 15000
   }
 
@@ -84,12 +84,12 @@ class GameBoard {
     if (this.powSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
       this.entities.push(new FuelTank(this.lastSpawnY))
-      this.powSpawnTime = 2000
+      this.powSpawnTime = 10000
     }
     if (this.heartSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
       this.entities.push(new Heart(this.lastSpawnY))
-      this.heartSpawnTime = 2000
+      this.heartSpawnTime = 10000
     }
   }
 

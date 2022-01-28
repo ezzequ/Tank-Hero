@@ -24,7 +24,7 @@ function preload() {
     zombieEat: loadSound('/assets/sounds/zombie/zombie-eat.wav'),
     entityKilled: loadSound('/assets/sounds/zombie/zombieKilled.mp3'),
     fuelPickup: loadSound('/assets/sounds/SFX/fuelPickup2.mp3'),
-    shot: loadSound('/assets/sounds/tank/shot2.wav')
+    shot: loadSound('/assets/sounds/tank/shot.wav')
   }
   images = {
     bgImg: loadImage('/assets/images/burning.png'),
