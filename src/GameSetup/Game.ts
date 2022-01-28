@@ -6,6 +6,7 @@ class Game implements IGame {
   private pauseTime: number
   private gameOverMenu : gameOverMenu
   private gameCounter : GameCounter
+  public isMusic: boolean
 
   constructor() {
     this.gameCounter = new GameCounter()
@@ -15,6 +16,7 @@ class Game implements IGame {
     this.gameOverMenu = new gameOverMenu()
     this.isRunning = false
     this.pauseTime = 250
+    this.isMusic = true;
   }
 
 
@@ -43,6 +45,7 @@ class Game implements IGame {
     this.isRunning = false
     
   }
+
 
   private pauseGame() {
     this.pauseTime -= deltaTime
@@ -83,7 +86,8 @@ class Game implements IGame {
 }
 
 interface IGame {
-  isRunning: boolean;
+  isRunning: boolean
+  isMusic : boolean;
   startGame(): void
   gameOver(): void
   restartGame(): void

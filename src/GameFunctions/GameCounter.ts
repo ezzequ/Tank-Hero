@@ -88,6 +88,15 @@ class GameCounter {
     }
   }
 
+
+  private soundInfo() {
+    if(game.isMusic){
+      return "ON"
+    }else if(!game.isMusic) {
+      return "OFF"
+    }
+  }
+
   // private activeScore() {
   //   // Return Number
   // }
@@ -134,7 +143,8 @@ class GameCounter {
     translate(width * 0.5, 25)
     text(`Zombies Killed ${this.killedZombies.length}`, 5, 5)
     text(`Score ${this.gameTimeScore}`, -150, 5)
-    text(`Fuel ${round(this.fuelLimit)}`, -20, 60)
+    text(`Fuel ${round(this.fuelLimit)}`, -80, 60)
+    text(`Sound ${this.soundInfo()}`, 30, 60)
     pop()
   }
 }
