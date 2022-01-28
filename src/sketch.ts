@@ -9,10 +9,9 @@ let images: Images
  * sound files, images etc...
  */
 function preload() {
-
-   font = {
-     gameFont: loadFont('/assets/fonts/Bicubik.ttf')
-   }
+  font = {
+    gameFont: loadFont('/assets/fonts/Bicubik.ttf'),
+  }
 
   sounds = {
     menuMusic: loadSound('/assets/music/menumusic1.mp3'),
@@ -26,9 +25,6 @@ function preload() {
     entityKilled: loadSound('/assets/sounds/zombie/zombieKilled.mp3'),
     fuelPickup: loadSound('/assets/sounds/SFX/fuelPickup2.mp3'),
     shot: loadSound('/assets/sounds/tank/shot2.wav')
-    
-
-
   }
   images = {
     bgImg: loadImage('/assets/images/burning.png'),
@@ -39,13 +35,17 @@ function preload() {
     },
     obstacles: {
       obs1: loadImage('/assets/images/Entities/obstacles/truck.png'),
-      obs2: loadImage('/assets/images/Entities/obstacles/greentruck.png')
+      obs2: loadImage('/assets/images/Entities/obstacles/greentruck.png'),
     },
     human: loadImage('/assets/images/Entities/humans/female-1.png'),
     projectile: loadImage('/assets/images/Entities/tank/projectile.png'),
     boss: loadImage('/assets/images/Entities/zombies/boss.png'),
     heart: loadImage('/assets/images/Entities/tank/heart.png'),
     menuImg: loadImage('/assets/images/bg-menuImg.png'),
+    powerups: {
+      fuelTank: loadImage('/assets/images/Entities/powerups/fuelTank.png'),
+      heart: loadImage('/assets/images/Entities/powerups/heartPlus.png'),
+    },
     // controlsImg: loadImage('/assets/images/controls.png'),
   }
 }
@@ -60,7 +60,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight)
   frameRate(60)
   sounds.menuMusic.setVolume(0.3)
-  sounds.menuMusic.play();
+  sounds.menuMusic.play()
   // noCursor();
   // menu()
   game = new Game()
@@ -84,5 +84,5 @@ function windowResized() {
 }
 
 function mousePressed() {
-  userStartAudio();
+  userStartAudio()
 }

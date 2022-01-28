@@ -13,6 +13,8 @@ class GameBoard {
   private humanSpawnTime: number
   private obstacleSpawnTime: number
   private bossSpawnTime: number
+  private powSpawnTime: number
+  private heartSpawnTime: number
   private lastSpawnY?: number
   //private gameTime: number
 
@@ -27,10 +29,12 @@ class GameBoard {
     this.xPos = 0
     this.xPos2 = width
     this.scrollSpeed = 2
-    this.zombieSpawnTime = random(1500, 2500)
+    this.zombieSpawnTime = random(500, 2500)
     this.obstacleSpawnTime = 4500
     this.humanSpawnTime = 13000
     this.bossSpawnTime = 20000
+    this.powSpawnTime = 55000
+    this.heartSpawnTime = 55000
     //this.gameTime = 15000
   }
 
@@ -54,6 +58,8 @@ class GameBoard {
     this.obstacleSpawnTime -= deltaTime
     this.humanSpawnTime -= deltaTime
     this.bossSpawnTime -= deltaTime
+    this.powSpawnTime -= deltaTime
+    this.heartSpawnTime -= deltaTime
 
     if (this.bossSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
@@ -75,6 +81,16 @@ class GameBoard {
       this.entities.push(new Human(this.lastSpawnY))
       this.humanSpawnTime = 1000
     }
+    if (this.powSpawnTime < 0) {
+      this.lastSpawnY = this.getRandomY()
+      this.entities.push(new FuelTank(this.lastSpawnY))
+      this.powSpawnTime = 2000
+    }
+    if (this.heartSpawnTime < 0) {
+      this.lastSpawnY = this.getRandomY()
+      this.entities.push(new Heart(this.lastSpawnY))
+      this.heartSpawnTime = 2000
+    }
   }
 
   private getRandomY(): number {
@@ -93,7 +109,9 @@ class GameBoard {
       entity instanceof Obstacle ||
       entity instanceof Zombie ||
       entity instanceof Human ||
-      entity instanceof Boss
+      entity instanceof Boss ||
+      entity instanceof FuelTank ||
+      entity instanceof Heart
     ) {
       if (
         hitBox.x < tankHitBox.x + tankHitBox.width &&
@@ -102,6 +120,15 @@ class GameBoard {
         hitBox.y + hitBox.height > tankHitBox.y &&
         !entity.isHit
       ) {
+        if (entity instanceof FuelTank) {
+          this.entities.splice(this.entities.indexOf(entity), 1)
+          entity.pickPowerUp(this.gameCounter, entity)
+        }
+        if (entity instanceof Heart) {
+          this.entities.splice(this.entities.indexOf(entity), 1)
+          entity.pickPowerUp(this.gameCounter, entity)
+        }
+
         if (entity instanceof Boss) {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)

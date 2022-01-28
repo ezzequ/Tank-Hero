@@ -1,7 +1,7 @@
 interface Images {
-    tank: p5.Image
-    bgImg: p5.Image
-    zombies: {
+  tank: p5.Image
+  bgImg: p5.Image
+  zombies: {
     zom1: p5.Image
     zom2: p5.Image
   }
@@ -14,6 +14,10 @@ interface Images {
   boss: p5.Image
   heart: p5.Image
   menuImg: p5.Image
+  powerups: {
+    fuelTank: p5.Image
+    heart: p5.Image
+  }
 }
 
 interface Sounds {
@@ -29,7 +33,6 @@ interface Sounds {
   fuelPickup: p5.SoundFile
   shot: p5.SoundFile
 }
-interface Font{
-gameFont: p5.Font
-
+interface Font {
+  gameFont: p5.Font
 }
