@@ -73,7 +73,7 @@ class GameBoard {
     if (this.humanSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
       this.entities.push(new Human(this.lastSpawnY))
-      this.humanSpawnTime = 8000
+      this.humanSpawnTime = 1000
     }
   }
 
@@ -135,9 +135,9 @@ class GameBoard {
           this.entities.splice(this.entities.indexOf(entity), 1)
         }
       }
-      if(entity instanceof Zombie) {
+      if (entity instanceof Zombie && entity instanceof Boss) {
         for (const entityPlus of this.entities) {
-          if(entityPlus instanceof Human) {
+          if (entityPlus instanceof Human) {
             const zombiehitBox = entity.getHitBox()
             const humanHitBox = entityPlus.getHitBox()
             if (
@@ -147,7 +147,7 @@ class GameBoard {
               zombiehitBox.y + zombiehitBox.height > humanHitBox.y &&
               !entityPlus.isHit
             ) {
-              console.log('Zombie Äter Människa')
+              entityPlus.removeHealth(entityPlus, this.entities)
             }
           }
         }
