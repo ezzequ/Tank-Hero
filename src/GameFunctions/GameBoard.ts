@@ -135,6 +135,23 @@ class GameBoard {
           this.entities.splice(this.entities.indexOf(entity), 1)
         }
       }
+      if(entity instanceof Zombie) {
+        for (const entityPlus of this.entities) {
+          if(entityPlus instanceof Human) {
+            const zombiehitBox = entity.getHitBox()
+            const humanHitBox = entityPlus.getHitBox()
+            if (
+              zombiehitBox.x < humanHitBox.x + humanHitBox.width &&
+              zombiehitBox.x + zombiehitBox.width > humanHitBox.x &&
+              zombiehitBox.y < humanHitBox.y + humanHitBox.height &&
+              zombiehitBox.y + zombiehitBox.height > humanHitBox.y &&
+              !entityPlus.isHit
+            ) {
+              console.log('Zombie Äter Människa')
+            }
+          }
+        }
+      }
     }
 
     if (entity instanceof Projectile) {

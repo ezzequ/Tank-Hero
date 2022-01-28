@@ -5,7 +5,7 @@ class Human extends Entity {
     const position = createVector(width, y)
     //const position = createVector(width - 200, height / random(6))
     const img = images.human
-    const sound = sounds.hit
+    const sound = sounds.saved
     const points = 10
     const damage = 0
     const ishit = false
