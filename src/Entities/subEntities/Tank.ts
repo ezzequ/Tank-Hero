@@ -57,6 +57,7 @@ class Tank extends Entity {
   private fireShot() {
     this.reloadTime -= deltaTime
     if (keyIsDown(32) && this.reloadTime < 0) {
+      sounds.shot.play()
       this.reloadTime = 250
       return new Projectile(this.position.x + (this.size - (this.size * 0.15)), this.position.y + (this.size - this.size * .25 )/2)
     }
