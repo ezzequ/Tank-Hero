@@ -55,7 +55,6 @@ class GameBoard {
     this.humanSpawnTime -= deltaTime
     this.bossSpawnTime -= deltaTime
 
-    
     if (this.bossSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
       this.entities.push(new Boss(this.scrollSpeed * 0.2, this.lastSpawnY))
@@ -82,35 +81,45 @@ class GameBoard {
     const cityHeight = height * 0.3
     const y = ((height - cityHeight) / 6) * floor(random(6)) + cityHeight
     if (y === this.lastSpawnY) {
-      return this.getRandomY();
+      return this.getRandomY()
     }
-    return y;
+    return y
   }
 
   private hitEntity(entity: Entity) {
     const hitBox = entity.getHitBox()
     const tankHitBox = this.tank.getHitBox()
-    if(entity instanceof Boss && hitBox.x < tankHitBox.x + tankHitBox.width &&
-      hitBox.x + hitBox.width > tankHitBox.x &&
-      hitBox.y < tankHitBox.y + tankHitBox.height &&
-      hitBox.y + hitBox.height > tankHitBox.y) {
-      // this.gameCounter.decreaseTankHealth()
-      // if (!this.gameCounter.getLives()) {
-      //   this.game.gameOver()
-      // }
-      // GÖ NÅGOT HÄR INNE NÄR MAN KÖR PÅ BOSS
-    }
+    // if(entity instanceof Boss && hitBox.x < tankHitBox.x + tankHitBox.width &&
+    //   hitBox.x + hitBox.width > tankHitBox.x &&
+    //   hitBox.y < tankHitBox.y + tankHitBox.height &&
+    //   hitBox.y + hitBox.height > tankHitBox.y) {
+    //   // this.gameCounter.decreaseTankHealth()
+    //   // if (!this.gameCounter.getLives()) {
+    //   //   this.game.gameOver()
+    //   // }
+    //   // GÖ NÅGOT HÄR INNE NÄR MAN KÖR PÅ BOSS
+    // }
     if (
       entity instanceof Obstacle ||
       entity instanceof Zombie ||
-      entity instanceof Human
+      entity instanceof Human ||
+      entity instanceof Boss
     ) {
       if (
         hitBox.x < tankHitBox.x + tankHitBox.width &&
         hitBox.x + hitBox.width > tankHitBox.x &&
         hitBox.y < tankHitBox.y + tankHitBox.height &&
-        hitBox.y + hitBox.height > tankHitBox.y && !entity.isHit
+        hitBox.y + hitBox.height > tankHitBox.y &&
+        !entity.isHit
       ) {
+        if (entity instanceof Boss) {
+          this.gameCounter.decreaseTankHealth()
+          entity.hitDamage(entity)
+          sound.crash.play()
+          if (!this.gameCounter.getLives()) {
+            this.game.gameOver()
+          }
+        }
         if (entity instanceof Obstacle) {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
@@ -150,19 +159,19 @@ class GameBoard {
             hitBox.x < entityHitBox.x + entityHitBox.width &&
             hitBox.x + hitBox.width > entityHitBox.x &&
             hitBox.y < entityHitBox.y + entityHitBox.height &&
-            hitBox.y + hitBox.height > entityHitBox.y && !entityPlus.isHit
+            hitBox.y + hitBox.height > entityHitBox.y &&
+            !entityPlus.isHit
           ) {
             if (entityPlus instanceof Zombie && entityPlus.getHealth() == 1) {
-                entityPlus.hitDamage(entityPlus)
-                this.gameCounter.pointPerEntity(entityPlus.points)
-                this.gameCounter.countKilledZombies(entityPlus)
-                sound.hit.play();
-                
+              entityPlus.hitDamage(entityPlus)
+              this.gameCounter.pointPerEntity(entityPlus.points)
+              this.gameCounter.countKilledZombies(entityPlus)
+              sound.hit.play()
             }
             if (entityPlus instanceof Human) {
               this.gameCounter.removePoint(entityPlus.points)
             }
-            if(entityPlus instanceof Boss && entityPlus.getHealth() == 1) {
+            if (entityPlus instanceof Boss && entityPlus.getHealth() == 1) {
               entityPlus.hitDamage(entityPlus)
             }
             entity.removeHealth(entityPlus, this.entities)
