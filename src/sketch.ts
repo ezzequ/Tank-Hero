@@ -15,13 +15,16 @@ function preload() {
 
   sounds = {
     menuMusic: loadSound('/assets/music/menumusic1.mp3'),
+    gameMusic: loadSound('/assets/music/gameMusic.mp3'),
     readyGo: loadSound('/assets/sounds/SFX/Ready-GO.wav'),
     crash: loadSound('/assets/sounds/SFX/crash.mp3'),
-    gameOverSound: loadSound('/assets/sounds/SFX/game-over.mp3'),
-    gameOverMusic: loadSound('/assets/sounds/SFX/game-over-music.mp3'),
+    // gameOverSound: loadSound('/assets/sounds/SFX/game-over.mp3'),
+    gameOverMusic: loadSound('/assets/music/menumusic1.mp3'),
     saved: loadSound('/assets/sounds/SFX/saved.mp3'),
-    zombieEat: loadSound('/assets/sounds/SFX/zombie-eat.mp3'),
-    entityKilled: loadSound('/assets/sounds/SFX/hit.mp3'),
+    zombieEat: loadSound('/assets/sounds/zombie/zombie-eat.wav'),
+    entityKilled: loadSound('/assets/sounds/zombie/zombieKilled.mp3'),
+    fuelPickup: loadSound('/assets/sounds/SFX/fuelPickup2.mp3'),
+    shot: loadSound('/assets/sounds/tank/shot2.wav')
   }
   images = {
     bgImg: loadImage('/assets/images/burning.png'),

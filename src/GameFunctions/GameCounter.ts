@@ -74,15 +74,16 @@ class GameCounter {
   }
 
   public drawHearts(tank: Tank) {
-    let yNumber: number = -50
+    let heartSize: number = height * .03
+    let yNumber: number = (tank.getSize() - tank.getSize()) - (heartSize / 2)
     for (let heart of this.hearts) {
-      yNumber += 35
+      yNumber += heartSize
       image(
         heart,
-        tank.position.x - tank.getSize() + 20,
+        tank.position.x - tank.getSize() * .5,
         tank.position.y + yNumber,
-        35,
-        35
+        heartSize,
+        heartSize
       )
     }
   }
