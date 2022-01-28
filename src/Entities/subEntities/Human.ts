@@ -1,6 +1,6 @@
 class Human extends Entity {
   constructor(y: number) {
-    const size = height * .12
+    const size = height * .1
     const health = 1
     const position = createVector(width, y)
     //const position = createVector(width - 200, height / random(6))
