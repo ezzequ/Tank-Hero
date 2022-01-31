@@ -20,7 +20,7 @@ abstract class Entity {
     damage: number,
     ishit: boolean,
     sound: p5.SoundFile,
-    velocity?: p5.Vector,
+    velocity?: p5.Vector
   ) {
     this.sound = sound
     this.size = size
@@ -53,22 +53,33 @@ abstract class Entity {
     return this.health
   }
 
-  public hitDamage(entity : Entity) {
-    if(entity instanceof Obstacle) {
+  public hitDamage(entity: Entity) {
+    if (entity instanceof Obstacle) {
       entity.image = images.obstacles.obs2
     }
-    if(entity instanceof Zombie) {
+    if (entity instanceof Zombie) {
       entity.image = images.zombies.zom2
       entity.velocity = createVector(-2, 0)
     }
-    if(entity instanceof Boss) {
+    if (entity instanceof Boss) {
       entity.image = images.zombies.zom2
-      entity.size = 120
-      entity.position.x += 120
-      entity.position.y += 120
+      entity.size = height * .1
+      entity.position.x += height * .1
+      entity.position.y += height * .1
       entity.velocity = createVector(-2, 0)
     }
     entity.isHit = true
+  }
+
+  public pickPowerUp(counter: GameCounter, entity: Entity) {
+    if (entity instanceof FuelTank) {
+      counter.fuelLimit += entity.points
+    }
+    if (entity instanceof Heart) {
+      if (counter.hearts.length < 4) {
+        counter.hearts.push(counter.heart)
+      }
+    }
   }
 
   //   private removeEntity() {}

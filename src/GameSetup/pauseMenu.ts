@@ -11,7 +11,7 @@ class PauseMenu {
 
   constructor() {
     this.music = sounds.menuMusic
-    this.logo = createImg('/assets/images/logoTransp.png', 'test')
+    this.logo = createImg('/assets/images/pausing.png', 'test')
     this.logo.addClass('logo')
     this.div = createDiv()
     this.div.addClass('pause-menu')
@@ -26,8 +26,12 @@ class PauseMenu {
     // this.score.parent(this.div)
     this.continueButton.closeMenu(this.div)
     this.restartButton.btnRestart(this.div)
+    //this.soundButton.toggleSound()
+    this.soundButton.toggleSound() 
     this.div.position(0, 0)
   }
+
+  
 
   public showMenu() {
     this.div.style('display: flex;')
@@ -38,5 +42,8 @@ class PauseMenu {
   public closeMenu() {
     this.div.style('display: none;')
     sounds.menuMusic.stop()
+  
   }
 }
+
+

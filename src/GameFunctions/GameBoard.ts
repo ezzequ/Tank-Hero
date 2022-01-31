@@ -13,6 +13,8 @@ class GameBoard {
   private humanSpawnTime: number
   private obstacleSpawnTime: number
   private bossSpawnTime: number
+  private powSpawnTime: number
+  private heartSpawnTime: number
   private lastSpawnY?: number
   //private gameTime: number
 
@@ -27,10 +29,12 @@ class GameBoard {
     this.xPos = 0
     this.xPos2 = width
     this.scrollSpeed = 2
-    this.zombieSpawnTime = random(1500, 2500)
+    this.zombieSpawnTime = random(500, 2500)
     this.obstacleSpawnTime = 4500
     this.humanSpawnTime = 13000
     this.bossSpawnTime = 20000
+    this.powSpawnTime = random(10000, 15000)
+    this.heartSpawnTime = random(10000, 15000)
     //this.gameTime = 15000
   }
 
@@ -54,6 +58,8 @@ class GameBoard {
     this.obstacleSpawnTime -= deltaTime
     this.humanSpawnTime -= deltaTime
     this.bossSpawnTime -= deltaTime
+    this.powSpawnTime -= deltaTime
+    this.heartSpawnTime -= deltaTime
 
     if (this.bossSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
@@ -73,7 +79,17 @@ class GameBoard {
     if (this.humanSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
       this.entities.push(new Human(this.lastSpawnY))
-      this.humanSpawnTime = 8000
+      this.humanSpawnTime = 13000
+    }
+    if (this.powSpawnTime < 0) {
+      this.lastSpawnY = this.getRandomY()
+      this.entities.push(new FuelTank(this.lastSpawnY))
+      this.powSpawnTime = random(10000, 15000)
+    }
+    if (this.heartSpawnTime < 0) {
+      this.lastSpawnY = this.getRandomY()
+      this.entities.push(new Heart(this.lastSpawnY))
+      this.heartSpawnTime = random(10000, 15000)
     }
   }
 
@@ -93,7 +109,9 @@ class GameBoard {
       entity instanceof Obstacle ||
       entity instanceof Zombie ||
       entity instanceof Human ||
-      entity instanceof Boss
+      entity instanceof Boss ||
+      entity instanceof FuelTank ||
+      entity instanceof Heart
     ) {
       if (
         hitBox.x < tankHitBox.x + tankHitBox.width &&
@@ -102,10 +120,21 @@ class GameBoard {
         hitBox.y + hitBox.height > tankHitBox.y &&
         !entity.isHit
       ) {
+        if (entity instanceof FuelTank) {
+          this.entities.splice(this.entities.indexOf(entity), 1)
+          entity.pickPowerUp(this.gameCounter, entity)
+          sounds.fuelPickup.play()
+        }
+        if (entity instanceof Heart) {
+          this.entities.splice(this.entities.indexOf(entity), 1)
+          entity.pickPowerUp(this.gameCounter, entity)
+          sounds.heartPickup.play()
+        }
+
         if (entity instanceof Boss) {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
-          this.tank.sound.play()
+          sounds.bossDeath.play()
           if (!this.gameCounter.getLives()) {
             this.game.gameOver()
           }
@@ -113,7 +142,7 @@ class GameBoard {
         if (entity instanceof Obstacle) {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
-          this.tank.sound.play()
+          sounds.crash.play(0,1,0.2)
           if (!this.gameCounter.getLives()) {
             this.game.gameOver()
           }
@@ -135,9 +164,9 @@ class GameBoard {
           this.entities.splice(this.entities.indexOf(entity), 1)
         }
       }
-      if(entity instanceof Zombie) {
+      if (entity instanceof Zombie || entity instanceof Boss) {
         for (const entityPlus of this.entities) {
-          if(entityPlus instanceof Human) {
+          if (entityPlus instanceof Human) {
             const zombiehitBox = entity.getHitBox()
             const humanHitBox = entityPlus.getHitBox()
             if (
@@ -147,7 +176,7 @@ class GameBoard {
               zombiehitBox.y + zombiehitBox.height > humanHitBox.y &&
               !entityPlus.isHit
             ) {
-              console.log('Zombie Äter Människa')
+              entityPlus.removeHealth(entityPlus, this.entities)
             }
           }
         }
@@ -182,6 +211,7 @@ class GameBoard {
             }
             if (entityPlus instanceof Boss && entityPlus.getHealth() == 1) {
               entityPlus.hitDamage(entityPlus)
+              sounds.bossDeath.play()
             }
             entity.removeHealth(entityPlus, this.entities)
             this.entities.splice(this.entities.indexOf(entity), 1)

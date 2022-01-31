@@ -1,11 +1,12 @@
 class Game implements IGame {
   private gameBoard: GameBoard
   private menu: Menu
-  private pauseMenu : PauseMenu
+  private pauseMenu: PauseMenu
   public isRunning: boolean
-  private pauseTime: number
-  private gameOverMenu : gameOverMenu
-  private gameCounter : GameCounter
+  private isPausePressed: boolean
+  private gameOverMenu: gameOverMenu
+  private gameCounter: GameCounter
+  public isMusic: boolean
 
   constructor() {
     this.gameCounter = new GameCounter()
@@ -14,18 +15,17 @@ class Game implements IGame {
     this.pauseMenu = new PauseMenu()
     this.gameOverMenu = new gameOverMenu()
     this.isRunning = false
-    this.pauseTime = 250
+    this.isPausePressed = false
+    this.isMusic = true
   }
-
 
   public getScore() {
     return {
       score: this.gameCounter.gameTimeScore,
       zombieKilled: this.gameCounter.killedZombies.length,
-      timeLeft: this.gameCounter.killedZombies
+      timeLeft: this.gameCounter.killedZombies,
     }
   }
-
 
   public startGame(): void {
     this.menu.closeMenu()
@@ -41,23 +41,23 @@ class Game implements IGame {
   public gameOver(): void {
     this.gameOverMenu.showMenu()
     this.isRunning = false
-    
   }
 
   private pauseGame() {
-    this.pauseTime -= deltaTime
-    if(keyIsDown(27)) {
-      if(this.pauseTime < 0) {
-        if(this.isRunning) {
-          this.pauseMenu.showMenu()
-          this.isRunning = false
-        }else {
-          this.isRunning = true;
-          this.pauseMenu.closeMenu()
-        }
-        this.pauseTime = 250
+    const pressed = keyIsDown(27) && !this.isPausePressed
+    // const released = !keyIsDown(27) && this.isPausePressed;
+
+    if (pressed) {
+      if (this.isRunning) {
+        this.pauseMenu.showMenu()
+        this.isRunning = false
+        sounds.gameMusic.stop()
+      } else {
+        this.isRunning = true
+        this.pauseMenu.closeMenu()
       }
     }
+    this.isPausePressed = keyIsDown(27)
   }
 
   public update() {
@@ -82,9 +82,10 @@ class Game implements IGame {
 }
 
 interface IGame {
-  isRunning: boolean;
+  isRunning: boolean
+  isMusic: boolean
   startGame(): void
   gameOver(): void
   restartGame(): void
-  getScore() : object
+  getScore(): object
 }

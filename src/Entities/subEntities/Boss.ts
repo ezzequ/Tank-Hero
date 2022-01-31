@@ -1,11 +1,11 @@
 class Boss extends Entity {
 
   constructor(velo: number, y: number) {
-    const size = 300
+    const size = height * 0.25
     const health = 5
     const position = createVector(width, y)
     const img = images.boss
-    const sound = sounds.crash
+    const sound = sounds.bossDeath
     const points = 500
     const damage = 0
     const ishit = false
