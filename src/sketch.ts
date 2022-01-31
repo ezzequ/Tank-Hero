@@ -21,11 +21,12 @@ function preload() {
     // gameOverSound: loadSound('/assets/sounds/SFX/game-over.mp3'),
     gameOverMusic: loadSound('/assets/music/menumusic1.mp3'),
     saved: loadSound('/assets/sounds/SFX/saved.mp3'),
+    humanDeath: loadSound('/assets/sounds/SFX/humanDeath.wav'),
     zombieEat: loadSound('/assets/sounds/zombie/zombie-eat.wav'),
     entityKilled: loadSound('/assets/sounds/zombie/zombieKilled.mp3'),
     fuelPickup: loadSound('/assets/sounds/SFX/fuelPickup.mp3'),
     heartPickup: loadSound('/assets/sounds/SFX/heartPickup.mp3'),
-    shot: loadSound('/assets/sounds/tank/shot.wav')
+    shot: loadSound('/assets/sounds/tank/shot.wav'),
     bossDeath: loadSound('/assets/sounds/zombie/bossDeath.wav')
   }
   images = {

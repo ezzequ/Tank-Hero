@@ -142,7 +142,7 @@ class GameBoard {
         if (entity instanceof Obstacle) {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
-          sounds.crash.play(0,1,0.2)
+          sounds.crash.play()
           if (!this.gameCounter.getLives()) {
             this.game.gameOver()
           }
@@ -208,6 +208,7 @@ class GameBoard {
             if (entityPlus instanceof Human) {
               this.gameCounter.removePoint(entityPlus.points)
               this.gameCounter.countKilledHumans(entityPlus)
+              sounds.humanDeath.play()
             }
             if (entityPlus instanceof Boss && entityPlus.getHealth() == 1) {
               entityPlus.hitDamage(entityPlus)

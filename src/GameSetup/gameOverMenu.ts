@@ -17,19 +17,21 @@ class gameOverMenu {
       this.playAgainButton = new Button(
         createButton('PLAY AGAIN').parent(this.div))
   
-      this.playAgainButton.closeMenu(this.div)
+      //this.playAgainButton.closeMenu(this.div)
       this.div.position(0, 0)
       this.playAgainButton.btnRestart(this.div)
     }
   
     public showMenu() {
       this.div.style('display: flex;')
-      sounds.menuMusic.play()
+        sounds.gameMusic.stop()
+        sounds.menuMusic.play()
   
       // this.music.play();
     }
     public closeMenu() {
-      
+      sounds.gameMusic.play()
+      sounds.menuMusic.stop()
       this.div.style('display: none;')
     }
   }

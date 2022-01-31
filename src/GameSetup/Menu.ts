@@ -17,7 +17,7 @@ class Menu {
     this.logo.parent(this.div1)
     this.startButton = new Button(
       createButton('START GAME').parent(this.div1))
-    this.startButton.closeMenu(this.div1)
+    this.startButton.startGame(this.div1)
     this.div1.position(0, 0)
 
     this.div2 = createDiv()
