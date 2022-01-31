@@ -9,7 +9,7 @@ class gameOverMenu {
   
     constructor() {
       this.music = sounds.menuMusic
-      this.logo = createImg('/assets/images/GAME_OVER-.png', 'test')
+      this.logo = createImg('/assets/images/newgameover.png', 'test')
       this.logo.addClass('logo')
       this.div = createDiv()
       this.div.addClass('game-over-menu')
