@@ -11,7 +11,7 @@ class PauseMenu {
 
   constructor() {
     this.music = sounds.menuMusic
-    this.logo = createImg('/assets/images/pausing.png', 'test')
+    this.logo = createImg('/assets/images/newpause.png', 'test')
     this.logo.addClass('logo')
     this.div = createDiv()
     this.div.addClass('pause-menu')
