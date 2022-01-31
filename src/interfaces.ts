@@ -31,7 +31,9 @@ interface Sounds {
   saved: p5.SoundFile
   zombieEat: p5.SoundFile
   entityKilled: p5.SoundFile
+  bossDeath: p5.SoundFile
   fuelPickup: p5.SoundFile
+  heartPickup: p5.SoundFile
   shot: p5.SoundFile
 }
 interface Font {

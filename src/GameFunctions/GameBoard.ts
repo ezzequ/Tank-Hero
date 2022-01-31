@@ -79,7 +79,7 @@ class GameBoard {
     if (this.humanSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
       this.entities.push(new Human(this.lastSpawnY))
-      this.humanSpawnTime = 1000
+      this.humanSpawnTime = 13000
     }
     if (this.powSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
@@ -123,16 +123,18 @@ class GameBoard {
         if (entity instanceof FuelTank) {
           this.entities.splice(this.entities.indexOf(entity), 1)
           entity.pickPowerUp(this.gameCounter, entity)
+          sounds.fuelPickup.play()
         }
         if (entity instanceof Heart) {
           this.entities.splice(this.entities.indexOf(entity), 1)
           entity.pickPowerUp(this.gameCounter, entity)
+          sounds.heartPickup.play()
         }
 
         if (entity instanceof Boss) {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
-          this.tank.sound.play()
+          sounds.bossDeath.play()
           if (!this.gameCounter.getLives()) {
             this.game.gameOver()
           }
@@ -140,7 +142,7 @@ class GameBoard {
         if (entity instanceof Obstacle) {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
-          this.tank.sound.play()
+          sounds.crash.play(0,1,0.2)
           if (!this.gameCounter.getLives()) {
             this.game.gameOver()
           }
@@ -209,6 +211,7 @@ class GameBoard {
             }
             if (entityPlus instanceof Boss && entityPlus.getHealth() == 1) {
               entityPlus.hitDamage(entityPlus)
+              sounds.bossDeath.play()
             }
             entity.removeHealth(entityPlus, this.entities)
             this.entities.splice(this.entities.indexOf(entity), 1)

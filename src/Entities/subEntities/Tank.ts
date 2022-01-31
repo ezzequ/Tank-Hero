@@ -9,7 +9,7 @@ class Tank extends Entity {
     const points = 0
     const damage = 0
     const ishit = false
-    const sound = sounds.crash
+    const sound = sounds.zombieEat
     const velocity: p5.Vector = createVector(0, 0)
 
     super(size, health, position, img, points, damage, ishit, sound, velocity)
