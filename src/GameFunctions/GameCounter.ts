@@ -2,13 +2,13 @@ class GameCounter {
   //   private killedMonsters: number = 0
   // let entity : Entity === KilledMonster
   public heart: p5.Image
+  public hearts: p5.Image[]
   public killedZombies: Entity[]
   public gameTimeScore: number
   private gameTime: number
   public fuelLimit: number
   private killedHumans: Entity[]
   private rescuedHumans: Entity[]
-  public hearts: p5.Image[]
   private gameFont = new p5.Font()
 
   constructor() {

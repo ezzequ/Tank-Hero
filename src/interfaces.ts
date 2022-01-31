@@ -3,6 +3,7 @@ interface Images {
   bgImg: p5.Image
   zombies: {
     zom1: p5.Image
+    zom2: p5.Image
   }
   obstacles: {
     obs1: p5.Image
@@ -29,6 +30,7 @@ interface Sounds {
   // gameOverSound: p5.SoundFile
   gameOverMusic: p5.SoundFile
   saved: p5.SoundFile
+  humanDeath: p5.SoundFile
   zombieEat: p5.SoundFile
   entityKilled: p5.SoundFile
   bossDeath: p5.SoundFile

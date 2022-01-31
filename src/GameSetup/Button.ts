@@ -6,7 +6,19 @@ class Button {
     this.button.addClass('btn')
   }
 
-  public closeMenu(div: p5.Element) {
+  public resumeGame(div: p5.Element) {
+    this.button.mouseClicked((click) => {
+      div.style('display: none;')
+      game.isRunning = true
+      sounds.menuMusic.stop()
+      //sounds.readyGo.play()
+      if(game.isMusic) {
+        sounds.gameMusic.play(0, 1, 0.5)
+      }
+    })
+  }
+
+  public startGame(div : p5.Element) {
     this.button.mouseClicked((click) => {
       div.style('display: none;')
       game.isRunning = true
@@ -26,7 +38,6 @@ class Button {
   }
 
   public toggleSound() {
-    // outputVolume(0)
     this.button.mouseClicked((click) => {
       const soundz = Object.values(sounds) as p5.SoundFile[]
       if (game.isMusic) {
