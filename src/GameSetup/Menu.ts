@@ -20,7 +20,7 @@ class Menu {
     this.startButton = new Button(createButton('START GAME').parent(this.div1))
     this.startButton.startGame(this.div1)
     this.soundButton = new Button(
-      createButton(`TOGGLE SOUND OFF`).parent(this.div1)
+      createButton('SOUND OFF').parent(this.div1)
     )
 
     this.div1.position(0, 0)

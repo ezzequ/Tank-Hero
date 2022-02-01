@@ -39,8 +39,9 @@ class Button {
 
   public btnHighScore(div: p5.Element) {
     this.button.mouseClicked(() => {
-      div.style('display: none;')}
-}
+      div.style('display: none;')
+    })
+  }
 
   public highScore(div: p5.Element) {
     this.button.mouseClicked(() => {
@@ -54,11 +55,11 @@ class Button {
     this.button.mouseClicked(() => {
       // const soundz = Object.values(sounds) as p5.SoundFile[]
       if (game.isMusic) {
-        this.button.html('TOGGLE SOUND ON')
+        this.button.html('SOUND ON')
         outputVolume(0)
         game.isMusic = false
       } else if (!game.isMusic) {
-        this.button.html('TOGGLE SOUND OFF')
+        this.button.html('SOUND OFF')
         outputVolume(0.5)
         game.isMusic = true
       }

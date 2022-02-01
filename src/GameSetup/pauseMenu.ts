@@ -17,7 +17,7 @@ class PauseMenu {
     this.logo.parent(this.div)
     this.continueButton = new Button(createButton('CONTINUE').parent(this.div))
     this.soundButton = new Button(
-      createButton('TOGGLE SOUND OFF').parent(this.div)
+      createButton('SOUND OFF').parent(this.div)
     )
     this.restartButton = new Button(createButton('RESTART').parent(this.div))
     // this.score = createElement('h5', "Score " + game.getScore().score)
