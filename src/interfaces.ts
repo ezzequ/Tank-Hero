@@ -4,12 +4,18 @@ interface Images {
   zombies: {
     zom1: p5.Image
     zom2: p5.Image
+    zom3: p5.Image
+    zom4: p5.Image
   }
+  splatter: p5.Image
   obstacles: {
     obs1: p5.Image
-    obs2: p5.Image
+    obs1destroyed: p5.Image
   }
-  human: p5.Image
+  humans: {
+    human1: p5.Image
+    human2: p5.Image
+  }
   projectile: p5.Image
   boss: p5.Image
   heart: p5.Image
