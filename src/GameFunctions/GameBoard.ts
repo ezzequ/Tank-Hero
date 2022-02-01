@@ -33,8 +33,8 @@ class GameBoard {
     this.obstacleSpawnTime = 4500
     this.humanSpawnTime = 13000
     this.bossSpawnTime = 20000
-    this.powSpawnTime = random(10000, 15000)
-    this.heartSpawnTime = random(10000, 15000)
+    this.powSpawnTime = random(15000, 25000)
+    this.heartSpawnTime = random(15000, 20000)
     //this.gameTime = 15000
   }
 
@@ -225,7 +225,7 @@ class GameBoard {
   private entityEndOfLine(entity: Entity) {
     if (entity.position.x < width / 6) {
       if (entity instanceof Zombie && !entity.isHit) {
-        this.gameCounter.removePoint(entity.points * 10)
+        this.gameCounter.removePoint(entity.points * 3)
         this.gameCounter.getRescuedHumanCount().pop()
         this.sideBoard.rescuedLives.pop()
         entity.sound.play()
@@ -244,11 +244,15 @@ class GameBoard {
       this.entities.push(newProjectile)
     }
     for (const entity of this.entities) {
+      if (entity instanceof Zombie || entity instanceof Human) {
+        entity.animateEntity(entity)
+      }
       entity.update()
       this.entityEndOfLine(entity)
       this.hitEntity(entity)
     }
     this.gameCounter.update()
+
     //this.pauseMenu()
   }
 

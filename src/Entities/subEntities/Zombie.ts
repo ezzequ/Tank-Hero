@@ -1,6 +1,6 @@
 class Zombie extends Entity {
   constructor(velo: number, y: number) {
-    const size = height * 0.1
+    const size = height * 0.15
     const health = 3
     const position = createVector(width, y)
     const img = images.zombies.zom1
@@ -12,4 +12,3 @@ class Zombie extends Entity {
     super(size, health, position, img, points, damage, ishit, sound, velocity)
   }
 }
- 

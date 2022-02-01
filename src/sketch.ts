@@ -27,20 +27,26 @@ function preload() {
     fuelPickup: loadSound('/assets/sounds/SFX/fuelPickup.mp3'),
     heartPickup: loadSound('/assets/sounds/SFX/heartPickup.mp3'),
     shot: loadSound('/assets/sounds/tank/shot.wav'),
-    bossDeath: loadSound('/assets/sounds/zombie/bossDeath.wav')
+    bossDeath: loadSound('/assets/sounds/zombie/bossDeath.wav'),
   }
   images = {
-    bgImg: loadImage('/assets/images/burning.png'),
+    bgImg: loadImage('/assets/images/BackgroundScroller.png'),
     tank: loadImage('/assets/images/Entities/tank/tank.png'),
     zombies: {
-      zom1: loadImage('/assets/images/Entities/zombies/zombie.png'),
-      zom2: loadImage('/assets/images/Entities/zombies/splatter.png'),
+      zom1: loadImage('/assets/images/Entities/zombies/zombie1.png'),
+      zom2: loadImage('/assets/images/Entities/zombies/zombie2.png'),
+      zom3: loadImage('/assets/images/Entities/zombies/zombie3.png'),
+      zom4: loadImage('/assets/images/Entities/zombies/zombie3.png'),
     },
+    splatter: loadImage('/assets/images/Entities/zombies/splatter.png'),
     obstacles: {
       obs1: loadImage('/assets/images/Entities/obstacles/truck.png'),
-      obs2: loadImage('/assets/images/Entities/obstacles/greentruck.png'),
+      obs1destroyed: loadImage('/assets/images/Entities/obstacles/truck2.png'),
     },
-    human: loadImage('/assets/images/Entities/humans/female-1.png'),
+    humans: {
+      human1: loadImage('/assets/images/Entities/humans/human1.png'),
+      human2: loadImage('/assets/images/Entities/humans/human2.png'),
+    },
     projectile: loadImage('/assets/images/Entities/tank/projectile.png'),
     boss: loadImage('/assets/images/Entities/zombies/boss.png'),
     heart: loadImage('/assets/images/Entities/tank/heart.png'),
@@ -65,10 +71,10 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight)
   frameRate(60)
+  outputVolume(0.5)
   sounds.menuMusic.setVolume(0.3)
   sounds.menuMusic.play()
   // noCursor();
-  // menu()
   game = new Game()
 }
 

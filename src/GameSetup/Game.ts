@@ -70,14 +70,11 @@ class Game implements IGame {
     // background('blue')
     this.gameBoard.draw()
   }
-
-
 }
 
 interface IGame {
   isRunning: boolean
   isMusic: boolean
-  // startGame(): void
   gameOver(): void
   restartGame(): void
   getScore(): object

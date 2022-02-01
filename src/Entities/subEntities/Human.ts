@@ -1,9 +1,9 @@
 class Human extends Entity {
   constructor(y: number) {
-    const size = height * .1
+    const size = height * 0.15
     const health = 1
     const position = createVector(width, y)
-    const img = images.human
+    const img = images.humans.human1
     const sound = sounds.saved
     const points = 10
     const damage = 0

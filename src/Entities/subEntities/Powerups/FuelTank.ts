@@ -4,7 +4,7 @@ class FuelTank extends Entity {
     const health = 0
     const position = createVector(width, y)
     const img = images.powerups.fuelTank
-    const points = random(20, 70)
+    const points = random(5, 25)
     const damage = 0
     const isHit = false
     const sound = sounds.saved

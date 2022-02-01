@@ -1,6 +1,4 @@
 class GameCounter {
-  //   private killedMonsters: number = 0
-  // let entity : Entity === KilledMonster
   public heart: p5.Image
   public hearts: p5.Image[]
   public killedZombies: Entity[]
@@ -69,18 +67,20 @@ class GameCounter {
   public removePoint(score: number) {
     if (this.gameTimeScore > 0) {
       this.gameTimeScore -= score
+      if (this.gameTimeScore < 0) {
+        this.gameTimeScore = 0
+      }
     }
-    this.gameTimeScore = 0
   }
 
   public drawHearts(tank: Tank) {
-    let heartSize: number = height * .03
-    let yNumber: number = (tank.getSize() - tank.getSize()) - (heartSize / 2)
+    let heartSize: number = height * 0.03
+    let yNumber: number = tank.getSize() - tank.getSize() - heartSize / 2
     for (let heart of this.hearts) {
       yNumber += heartSize
       image(
         heart,
-        tank.position.x - tank.getSize() * .5,
+        tank.position.x - tank.getSize() * 0.5,
         tank.position.y + yNumber,
         heartSize,
         heartSize
@@ -88,13 +88,8 @@ class GameCounter {
     }
   }
 
-
   private soundInfo() {
-    if(game.isMusic){
-      return "ON"
-    }else if(!game.isMusic) {
-      return "OFF"
-    }
+    return game.isMusic ? 'ON' : 'OFF'
   }
 
   // private activeScore() {
@@ -143,8 +138,8 @@ class GameCounter {
     translate(width * 0.5, 25)
     text(`Zombies Killed ${this.killedZombies.length}`, 5, 5)
     text(`Score ${this.gameTimeScore}`, -150, 5)
-    text(`Fuel ${round(this.fuelLimit)}`, -80, 60)
-    text(`Sound ${this.soundInfo()}`, 30, 60)
+    text(`Fuel ${round(this.fuelLimit)}`, -80, 55)
+    text(`Sound ${this.soundInfo()}`, 30, 55)
     pop()
   }
 }
