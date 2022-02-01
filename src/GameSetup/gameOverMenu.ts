@@ -1,6 +1,7 @@
 class gameOverMenu {
 
     private playAgainButton: Button
+    private highScore: Button
     //private soundButton: Button
     private logo: p5.Element
     // private button: p5.Element
@@ -16,6 +17,8 @@ class gameOverMenu {
       this.logo.parent(this.div)
       this.playAgainButton = new Button(
         createButton('PLAY AGAIN').parent(this.div))
+        this.highScore = new Button(
+          createButton('HIGHSCORE').parent(this.div))
   
       //this.playAgainButton.closeMenu(this.div)
       this.div.position(0, 0)

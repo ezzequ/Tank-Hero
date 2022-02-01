@@ -37,6 +37,14 @@ class Button {
     })
   }
 
+  public highScore(div: p5.Element) {
+    this.button.mouseClicked((click) => {
+      div.style('display: none;')
+      sounds.menuMusic.stop()
+      sounds.readyGo.play()
+    })
+  }
+
   public toggleSound() {
     this.button.mouseClicked((click) => {
       const soundz = Object.values(sounds) as p5.SoundFile[]
