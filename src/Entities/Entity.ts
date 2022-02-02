@@ -21,6 +21,8 @@ abstract class Entity {
     damage: number,
     ishit: boolean,
     sound: p5.SoundFile,
+    hitBoxSize: p5.Vector,
+    hitBoxPosition: p5.Vector,
     velocity?: p5.Vector
   ) {
     this.animateTime = 0
@@ -33,8 +35,8 @@ abstract class Entity {
     this.damage = damage
     this.isHit = ishit
     this.velocity = velocity || createVector(-5, 0)
-    this.hitBoxPosition = createVector(size * 0.02, size * 0.09)
-    this.hitBoxSize = createVector(size * 0.6, size * 0.9)
+    this.hitBoxPosition = hitBoxPosition
+    this.hitBoxSize = hitBoxSize
   }
 
   public getSize() {

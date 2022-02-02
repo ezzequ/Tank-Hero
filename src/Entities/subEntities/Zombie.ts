@@ -8,7 +8,22 @@ class Zombie extends Entity {
     const damage = 0
     const ishit = false
     const sound = sounds.zombieEat
+    const hitBoxSize: p5.Vector = createVector(size * 0.3, size * 0.9)
+    const hitBoxPosition = createVector(size * 0.2, size * 0.09)
     const velocity: p5.Vector = createVector(-velo - 2, 0)
-    super(size, health, position, img, points, damage, ishit, sound, velocity)
+
+    super(
+      size,
+      health,
+      position,
+      img,
+      points,
+      damage,
+      ishit,
+      sound,
+      hitBoxSize,
+      hitBoxPosition,
+      velocity
+    )
   }
 }

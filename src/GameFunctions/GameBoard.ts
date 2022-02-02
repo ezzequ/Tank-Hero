@@ -16,7 +16,6 @@ class GameBoard {
   private powSpawnTime: number
   private heartSpawnTime: number
   private lastSpawnY?: number
-  //private gameTime: number
 
   constructor(game: IGame) {
     this.game = game
@@ -35,7 +34,6 @@ class GameBoard {
     this.bossSpawnTime = 20000
     this.powSpawnTime = random(15000, 25000)
     this.heartSpawnTime = random(15000, 20000)
-    //this.gameTime = 15000
   }
 
   private scroll() {
@@ -73,7 +71,7 @@ class GameBoard {
     }
     if (this.obstacleSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
-      this.entities.push(new Obstacle(this.lastSpawnY))
+      this.entities.push(new Truck(this.lastSpawnY))
       this.obstacleSpawnTime = 4500
     }
     if (this.humanSpawnTime < 0) {
@@ -106,7 +104,7 @@ class GameBoard {
     const hitBox = entity.getHitBox()
     const tankHitBox = this.tank.getHitBox()
     if (
-      entity instanceof Obstacle ||
+      entity instanceof Truck ||
       entity instanceof Zombie ||
       entity instanceof Human ||
       entity instanceof Boss ||
@@ -139,7 +137,7 @@ class GameBoard {
             this.game.gameOver()
           }
         }
-        if (entity instanceof Obstacle) {
+        if (entity instanceof Truck || entity instanceof RoadBlock) {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
           sounds.crash.play()

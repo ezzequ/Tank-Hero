@@ -35,12 +35,12 @@ class Game implements IGame {
 
   public gameOver(): void {
     this.gameOverMenu.showMenu()
+    sounds.gameOverSound.play()
     this.isRunning = false
   }
 
   private pauseGame() {
     const pressed = keyIsDown(27) && !this.isPausePressed && this.isRunning
-    // const released = !keyIsDown(27) && this.isPausePressed;
 
     if (pressed) {
       if (this.isRunning) {

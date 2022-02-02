@@ -2,13 +2,11 @@ class Menu {
   private startButton: Button
   private soundButton: Button
   private logo: p5.Element
-  // private button: p5.Element
   private div1: p5.Element
   private div2: p5.Element
   private controlsImg: p5.Element
 
   constructor() {
-    // this.music = sound.menuMusic
     this.logo = createImg(
       '/assets/images/logoTransp.png',
       'Logo of a tank with burning background'
@@ -19,9 +17,7 @@ class Menu {
     this.logo.parent(this.div1)
     this.startButton = new Button(createButton('START GAME').parent(this.div1))
     this.startButton.startGame(this.div1)
-    this.soundButton = new Button(
-      createButton('SOUND OFF').parent(this.div1)
-    )
+    this.soundButton = new Button(createButton('SOUND OFF').parent(this.div1))
 
     this.div1.position(0, 0)
 
@@ -40,11 +36,4 @@ class Menu {
   public closeMenu() {
     this.div1.hide()
   }
-  // private soundInfo() {
-  //   if (game.isMusic) {
-  //     return 'ON'
-  //   } else if (!game.isMusic) {
-  //     return 'OFF'
-  //   }
-  // }
 }

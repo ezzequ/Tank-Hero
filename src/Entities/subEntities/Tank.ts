@@ -2,7 +2,7 @@ class Tank extends Entity {
   private reloadTime: number
 
   constructor() {
-    const size = height * 0.125
+    const size = height * 0.2
     const health = 4
     const position = createVector(width * 0.2, height * 0.5)
     const img = images.tank
@@ -11,8 +11,22 @@ class Tank extends Entity {
     const ishit = false
     const sound = sounds.zombieEat
     const velocity: p5.Vector = createVector(0, 0)
+    const hitBoxSize: p5.Vector = createVector(size, size * 0.5)
+    const hitBoxPosition = createVector(size * 0.02, size * 0.35)
 
-    super(size, health, position, img, points, damage, ishit, sound, velocity)
+    super(
+      size,
+      health,
+      position,
+      img,
+      points,
+      damage,
+      ishit,
+      sound,
+      hitBoxSize,
+      hitBoxPosition,
+      velocity
+    )
     this.reloadTime = 250
   }
 
@@ -45,12 +59,12 @@ class Tank extends Entity {
     }
 
     //Röra tanken i Y-led uppåt
-    if (this.position.y > height / 6 + this.size) {
+    if (this.position.y > height / 13 + this.size) {
       if (keyIsDown(38)) {
         this.position.y -= height * 0.005
       }
     } else {
-      this.position.y = height / 6 + this.size
+      this.position.y = height / 13 + this.size
     }
   }
 
