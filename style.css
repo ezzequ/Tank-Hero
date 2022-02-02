@@ -112,7 +112,7 @@ canvas {
   color: hsl(67, 13%, 45%);
   background-color: #37382b;
   border: none;
-  border-radius: 0.25rem;
+  border-radius: .25rem;
   cursor: pointer;
   padding: 1rem 2rem;
   margin: 0;

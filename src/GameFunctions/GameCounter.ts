@@ -74,13 +74,13 @@ class GameCounter {
   }
 
   public drawHearts(tank: Tank) {
-    let heartSize: number = height * 0.03
-    let yNumber: number = tank.getSize() - tank.getSize() - heartSize / 2
+    let heartSize: number = height * .03
+    let yNumber: number = tank.getSize() - (tank.getSize() * .8)
     for (let heart of this.hearts) {
       yNumber += heartSize
       image(
         heart,
-        tank.position.x - tank.getSize() * 0.5,
+        tank.position.x - tank.getSize() * .25,
         tank.position.y + yNumber,
         heartSize,
         heartSize
@@ -111,31 +111,31 @@ class GameCounter {
     colorMode(HSL)
     fill(359, 53, 50)
     quad(
-      /*X1*/ width * 0.5 - 200,
+      /*X1*/ width * .5 - 200,
       /*Y1*/ 0,
-      /*X2*/ width * 0.5 + 250,
+      /*X2*/ width * .5 + 250,
       /*Y2*/ 0,
-      /*X3*/ width * 0.5 + 210,
+      /*X3*/ width * .5 + 210,
       /*Y3*/ 50,
-      /*X4*/ width * 0.5 - 160,
+      /*X4*/ width * .5 - 160,
       /*Y4*/ 50
     )
     fill(340, 10, 11)
     quad(
-      /*X1*/ width * 0.5 - 160,
+      /*X1*/ width * .5 - 160,
       /*Y1*/ 50,
-      /*X2*/ width * 0.5 + 210,
+      /*X2*/ width * .5 + 210,
       /*Y2*/ 50,
-      /*X3*/ width * 0.5 + 170,
+      /*X3*/ width * .5 + 170,
       /*Y3*/ 100,
-      /*X4*/ width * 0.5 - 120,
+      /*X4*/ width * .5 - 120,
       /*Y4*/ 100
     )
     pop()
     push()
     fill(255)
     textSize(18)
-    translate(width * 0.5, 25)
+    translate(width * .5, 25)
     text(`Zombies Killed ${this.killedZombies.length}`, 5, 5)
     text(`Score ${this.gameTimeScore}`, -150, 5)
     text(`Fuel ${round(this.fuelLimit)}`, -80, 55)

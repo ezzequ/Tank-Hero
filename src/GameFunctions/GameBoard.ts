@@ -61,17 +61,18 @@ class GameBoard {
 
     if (this.bossSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
-      this.entities.push(new Boss(this.scrollSpeed * 0.2, this.lastSpawnY))
+      this.entities.push(new Boss(this.scrollSpeed * .2, this.lastSpawnY))
       this.bossSpawnTime = 20000
     }
     if (this.zombieSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
-      this.entities.push(new Zombie(this.scrollSpeed * 0.2, this.lastSpawnY))
+      this.entities.push(new Zombie(this.scrollSpeed * .2, this.lastSpawnY))
       this.zombieSpawnTime = random(2000, 3000)
     }
     if (this.obstacleSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
-      this.entities.push(new Truck(this.lastSpawnY))
+      let randomObs = [new Truck(this.lastSpawnY), new RoadBlock(this.lastSpawnY)]
+      this.entities.push(randomObs[round(random(0,1))])
       this.obstacleSpawnTime = 4500
     }
     if (this.humanSpawnTime < 0) {
@@ -92,7 +93,7 @@ class GameBoard {
   }
 
   private getRandomY(): number {
-    const cityHeight = height * 0.3
+    const cityHeight = height * .3
     const y = ((height - cityHeight) / 6) * floor(random(6)) + cityHeight
     if (y === this.lastSpawnY) {
       return this.getRandomY()
@@ -109,7 +110,8 @@ class GameBoard {
       entity instanceof Human ||
       entity instanceof Boss ||
       entity instanceof FuelTank ||
-      entity instanceof Heart
+      entity instanceof Heart || 
+      entity instanceof RoadBlock
     ) {
       if (
         hitBox.x < tankHitBox.x + tankHitBox.width &&
@@ -133,9 +135,7 @@ class GameBoard {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
           sounds.bossDeath.play()
-          if (!this.gameCounter.getLives()) {
-            this.game.gameOver()
-          }
+          this.game.gameOver()
         }
         if (entity instanceof Truck || entity instanceof RoadBlock) {
           this.gameCounter.decreaseTankHealth()
@@ -225,8 +225,11 @@ class GameBoard {
       if (entity instanceof Zombie && !entity.isHit) {
         this.gameCounter.removePoint(entity.points * 3)
         this.gameCounter.getRescuedHumanCount().pop()
-        this.sideBoard.rescuedLives.pop()
+        this.sideBoard.rescuedHumans.pop()
         entity.sound.play()
+      }
+      if(entity instanceof Boss) {
+        this.game.gameOver()
       }
       this.entities.splice(this.entities.indexOf(entity), 1)
     }
