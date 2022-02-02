@@ -9,8 +9,8 @@ class RoadBlock extends Entity {
     const damage = 0
     const ishit = false
     const velocity: p5.Vector = createVector(-2, 0)
-    const hitBoxPosition = createVector(size * .02, size * .09)
-    const hitBoxSize = createVector(size * .6, size * .9)
+    const hitBoxPosition = createVector(size * .02, size * .35)
+    const hitBoxSize = createVector(size * .6, size * .5)
 
     super(
       size,

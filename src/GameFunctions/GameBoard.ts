@@ -137,7 +137,7 @@ class GameBoard {
           sounds.bossDeath.play()
           this.game.gameOver()
         }
-        if (entity instanceof Truck) {
+        if (entity instanceof Truck || entity instanceof RoadBlock) {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
           sounds.crash.play()
