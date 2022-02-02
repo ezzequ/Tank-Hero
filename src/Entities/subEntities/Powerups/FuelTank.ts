@@ -9,7 +9,7 @@ class FuelTank extends Entity {
     const isHit = false
     const sound = sounds.saved
     const hitBoxPosition = createVector(size * 0.02, size * 0.09)
-    const hitBoxSize = createVector(size * 0.6, size * 0.9)
+    const hitBoxSize = createVector(size * .7 , size * .7)
     const velocity: p5.Vector = createVector(-2, 0)
 
     super(
@@ -21,8 +21,8 @@ class FuelTank extends Entity {
       damage,
       isHit,
       sound,
-      hitBoxPosition,
       hitBoxSize,
+      hitBoxPosition,
       velocity
     )
   }

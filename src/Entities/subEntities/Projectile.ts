@@ -9,8 +9,8 @@ class Projectile extends Entity {
     const damage = 0
     const ishit = false
     const velocity: p5.Vector = createVector(10, 0)
-    const hitBoxPosition = createVector(size, size)
-    const hitBoxSize = createVector(size * 0.6, size * 0.9)
+    const hitBoxPosition = createVector(size * 0.1, size * 0.2)
+    const hitBoxSize = createVector(size, size * 0.5)
 
     super(
       size,
@@ -21,8 +21,8 @@ class Projectile extends Entity {
       damage,
       ishit,
       sound,
-      hitBoxPosition,
       hitBoxSize,
+      hitBoxPosition,
       velocity
     )
   }

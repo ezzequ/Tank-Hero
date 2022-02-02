@@ -58,7 +58,7 @@ abstract class Entity {
   }
 
   public hitDamage(entity: Entity) {
-    if (entity instanceof Obstacle) {
+    if (entity instanceof Truck) {
       entity.image = images.obstacles.obs1destroyed
     }
     if (entity instanceof Zombie) {

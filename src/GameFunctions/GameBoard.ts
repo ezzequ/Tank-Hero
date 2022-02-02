@@ -30,10 +30,10 @@ class GameBoard {
     this.scrollSpeed = 2
     this.zombieSpawnTime = random(500, 2500)
     this.obstacleSpawnTime = 4500
-    this.humanSpawnTime = 13000
+    this.humanSpawnTime = 13500
     this.bossSpawnTime = 20000
-    this.powSpawnTime = random(15000, 25000)
-    this.heartSpawnTime = random(15000, 20000)
+    this.powSpawnTime = 1000 //random(15000, 25000)
+    this.heartSpawnTime = 1000 //random(15000, 20000)
   }
 
   private scroll() {
@@ -77,7 +77,7 @@ class GameBoard {
     if (this.humanSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
       this.entities.push(new Human(this.lastSpawnY))
-      this.humanSpawnTime = 13000
+      this.humanSpawnTime = 13500
     }
     if (this.powSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
@@ -137,7 +137,7 @@ class GameBoard {
             this.game.gameOver()
           }
         }
-        if (entity instanceof Truck || entity instanceof RoadBlock) {
+        if (entity instanceof Truck) {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
           sounds.crash.play()

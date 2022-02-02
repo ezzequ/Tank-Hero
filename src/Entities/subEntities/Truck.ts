@@ -10,8 +10,8 @@ class Truck extends Entity {
     const damage = 0
     const ishit = false
     const velocity: p5.Vector = createVector(-2, 0)
-    const hitBoxPosition = createVector(size * 0.02, size * 0.09)
-    const hitBoxSize = createVector(size * 0.6, size * 0.9)
+    const hitBoxPosition = createVector(size * 0.01, size * 0.01)
+    const hitBoxSize = createVector(size, size)
 
     super(
       size,
@@ -22,8 +22,8 @@ class Truck extends Entity {
       damage,
       ishit,
       sound,
-      hitBoxPosition,
       hitBoxSize,
+      hitBoxPosition,
       velocity
     )
   }
