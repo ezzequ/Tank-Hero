@@ -18,7 +18,7 @@ function preload() {
     gameMusic: loadSound('/assets/music/gameMusic.mp3'),
     readyGo: loadSound('/assets/sounds/SFX/Ready-GO.wav'),
     crash: loadSound('/assets/sounds/SFX/crash.wav'),
-    // gameOverSound: loadSound('/assets/sounds/SFX/game-over.mp3'),
+    gameOverSound: loadSound('/assets/sounds/SFX/gameOver.wav'),
     gameOverMusic: loadSound('/assets/music/menumusic1.mp3'),
     saved: loadSound('/assets/sounds/SFX/saved.mp3'),
     humanDeath: loadSound('/assets/sounds/SFX/humanDeath.wav'),
@@ -42,6 +42,10 @@ function preload() {
     obstacles: {
       obs1: loadImage('/assets/images/Entities/obstacles/truck.png'),
       obs1destroyed: loadImage('/assets/images/Entities/obstacles/truck2.png'),
+      obs2: loadImage('/assets/images/Entities/obstacles/roadBlock1.png'),
+      ob2destroyed: loadImage(
+        '/assets/images/Entities/obstacles/roadBlock2.png'
+      ),
     },
     humans: {
       human1: loadImage('/assets/images/Entities/humans/human1.png'),
@@ -74,7 +78,6 @@ function setup() {
   outputVolume(0.5)
   sounds.menuMusic.setVolume(0.3)
   sounds.menuMusic.play()
-  // noCursor();
   game = new Game()
 }
 

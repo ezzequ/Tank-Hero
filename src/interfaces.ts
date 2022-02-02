@@ -11,6 +11,8 @@ interface Images {
   obstacles: {
     obs1: p5.Image
     obs1destroyed: p5.Image
+    obs2: p5.Image
+    ob2destroyed: p5.Image
   }
   humans: {
     human1: p5.Image
@@ -33,7 +35,7 @@ interface Sounds {
   gameMusic: p5.SoundFile
   readyGo: p5.SoundFile
   crash: p5.SoundFile
-  // gameOverSound: p5.SoundFile
+  gameOverSound: p5.SoundFile
   gameOverMusic: p5.SoundFile
   saved: p5.SoundFile
   humanDeath: p5.SoundFile

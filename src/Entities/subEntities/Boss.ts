@@ -1,5 +1,4 @@
 class Boss extends Entity {
-
   constructor(velo: number, y: number) {
     const size = height * 0.25
     const health = 5
@@ -10,11 +9,25 @@ class Boss extends Entity {
     const damage = 0
     const ishit = false
     const velocity: p5.Vector = createVector(-velo - 2, 0)
-    super(size, health, position, img, points, damage, ishit, sound, velocity)
+    const hitBoxPosition = createVector(size * 0.02, size * 0.09)
+    const hitBoxSize = createVector(size * 0.6, size * 0.9)
+
+    super(
+      size,
+      health,
+      position,
+      img,
+      points,
+      damage,
+      ishit,
+      sound,
+      hitBoxPosition,
+      hitBoxSize,
+      velocity
+    )
   }
 
   public draw() {
-    super.draw();
+    super.draw()
   }
-
 }
