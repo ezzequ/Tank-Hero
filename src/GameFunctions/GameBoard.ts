@@ -32,8 +32,8 @@ class GameBoard {
     this.obstacleSpawnTime = 4500
     this.humanSpawnTime = 13500
     this.bossSpawnTime = 20000
-    this.powSpawnTime = 1000 //random(15000, 25000)
-    this.heartSpawnTime = 1000 //random(15000, 20000)
+    this.powSpawnTime = random(15000, 25000)
+    this.heartSpawnTime = random(15000, 20000)
   }
 
   private scroll() {
