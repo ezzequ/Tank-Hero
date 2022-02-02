@@ -70,8 +70,8 @@ abstract class Entity {
     if (entity instanceof Boss) {
       entity.image = images.splatter
       entity.size = height * .1
-      entity.position.x += height * .1
-      entity.position.y += height * .1
+      entity.position.x += height * .2
+      entity.position.y += height * .2
       entity.velocity = createVector(-2, 0)
     }
     entity.isHit = true
