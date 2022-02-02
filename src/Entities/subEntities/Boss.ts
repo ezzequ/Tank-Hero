@@ -9,8 +9,9 @@ class Boss extends Entity {
     const damage = 0
     const ishit = false
     const velocity: p5.Vector = createVector(-velo - 2, 0)
-    const hitBoxPosition = createVector(size * .02, size * .09)
-    const hitBoxSize = createVector(size * .6, size * .9)
+    const hitBoxPosition = createVector(size * .1 , size * .2 )
+    const hitBoxSize = createVector(size * .74, size * .7)
+
 
     super(
       size,
@@ -21,8 +22,8 @@ class Boss extends Entity {
       damage,
       ishit,
       sound,
-      hitBoxPosition,
       hitBoxSize,
+      hitBoxPosition,
       velocity
     )
   }

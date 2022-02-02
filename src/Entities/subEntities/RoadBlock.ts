@@ -16,14 +16,14 @@ class RoadBlock extends Entity {
       size,
       health,
       position,
-      img,
-      points,
-      damage,
-      ishit,
-      sound,
-      hitBoxPosition,
-      hitBoxSize,
-      velocity
-    )
-  }
-}
+       img,
+       points,
+       damage,
+       ishit,
+       sound,
+       hitBoxSize,
+       hitBoxPosition,
+       velocity
+     )
+   }
+ }

@@ -9,8 +9,9 @@ class Human extends Entity {
     const damage = 0
     const ishit = false
     const velocity: p5.Vector = createVector(-2, 0)
-    const hitBoxSize: p5.Vector = createVector(size * .3, size * .9)
-    const hitBoxPosition = createVector(size * .2, size * .09)
+    const hitBoxSize: p5.Vector = createVector(size * .4, size * .9)
+    const hitBoxPosition = createVector(size * .1, size * .01)
+
 
     super(
       size,
@@ -21,8 +22,8 @@ class Human extends Entity {
       damage,
       ishit,
       sound,
-      hitBoxPosition,
       hitBoxSize,
+      hitBoxPosition,
       velocity
     )
   }

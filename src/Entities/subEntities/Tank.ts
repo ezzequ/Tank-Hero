@@ -11,8 +11,9 @@ class Tank extends Entity {
     const ishit = false
     const sound = sounds.zombieEat
     const velocity: p5.Vector = createVector(0, 0)
-    const hitBoxSize: p5.Vector = createVector(size, size * .5)
+    const hitBoxSize: p5.Vector = createVector(size * .8, size * .5)
     const hitBoxPosition = createVector(size * .02, size * .35)
+
 
     super(
       size,
