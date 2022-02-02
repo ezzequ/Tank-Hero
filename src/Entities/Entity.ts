@@ -47,7 +47,6 @@ abstract class Entity {
     if (entity.health == 1) {
       entity.isHit = true
       entity.image = images.splatter
-      //list.splice(list.indexOf(entity), 1)
     } else {
       entity.health -= 1
     }
@@ -58,8 +57,11 @@ abstract class Entity {
   }
 
   public hitDamage(entity: Entity) {
-    if (entity instanceof Obstacle) {
+    if (entity instanceof Truck) {
       entity.image = images.obstacles.obs1destroyed
+    }
+    if(entity instanceof RoadBlock) {
+      entity.image = images.obstacles.ob2destroyed
     }
     if (entity instanceof Zombie) {
       entity.image = images.splatter
@@ -67,9 +69,9 @@ abstract class Entity {
     }
     if (entity instanceof Boss) {
       entity.image = images.splatter
-      entity.size = height * 0.1
-      entity.position.x += height * 0.1
-      entity.position.y += height * 0.1
+      entity.size = height * .1
+      entity.position.x += height * .1
+      entity.position.y += height * .1
       entity.velocity = createVector(-2, 0)
     }
     entity.isHit = true
@@ -89,10 +91,8 @@ abstract class Entity {
   public animateEntity(entity: Entity) {
     const zombies = Object.values(images.zombies)
     const humans = Object.values(images.humans)
-    //console.log(this.animateTime)
     if (entity instanceof Zombie && !entity.isHit) {
       this.animateTime += deltaTime
-      //console.log(`INDEX ${i}\nTID ${this.animateTime}`)
       if (250 < this.animateTime && 270 > this.animateTime) {
         entity.image = zombies[0]
       } else if (500 < this.animateTime && 520 > this.animateTime) {
@@ -116,8 +116,6 @@ abstract class Entity {
   }
 
   public update() {
-    // this.position.x += this.velocity.x; //* deltaTime / 1000
-    // this.position.y += this.velocity.y; //* deltaTime / 1000
     this.position.add(this.velocity)
   }
   public draw() {

@@ -1,6 +1,6 @@
 class Projectile extends Entity {
   constructor(x: number, y: number) {
-    const size = height * 0.05
+    const size = height * .05
     const health = 1
     const position = createVector(x, y)
     const img = images.projectile
@@ -10,7 +10,7 @@ class Projectile extends Entity {
     const ishit = false
     const velocity: p5.Vector = createVector(10, 0)
     const hitBoxPosition = createVector(size, size)
-    const hitBoxSize = createVector(size * 0.6, size * 0.9)
+    const hitBoxSize = createVector(size * .6, size * .9)
 
     super(
       size,

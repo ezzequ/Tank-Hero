@@ -1,28 +1,22 @@
 class SideBoard {
   private human: p5.Image
-  public rescuedLives: p5.Image[]
+  public rescuedHumans: p5.Image[]
   private humanSize: number
   private sideBoardHeight: number
   //private startingLives: number
 
   constructor() {
     this.human = images.humans.human1
-    this.rescuedLives = [this.human, this.human, this.human, this.human]
+    this.rescuedHumans = [this.human, this.human, this.human, this.human]
     this.humanSize = 100
     this.sideBoardHeight = height / 6
-    //this.startingLives = 4
   }
 
-  /*private rescuedLives() {
-    let rescuedLives = [1,3,4,5]
-    //let rescuedLive: Array<number> = [1,3,4,5]
-    
-  }*/
 
-  public renderLives() {
+  public renderHumans() {
     let addNumber: number = 0
     let yNumber: number = 50
-    for (let live of this.rescuedLives) {
+    for (let live of this.rescuedHumans) {
       addNumber += 100
       yNumber
       if (this.sideBoardHeight + addNumber > this.sideBoardHeight * 6 - 100) {
@@ -40,24 +34,13 @@ class SideBoard {
   }
 
   public addLives() {
-    this.rescuedLives.push(this.human)
+    this.rescuedHumans.push(this.human)
     sounds.saved.play()
-    // console.log('test')
-    // console.log(this.rescuedLives.push(this.human))
   }
-
-  // private deathEffect() {
-  //   fill('red')
-  //   rect(0, 0, windowWidth / 6, windowHeight)
-  // }
-
-  // public update() {
-  //   this.deathEffect()
-  // }
 
   public draw() {
     fill(1, 1, 1, 50)
     rect(0, 0, windowWidth / 6, windowHeight)
-    this.renderLives()
+    this.renderHumans()
   }
 }

@@ -13,7 +13,7 @@ class Button {
       sounds.menuMusic.stop()
       //sounds.readyGo.play()
       if (game.isMusic) {
-        sounds.gameMusic.play(0, 1, 0.5)
+        sounds.gameMusic.play(0, 1, .5)
       }
     })
   }
@@ -24,7 +24,7 @@ class Button {
       game.isRunning = true
       sounds.menuMusic.stop()
       sounds.readyGo.play()
-      sounds.gameMusic.loop(2, 1, 0.5)
+      sounds.gameMusic.loop(2, 1, .5)
     })
   }
 
@@ -60,7 +60,7 @@ class Button {
         game.isMusic = false
       } else if (!game.isMusic) {
         this.button.html('SOUND OFF')
-        outputVolume(0.5)
+        outputVolume(.5)
         game.isMusic = true
       }
     })
