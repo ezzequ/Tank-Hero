@@ -31,7 +31,7 @@ class GameBoard {
     this.zombieSpawnTime = random(500, 2500)
     this.obstacleSpawnTime = 4500
     this.humanSpawnTime = 13500
-    this.bossSpawnTime = 2000
+    this.bossSpawnTime = 20000
     this.powSpawnTime = random(15000, 25000)
     this.heartSpawnTime = random(15000, 20000)
   }

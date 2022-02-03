@@ -27,7 +27,7 @@ class gameOverMenu {
 
   public setText(zombie : string, score : string) {
     this.finalZombie.html(`You killed ${zombie} zombies`)
-    this.finalScore.html(`You got total ${score} points`)
+    this.finalScore.html(`You got a total of ${score} points`)
   }
 
   public showMenu() {

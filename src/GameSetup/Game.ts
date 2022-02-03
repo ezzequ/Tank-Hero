@@ -40,7 +40,6 @@ class Game implements IGame {
     this.isRunning = false
     let zombie = getItem('totalKilledZombies')
     let score = getItem('totalPoints')
-    console.log(zombie)
     this.gameOverMenu.setText(`${zombie}`, `${score}`)
   }
 

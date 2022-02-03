@@ -37,20 +37,6 @@ class Button {
     })
   }
 
-  public btnHighScore(div: p5.Element) {
-    this.button.mouseClicked(() => {
-      div.style('display: none;')
-    })
-  }
-
-  public highScore(div: p5.Element) {
-    this.button.mouseClicked(() => {
-      div.style('display: none;')
-      sounds.menuMusic.stop()
-      sounds.readyGo.play()
-    })
-  }
-
   public toggleSound() {
     this.button.mouseClicked(() => {
       if (game.isMusic) {
