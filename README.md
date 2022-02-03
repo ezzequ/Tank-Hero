@@ -1,51 +1,29 @@
-# Slutprojektet
+-----TANK HERO------
 
-Välkommen till den förinställda kodbasen för slutprojektet.
-Se filen `./src/sketch.ts` för hur ni ska börja skriva er kod!
+play the game: https://tank-hero.netlify.app/
 
-Kom ihåg att använda git!
 
-## Dokument & Artifakter
+a game developed by: 
+Adam Hepsever: https://github.com/AdaHep
+Tomas Fridekrans: https://github.com/spaceflake
+Esther Reichmann: https://github.com/ezzequ
+Felix Bakkum: https://github.com/FrontFelix
+Christian Meiner:  https://github.com/miMeiner
+Kawan Majeed: https://github.com/Kawium
 
-All dokument skall finnas i projektet som faktiska filer vid inlämningen. Det finns en mapp `./documents` som alla dokumenten skall sparas i.
+-Tank Hero, a game developed with TypeScript and the JavaScript library p5.js. 
+We made this game as a school project in order to learn more about coding with typescript and OOP ( object-oriented programming).
 
-Gå in i mappe
-n och läs vidare där!
+game description: 
+The year is 2023 and the coronavirus has spiraled out of control and put the world in total chaos, instead of mild symptoms such as coughing people are now turning into flesh eating zombies! You, one of the last people alive yet to be infected by the virus has been sent out on a mission to save what remains of humanity. You and your tank are the only thing that stands between total extinction or survival. To rescue humanity, you must shoot the zombies in your way and pick up survivors. Don’t forget to evade objects so you don’t crash and break the tank.  Stay alive by picking up more hearts and fuel for your tank. 
 
-## Utveckling
+- pick up survivours with your tank to rescue them
+- shoot the zombies before they reach the sideboard, if they do you will lose a survivor.
+- avoid obstacels, if you hit them you tank will lose a life. 
+-  Hitting the boss-zombie with your tank or if it reaches the sideboard it will be game-over. 
+- pick up fuel-bottels before your tank runs out of fuel, when you run out it will be game-over. 
 
-### Installation
 
-Först behöver ni köra kommandot `npm i` för att installera nödvändiga moduler (p5, typescript, etc).
 
-### Starta projektet
 
-Kör kommandot `npm start` för att starta projektet och se det live i din webbläsare!
 
-### Debugger
-
-Det är starkt rekomenderat att ni använder debug-verktyget i VSCode för att hitta och lösa problem. Metoden vi primärt har använt tidigare är att skriva `console.log` men vi kan bli mer effektiva!
-
-Debuggern låter er stanna programmet och stega rad för rad samtidigt som ni kan titta på vad variablerna innehåller. Det är speciellt användbart när ni arbetar med funktioner som anropas 60 gånger per sekund - console overload otherwise... 🤯
-
-#### Starta Debuggern
-
-För att starta debuggern måste du första ladda hem tilläget "Debugger for Chrome" som finns under "Extensions" här i VSCode.
-Därefter tycker du `F5` för att starta debuggern, se dock till att du har startat projektet innan (`npm start`)!
-
-Ett nyt
-t fönster kommer att öppnas som behöver användas för att få koden att stanna vid utsatta debugg-punkter.
-
-### Potentiella problem
-
-Versionen av p5.js är 1.1.9 medan senaste version av typescript endast är uppdaterad till 0.9.1. Detta skulle kunna orsaka problem men framför allt kan det vara så att ni hittar något i p5's dokumention som inte finns tillgängligt i detta projektet.
-Typings f\ö
-r de globala variablerna relaterat till p5.sound fungerar tyvärr inte - exempel finns för hur ni kan kringå detta.
-
-## TODO
-
-Lägg till ytterliggare information som är specifikt för ert projekt!
-
-**LYCKA TILL!**
-
----------\*
