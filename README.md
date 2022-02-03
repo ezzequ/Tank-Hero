@@ -6,8 +6,8 @@ play the game: https://tank-hero.netlify.app/
 a game developed by: 
 Adam Hepsever: https://github.com/AdaHep
 Tomas Fridekrans: https://github.com/spaceflake
-Esther Reichmann: https://github.com/ezzequ
 Felix Bakkum: https://github.com/FrontFelix
+Esther Reichmann: https://github.com/ezzequ
 Christian Meiner:  https://github.com/miMeiner
 Kawan Majeed: https://github.com/Kawium
 
