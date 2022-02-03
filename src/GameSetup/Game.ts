@@ -1,6 +1,6 @@
 class Game implements IGame {
   private gameBoard: GameBoard
-  private menu: Menu
+  public menu: Menu
   private pauseMenu: PauseMenu
   public isRunning: boolean
   private isPausePressed: boolean

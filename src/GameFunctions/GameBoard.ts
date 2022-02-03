@@ -31,7 +31,7 @@ class GameBoard {
     this.zombieSpawnTime = random(500, 2500)
     this.obstacleSpawnTime = 4500
     this.humanSpawnTime = 13500
-    this.bossSpawnTime = 20000
+    this.bossSpawnTime = 2000
     this.powSpawnTime = random(15000, 25000)
     this.heartSpawnTime = random(15000, 20000)
   }
@@ -133,9 +133,9 @@ class GameBoard {
         }
 
         if (entity instanceof Boss) {
-          this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
           sounds.bossDeath.play()
+          console.log('Boss i tank')
           this.game.gameOver()
         }
         if (entity instanceof Truck || entity instanceof RoadBlock) {
@@ -229,7 +229,8 @@ class GameBoard {
         this.sideBoard.rescuedHumans.pop()
         entity.sound.play()
       }
-      if(entity instanceof Boss) {
+      if(entity instanceof Boss && !entity.isHit) {
+        console.log('boss nådde')
         this.game.gameOver()
       }
       this.entities.splice(this.entities.indexOf(entity), 1)
