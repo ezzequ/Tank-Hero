@@ -24,4 +24,5 @@ declare global {
     rampTime?: number,
     timeFromNow?: number
   ): void
+  function getOutputVolume(): number
 }

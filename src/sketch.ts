@@ -1,13 +1,8 @@
-//---- GLOBAL VARIABLES ----//
 let game: Game
 let font: Font
 let sounds: Sounds
 let images: Images
-/**
- * Built in preload function in P5
- * This is a good place to load assets such as
- * sound files, images etc...
- */
+
 function preload() {
   font = {
     gameFont: loadFont('/assets/fonts/Bicubik.ttf'),
@@ -18,35 +13,46 @@ function preload() {
     gameMusic: loadSound('/assets/music/gameMusic.mp3'),
     readyGo: loadSound('/assets/sounds/SFX/Ready-GO.wav'),
     crash: loadSound('/assets/sounds/SFX/crash.wav'),
-    // gameOverSound: loadSound('/assets/sounds/SFX/game-over.mp3'),
+    gameOverSound: loadSound('/assets/sounds/SFX/gameOver.wav'),
     gameOverMusic: loadSound('/assets/music/menumusic1.mp3'),
     saved: loadSound('/assets/sounds/SFX/saved.mp3'),
+    humanDeath: loadSound('/assets/sounds/SFX/humanDeath.wav'),
     zombieEat: loadSound('/assets/sounds/zombie/zombie-eat.wav'),
     entityKilled: loadSound('/assets/sounds/zombie/zombieKilled.mp3'),
     fuelPickup: loadSound('/assets/sounds/SFX/fuelPickup.mp3'),
     heartPickup: loadSound('/assets/sounds/SFX/heartPickup.mp3'),
-    shot: loadSound('/assets/sounds/tank/shot.wav')
-    bossDeath: loadSound('/assets/sounds/zombie/bossDeath.wav')
+    shot: loadSound('/assets/sounds/tank/shot.wav'),
+    bossDeath: loadSound('/assets/sounds/zombie/bossDeath.wav'),
   }
   images = {
-    bgImg: loadImage('/assets/images/burning.png'),
+    bgImg: loadImage('/assets/images/BackgroundScroller.png'),
     tank: loadImage('/assets/images/Entities/tank/tank.png'),
     zombies: {
-      zom1: loadImage('/assets/images/Entities/zombies/zombie.png'),
-      zom2: loadImage('/assets/images/Entities/zombies/splatter.png'),
+      zom1: loadImage('/assets/images/Entities/zombies/zombie1.png'),
+      zom2: loadImage('/assets/images/Entities/zombies/zombie2.png'),
+      zom3: loadImage('/assets/images/Entities/zombies/zombie3.png'),
+      zom4: loadImage('/assets/images/Entities/zombies/zombie3.png'),
     },
+    splatter: loadImage('/assets/images/Entities/zombies/splatter.png'),
     obstacles: {
       obs1: loadImage('/assets/images/Entities/obstacles/truck.png'),
-      obs2: loadImage('/assets/images/Entities/obstacles/greentruck.png'),
+      obs1destroyed: loadImage('/assets/images/Entities/obstacles/truck2.png'),
+      obs2: loadImage('/assets/images/Entities/obstacles/roadBlock1.png'),
+      ob2destroyed: loadImage(
+        '/assets/images/Entities/obstacles/roadBlock2.png'
+      ),
     },
-    human: loadImage('/assets/images/Entities/humans/female-1.png'),
+    humans: {
+      human1: loadImage('/assets/images/Entities/humans/human1.png'),
+      human2: loadImage('/assets/images/Entities/humans/human2.png'),
+    },
     projectile: loadImage('/assets/images/Entities/tank/projectile.png'),
     boss: loadImage('/assets/images/Entities/zombies/boss.png'),
     heart: loadImage('/assets/images/Entities/tank/heart.png'),
     menuImg: loadImage('/assets/images/bg-menuImg.png'),
-    pauseImg: loadImage('/assets/images/pausing.png'),
-    gameOverImg: loadImage('/assets/images/GAME_OVER-.png'),
-    victoryImg: loadImage('/assets/images/victory.png'),
+    pauseImg: loadImage('/assets/images/newpause.png'),
+    gameOverImg: loadImage('/assets/images/newgameover.png'),
+    victoryImg: loadImage('/assets/images/newvictory.png'),
     powerups: {
       fuelTank: loadImage('/assets/images/Entities/powerups/fuelTank.png'),
       heart: loadImage('/assets/images/Entities/powerups/heartPlus.png'),
@@ -64,10 +70,9 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight)
   frameRate(60)
-  sounds.menuMusic.setVolume(0.3)
+  outputVolume(.5)
+  sounds.menuMusic.setVolume(.3)
   sounds.menuMusic.play()
-  // noCursor();
-  // menu()
   game = new Game()
 }
 

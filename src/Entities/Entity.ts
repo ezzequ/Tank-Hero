@@ -1,4 +1,5 @@
 abstract class Entity {
+  private animateTime: number
   protected size: number
   protected health: number
   public position: p5.Vector
@@ -20,8 +21,11 @@ abstract class Entity {
     damage: number,
     ishit: boolean,
     sound: p5.SoundFile,
+    hitBoxSize: p5.Vector,
+    hitBoxPosition: p5.Vector,
     velocity?: p5.Vector
   ) {
+    this.animateTime = 0
     this.sound = sound
     this.size = size
     this.health = health
@@ -31,8 +35,8 @@ abstract class Entity {
     this.damage = damage
     this.isHit = ishit
     this.velocity = velocity || createVector(-5, 0)
-    this.hitBoxPosition = createVector(size * 0.1, size * 0.2)
-    this.hitBoxSize = createVector(size * 0.8, size * 0.7)
+    this.hitBoxPosition = hitBoxPosition
+    this.hitBoxSize = hitBoxSize
   }
 
   public getSize() {
@@ -42,8 +46,7 @@ abstract class Entity {
   public removeHealth(entity: Entity, list: Entity[]) {
     if (entity.health == 1) {
       entity.isHit = true
-      entity.image = images.zombies.zom2
-      //list.splice(list.indexOf(entity), 1)
+      entity.image = images.splatter
     } else {
       entity.health -= 1
     }
@@ -54,18 +57,21 @@ abstract class Entity {
   }
 
   public hitDamage(entity: Entity) {
-    if (entity instanceof Obstacle) {
-      entity.image = images.obstacles.obs2
+    if (entity instanceof Truck) {
+      entity.image = images.obstacles.obs1destroyed
+    }
+    if(entity instanceof RoadBlock) {
+      entity.image = images.obstacles.ob2destroyed
     }
     if (entity instanceof Zombie) {
-      entity.image = images.zombies.zom2
+      entity.image = images.splatter
       entity.velocity = createVector(-2, 0)
     }
     if (entity instanceof Boss) {
-      entity.image = images.zombies.zom2
+      entity.image = images.splatter
       entity.size = height * .1
-      entity.position.x += height * .1
-      entity.position.y += height * .1
+      entity.position.x += height * .2
+      entity.position.y += height * .2
       entity.velocity = createVector(-2, 0)
     }
     entity.isHit = true
@@ -82,11 +88,34 @@ abstract class Entity {
     }
   }
 
-  //   private removeEntity() {}
+  public animateEntity(entity: Entity) {
+    const zombies = Object.values(images.zombies)
+    const humans = Object.values(images.humans)
+    if (entity instanceof Zombie && !entity.isHit) {
+      this.animateTime += deltaTime
+      if (250 < this.animateTime && 270 > this.animateTime) {
+        entity.image = zombies[0]
+      } else if (500 < this.animateTime && 520 > this.animateTime) {
+        entity.image = zombies[1]
+      } else if (750 < this.animateTime && 760 > this.animateTime) {
+        entity.image = zombies[2]
+      } else if (1000 < this.animateTime && 1020 > this.animateTime) {
+        entity.image = zombies[3]
+        this.animateTime = 0
+      }
+    }
+    if (entity instanceof Human && !entity.isHit) {
+      this.animateTime += deltaTime
+      if (250 < this.animateTime && 270 > this.animateTime) {
+        entity.image = humans[0]
+      } else if (500 < this.animateTime && 520 > this.animateTime) {
+        entity.image = humans[1]
+        this.animateTime = 0
+      }
+    }
+  }
 
   public update() {
-    // this.position.x += this.velocity.x; //* deltaTime / 1000
-    // this.position.y += this.velocity.y; //* deltaTime / 1000
     this.position.add(this.velocity)
   }
   public draw() {
@@ -107,16 +136,16 @@ abstract class Entity {
     }
   }
 
-  // private drawHitBox() {
-  //   push()
-  //   rectMode(CORNER)
-  //   stroke('red')
-  //   noFill()
-  //   const x = this.position.x + this.hitBoxPosition.x
-  //   const y = this.position.y + this.hitBoxPosition.y
-  //   const width = this.hitBoxSize.x
-  //   const height = this.hitBoxSize.y
-  //   rect(x, y, width, height)
-  //   pop()
-  // }
-}
+//   private drawHitBox() {
+//     push()
+//     rectMode(CORNER)
+//     stroke('red')
+//     noFill()
+//     const x = this.position.x + this.hitBoxPosition.x
+//     const y = this.position.y + this.hitBoxPosition.y
+//     const width = this.hitBoxSize.x
+//     const height = this.hitBoxSize.y
+//     rect(x, y, width, height)
+//     pop()
+//   }
+// }

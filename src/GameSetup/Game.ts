@@ -27,11 +27,6 @@ class Game implements IGame {
     }
   }
 
-  public startGame(): void {
-    this.menu.closeMenu()
-    this.isRunning = true
-  }
-
   public restartGame() {
     this.gameBoard = new GameBoard(this)
     this.gameCounter = new GameCounter()
@@ -40,12 +35,12 @@ class Game implements IGame {
 
   public gameOver(): void {
     this.gameOverMenu.showMenu()
+    sounds.gameOverSound.play()
     this.isRunning = false
   }
 
   private pauseGame() {
-    const pressed = keyIsDown(27) && !this.isPausePressed
-    // const released = !keyIsDown(27) && this.isPausePressed;
+    const pressed = keyIsDown(27) && !this.isPausePressed && this.isRunning
 
     if (pressed) {
       if (this.isRunning) {
@@ -75,16 +70,11 @@ class Game implements IGame {
     // background('blue')
     this.gameBoard.draw()
   }
-
-  // private playMusic() {
-  //   // Return Void;
-  // }
 }
 
 interface IGame {
   isRunning: boolean
   isMusic: boolean
-  startGame(): void
   gameOver(): void
   restartGame(): void
   getScore(): object

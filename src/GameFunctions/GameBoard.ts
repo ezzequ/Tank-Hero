@@ -16,7 +16,6 @@ class GameBoard {
   private powSpawnTime: number
   private heartSpawnTime: number
   private lastSpawnY?: number
-  //private gameTime: number
 
   constructor(game: IGame) {
     this.game = game
@@ -31,11 +30,10 @@ class GameBoard {
     this.scrollSpeed = 2
     this.zombieSpawnTime = random(500, 2500)
     this.obstacleSpawnTime = 4500
-    this.humanSpawnTime = 13000
+    this.humanSpawnTime = 13500
     this.bossSpawnTime = 20000
-    this.powSpawnTime = random(10000, 15000)
-    this.heartSpawnTime = random(10000, 15000)
-    //this.gameTime = 15000
+    this.powSpawnTime = random(15000, 25000)
+    this.heartSpawnTime = random(15000, 20000)
   }
 
   private scroll() {
@@ -63,23 +61,24 @@ class GameBoard {
 
     if (this.bossSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
-      this.entities.push(new Boss(this.scrollSpeed * 0.2, this.lastSpawnY))
+      this.entities.push(new Boss(this.scrollSpeed * .2, this.lastSpawnY))
       this.bossSpawnTime = 20000
     }
     if (this.zombieSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
-      this.entities.push(new Zombie(this.scrollSpeed * 0.2, this.lastSpawnY))
+      this.entities.push(new Zombie(this.scrollSpeed * .2, this.lastSpawnY))
       this.zombieSpawnTime = random(2000, 3000)
     }
     if (this.obstacleSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
-      this.entities.push(new Obstacle(this.lastSpawnY))
+      let randomObs = [new Truck(this.lastSpawnY), new RoadBlock(this.lastSpawnY)]
+      this.entities.push(randomObs[round(random(0,1))])
       this.obstacleSpawnTime = 4500
     }
     if (this.humanSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
       this.entities.push(new Human(this.lastSpawnY))
-      this.humanSpawnTime = 13000
+      this.humanSpawnTime = 13500
     }
     if (this.powSpawnTime < 0) {
       this.lastSpawnY = this.getRandomY()
@@ -94,8 +93,9 @@ class GameBoard {
   }
 
   private getRandomY(): number {
-    const cityHeight = height * 0.3
-    const y = ((height - cityHeight) / 6) * floor(random(6)) + cityHeight
+    const cityHeight = height * .3
+    //const y = ((height - cityHeight) / 6) * floor(random(6)) + cityHeight
+    const y = random(cityHeight, height * .8)
     if (y === this.lastSpawnY) {
       return this.getRandomY()
     }
@@ -106,12 +106,13 @@ class GameBoard {
     const hitBox = entity.getHitBox()
     const tankHitBox = this.tank.getHitBox()
     if (
-      entity instanceof Obstacle ||
+      entity instanceof Truck ||
       entity instanceof Zombie ||
       entity instanceof Human ||
       entity instanceof Boss ||
       entity instanceof FuelTank ||
-      entity instanceof Heart
+      entity instanceof Heart || 
+      entity instanceof RoadBlock
     ) {
       if (
         hitBox.x < tankHitBox.x + tankHitBox.width &&
@@ -135,14 +136,12 @@ class GameBoard {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
           sounds.bossDeath.play()
-          if (!this.gameCounter.getLives()) {
-            this.game.gameOver()
-          }
+          this.game.gameOver()
         }
-        if (entity instanceof Obstacle) {
+        if (entity instanceof Truck || entity instanceof RoadBlock) {
           this.gameCounter.decreaseTankHealth()
           entity.hitDamage(entity)
-          sounds.crash.play(0,1,0.2)
+          sounds.crash.play()
           if (!this.gameCounter.getLives()) {
             this.game.gameOver()
           }
@@ -208,6 +207,7 @@ class GameBoard {
             if (entityPlus instanceof Human) {
               this.gameCounter.removePoint(entityPlus.points)
               this.gameCounter.countKilledHumans(entityPlus)
+              sounds.humanDeath.play()
             }
             if (entityPlus instanceof Boss && entityPlus.getHealth() == 1) {
               entityPlus.hitDamage(entityPlus)
@@ -224,10 +224,13 @@ class GameBoard {
   private entityEndOfLine(entity: Entity) {
     if (entity.position.x < width / 6) {
       if (entity instanceof Zombie && !entity.isHit) {
-        this.gameCounter.removePoint(entity.points * 10)
+        this.gameCounter.removePoint(entity.points * 3)
         this.gameCounter.getRescuedHumanCount().pop()
-        this.sideBoard.rescuedLives.pop()
+        this.sideBoard.rescuedHumans.pop()
         entity.sound.play()
+      }
+      if(entity instanceof Boss) {
+        this.game.gameOver()
       }
       this.entities.splice(this.entities.indexOf(entity), 1)
     }
@@ -243,11 +246,15 @@ class GameBoard {
       this.entities.push(newProjectile)
     }
     for (const entity of this.entities) {
+      if (entity instanceof Zombie || entity instanceof Human) {
+        entity.animateEntity(entity)
+      }
       entity.update()
       this.entityEndOfLine(entity)
       this.hitEntity(entity)
     }
     this.gameCounter.update()
+
     //this.pauseMenu()
   }
 
