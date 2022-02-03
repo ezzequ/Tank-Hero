@@ -3,7 +3,6 @@ class SideBoard {
   public rescuedHumans: p5.Image[]
   private humanSize: number
   private sideBoardHeight: number
-  //private startingLives: number
 
   constructor() {
     this.human = images.humans.human1
@@ -14,6 +13,7 @@ class SideBoard {
 
 
   public renderHumans() {
+    storeItem('totalRescuedHumans', this.rescuedHumans.length)
     let addNumber: number = 0
     let yNumber: number = 50
     for (let live of this.rescuedHumans) {

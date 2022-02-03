@@ -1,5 +1,3 @@
-// This file will add both p5 instanced and global intellisence.
-// It makes sure that all the global p5 functions are available to typescript
 
 import module = require('p5')
 import * as p5Global from 'p5/global'
