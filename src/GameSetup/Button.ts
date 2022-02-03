@@ -7,7 +7,7 @@ class Button {
   }
 
   public resumeGame(div: p5.Element) {
-    this.button.mouseClicked((click) => {
+    this.button.mouseClicked(() => {
       div.style('display: none;')
       game.isRunning = true
       sounds.menuMusic.stop()

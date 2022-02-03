@@ -1,6 +1,6 @@
 class gameOverMenu {
   private playAgainButton: Button
-  private highScore: Button
+  //private highScore: Button
   private logo: p5.Element
   private div: p5.Element
   private music: p5.SoundFile
@@ -15,7 +15,7 @@ class gameOverMenu {
     this.playAgainButton = new Button(
       createButton('PLAY AGAIN').parent(this.div)
     )
-    this.highScore = new Button(createButton('HIGHSCORE').parent(this.div))
+    //this.highScore = new Button(createButton('HIGHSCORE').parent(this.div))
     this.div.position(0, 0)
     this.playAgainButton.btnRestart(this.div)
   }
@@ -23,11 +23,11 @@ class gameOverMenu {
   public showMenu() {
     this.div.style('display: flex;')
     sounds.gameMusic.stop()
-    sounds.menuMusic.play()
+    this.music.play()
   }
   public closeMenu() {
     sounds.gameMusic.play()
-    sounds.menuMusic.stop()
+    this.music.stop()
     this.div.style('display: none;')
   }
 }

@@ -24,11 +24,11 @@ class PauseMenu {
 
   public showMenu() {
     this.div.style('display: flex;')
-    sounds.menuMusic.play()
+    this.music.play()
   }
 
   public closeMenu() {
     this.div.style('display: none;')
-    sounds.menuMusic.stop()
+    this.music.stop()
   }
 }
