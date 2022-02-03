@@ -37,7 +37,7 @@ abstract class Entity {
     this.velocity = velocity || createVector(-5, 0)
     this.hitBoxPosition = hitBoxPosition
     this.hitBoxSize = hitBoxSize
-  }
+  } 
 
   public getSize() {
     return (this.hitBoxSize.x + this.hitBoxSize.y) / 2
@@ -69,9 +69,9 @@ abstract class Entity {
     }
     if (entity instanceof Boss) {
       entity.image = images.splatter
-      entity.size = height * .1
-      entity.position.x += height * .2
-      entity.position.y += height * .2
+      entity.size = height * .2
+      entity.position.x = entity.position.x
+      entity.position.y = entity.position.y + (entity.position.y * .1)
       entity.velocity = createVector(-2, 0)
     }
     entity.isHit = true
@@ -124,7 +124,7 @@ abstract class Entity {
     imageMode(CORNER)
     image(this.image, this.position.x, this.position.y, this.size, this.size)
     pop()
-    // this.drawHitBox()
+    //this.drawHitBox()
   }
 
   public getHitBox() {
