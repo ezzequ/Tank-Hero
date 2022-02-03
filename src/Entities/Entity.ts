@@ -43,7 +43,7 @@ abstract class Entity {
     return (this.hitBoxSize.x + this.hitBoxSize.y) / 2
   }
 
-  public removeHealth(entity: Entity, list: Entity[]) {
+  public removeHealth(entity: Entity) {
     if (entity.health == 1) {
       entity.isHit = true
       entity.image = images.splatter
@@ -136,16 +136,16 @@ abstract class Entity {
     }
   }
 
-  // private drawHitBox() {
-  //   push()
-  //   rectMode(CORNER)
-  //   stroke('red')
-  //   noFill()
-  //   const x = this.position.x + this.hitBoxPosition.x
-  //   const y = this.position.y + this.hitBoxPosition.y
-  //   const width = this.hitBoxSize.x
-  //   const height = this.hitBoxSize.y
-  //   rect(x, y, width, height)
-  //   pop()
-  // }
+//   private drawHitBox() {
+//     push()
+//     rectMode(CORNER)
+//     stroke('red')
+//     noFill()
+//     const x = this.position.x + this.hitBoxPosition.x
+//     const y = this.position.y + this.hitBoxPosition.y
+//     const width = this.hitBoxSize.x
+//     const height = this.hitBoxSize.y
+//     rect(x, y, width, height)
+//     pop()
+//   }
 }

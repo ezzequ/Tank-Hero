@@ -175,7 +175,7 @@ class GameBoard {
               zombiehitBox.y + zombiehitBox.height > humanHitBox.y &&
               !entityPlus.isHit
             ) {
-              entityPlus.removeHealth(entityPlus, this.entities)
+              entityPlus.removeHealth(entityPlus)
             }
           }
         }
@@ -213,7 +213,7 @@ class GameBoard {
               entityPlus.hitDamage(entityPlus)
               sounds.bossDeath.play()
             }
-            entity.removeHealth(entityPlus, this.entities)
+            entity.removeHealth(entityPlus)
             this.entities.splice(this.entities.indexOf(entity), 1)
           }
         }
