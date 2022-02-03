@@ -3,7 +3,6 @@ class Truck extends Entity {
     const size = height * .12
     const health = 1
     const position = createVector(width, y)
-    //const position = createVector(width, height / random(6))
     const sound = sounds.crash
     const img = images.obstacles.obs1
     const points = 0

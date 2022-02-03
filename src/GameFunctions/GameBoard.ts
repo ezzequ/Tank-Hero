@@ -94,7 +94,6 @@ class GameBoard {
 
   private getRandomY(): number {
     const cityHeight = height * .3
-    //const y = ((height - cityHeight) / 6) * floor(random(6)) + cityHeight
     const y = random(cityHeight, height * .8)
     if (y === this.lastSpawnY) {
       return this.getRandomY()
@@ -135,7 +134,6 @@ class GameBoard {
         if (entity instanceof Boss) {
           entity.hitDamage(entity)
           sounds.bossDeath.play()
-          console.log('Boss i tank')
           this.game.gameOver()
         }
         if (entity instanceof Truck || entity instanceof RoadBlock) {
@@ -155,7 +153,7 @@ class GameBoard {
           if (!this.gameCounter.getLives()) {
             this.game.gameOver()
           }
-          //this.entities.splice(this.entities.indexOf(entity), 1)
+          
         }
         if (entity instanceof Human) {
           this.sideBoard.addLives()
@@ -256,7 +254,6 @@ class GameBoard {
     }
     this.gameCounter.update()
 
-    //this.pauseMenu()
   }
 
   public draw() {

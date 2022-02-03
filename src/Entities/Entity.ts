@@ -124,7 +124,6 @@ abstract class Entity {
     imageMode(CORNER)
     image(this.image, this.position.x, this.position.y, this.size, this.size)
     pop()
-    //this.drawHitBox()
   }
 
   public getHitBox() {
@@ -136,16 +135,4 @@ abstract class Entity {
     }
   }
 
-//   private drawHitBox() {
-//     push()
-//     rectMode(CORNER)
-//     stroke('red')
-//     noFill()
-//     const x = this.position.x + this.hitBoxPosition.x
-//     const y = this.position.y + this.hitBoxPosition.y
-//     const width = this.hitBoxSize.x
-//     const height = this.hitBoxSize.y
-//     rect(x, y, width, height)
-//     pop()
-//   }
 }
