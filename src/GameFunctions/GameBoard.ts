@@ -94,7 +94,8 @@ class GameBoard {
 
   private getRandomY(): number {
     const cityHeight = height * .3
-    const y = ((height - cityHeight) / 6) * floor(random(6)) + cityHeight
+    //const y = ((height - cityHeight) / 6) * floor(random(6)) + cityHeight
+    const y = random(cityHeight, height * .8)
     if (y === this.lastSpawnY) {
       return this.getRandomY()
     }
