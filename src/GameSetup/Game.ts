@@ -5,7 +5,7 @@ class Game implements IGame {
   public isRunning: boolean
   private isPausePressed: boolean
   private gameOverMenu: gameOverMenu
-  private gameCounter: GameCounter
+  public gameCounter: GameCounter
   public isMusic: boolean
 
   constructor() {
@@ -19,6 +19,7 @@ class Game implements IGame {
     this.isMusic = true
   }
 
+  
   public getScore() {
     return {
       score: this.gameCounter.gameTimeScore,
@@ -37,6 +38,9 @@ class Game implements IGame {
     this.gameOverMenu.showMenu()
     sounds.gameOverSound.play()
     this.isRunning = false
+    let zombie = getItem('totalKilledZombies')
+    let score = getItem('totalPoints')
+    this.gameOverMenu.setText(`${zombie}`, `${score}`)
   }
 
   private pauseGame() {
@@ -57,17 +61,13 @@ class Game implements IGame {
 
   public update() {
     if (this.isRunning) {
-      //this.gameCounter.countDownTimer()
       this.gameBoard.update()
     }
     this.pauseGame()
-    // if(this.gameCounter.countDownTimer()) {
-    //   this.gameOver()
-    // }
+    
   }
 
   public draw() {
-    // background('blue')
     this.gameBoard.draw()
   }
 }

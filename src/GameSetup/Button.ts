@@ -11,7 +11,6 @@ class Button {
       div.style('display: none;')
       game.isRunning = true
       sounds.menuMusic.stop()
-      //sounds.readyGo.play()
       if (game.isMusic) {
         sounds.gameMusic.play(0, 1, .5)
       }
@@ -25,6 +24,7 @@ class Button {
       sounds.menuMusic.stop()
       sounds.readyGo.play()
       sounds.gameMusic.loop(2, 1, .5)
+      clearStorage()
     })
   }
 
@@ -37,23 +37,8 @@ class Button {
     })
   }
 
-  public btnHighScore(div: p5.Element) {
-    this.button.mouseClicked(() => {
-      div.style('display: none;')
-    })
-  }
-
-  public highScore(div: p5.Element) {
-    this.button.mouseClicked(() => {
-      div.style('display: none;')
-      sounds.menuMusic.stop()
-      sounds.readyGo.play()
-    })
-  }
-
   public toggleSound() {
     this.button.mouseClicked(() => {
-      // const soundz = Object.values(sounds) as p5.SoundFile[]
       if (game.isMusic) {
         this.button.html('SOUND ON')
         outputVolume(0)

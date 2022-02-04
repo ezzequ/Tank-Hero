@@ -107,6 +107,11 @@ canvas {
   height: 100%;
 }
 
+.game-over-menu h1 {
+  color: aliceblue !important;
+  text-align: center;
+}
+
 .btn {
   font-size: 1.25rem;
   color: hsl(67, 13%, 45%);
